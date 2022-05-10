@@ -16,15 +16,63 @@
             <RowDefinition/>
             <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Animals" FontSize="30"/>
-        <ListView x:Name="lvAnimals" Grid.Row="1">
+        <StackPanel Orientation="Horizontal" >
+            <TextBlock Text="Animals" FontSize="30" VerticalAlignment="Center" Margin="20,0"/>
+            <Button x:Name="btnAddAnimal" Content="Add animal" VerticalAlignment="Center" Margin="20,0" Click="btnAddAnimal_Click"/>
+            
+        </StackPanel>
+        <ListView
+            Grid.Row="1"
+                ItemsSource="{Binding Animals}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                    DisplayMemberBinding="{Binding ArrivalDate}"
+                    Header="ArrivalDate" />
+                    <GridViewColumn
+                    DisplayMemberBinding="{Binding Name}"
+                    Header="Name" />
+                    <GridViewColumn
+                    DisplayMemberBinding="{Binding Type.Name}"
+                    Header="Type.Name" />
+                    <GridViewColumn
+                    DisplayMemberBinding="{Binding Status.Name}"
+                    Header="Status.Name" />
+                    <GridViewColumn
+                        Header="Options">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox
+                                  Width="100">
+                                <ComboBoxItem
+                                    Content="Test" />
+                                <ComboBoxItem
+                                    Content="Test2" />
+                                <ComboBoxItem
+                                    Content="Test3" />
+                                </ComboBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <!--<ListView x:Name="lvAnimals" Grid.Row="1" ItemsSource="{Binding Animals}">
+            <ListView.View>
+                <GridView>
+                    
+                </GridView>
+            </ListView.View>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        
+                        <TextBlock Text="{Binding ArrivalDate}"/>
+                        <TextBlock Text="{Binding Name}"/>
+                        <TextBlock Text="{Binding Type.Name}"/>
+                        <TextBlock Text="{Binding Status.Name}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
-        </ListView>
+        </ListView>-->
     </Grid>
 </Page>

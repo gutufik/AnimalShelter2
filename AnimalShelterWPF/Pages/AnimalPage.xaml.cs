@@ -12,27 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Core;
 
 namespace AnimalShelterWPF.Pages
 {
     /// <summary>
-    /// Interaction logic for AnimalsPage.xaml
+    /// Interaction logic for AnimalPage.xaml
     /// </summary>
-    public partial class AnimalsPage : Page
+    public partial class AnimalPage : Page
     {
-        public List<Animal> Animals { get; set; }
-        public AnimalsPage()
+        public AnimalPage()
         {
             InitializeComponent();
-
-            Animals = DataAcccess.GetAnimals();
-            DataContext = this;
-        }
-
-        private void btnAddAnimal_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Pages.AnimalPage());
         }
     }
 }
