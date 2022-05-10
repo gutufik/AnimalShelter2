@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f7e92e89bb3c42ef95aab1397447c015" Name="Diagram1">
+        <EntityTypeShape EntityType="AnimalShelterModel.Animal" Width="1.5" PointX="7.5" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.AnimalAppointment" Width="1.5" PointX="9.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.AnimalType" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Employee" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Role" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Status" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.User" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Animal_AnimalType" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Animal_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Animal_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_AnimalAppointment_Animal" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Employee_User" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_User_Role" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

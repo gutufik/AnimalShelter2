@@ -1,0 +1,30 @@
+﻿<Window x:Class="AnimalShelterWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AnimalShelterWPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
+        <Frame x:Name="MainFrame" Grid.Row="1" Grid.ColumnSpan="10" NavigationUIVisibility="Hidden"/>
+        <Label x:Name="lblMain" Content="Главная" MouseLeftButtonUp="lblMain_MouseLeftButtonUp"/>
+        <Label x:Name="lblAnimals" Content="Животные" Grid.Column="2" MouseLeftButtonUp="lblAnimals_MouseLeftButtonUp" />
+        <Label x:Name="lblCalendar" Content="Календарь" Grid.Column="3" MouseLeftButtonUp="lblCalendar_MouseLeftButtonUp"/>
+        <Label x:Name="lblMedicines" Content="Медикаменты" Grid.Column="4" MouseLeftButtonUp="lblMedicines_MouseLeftButtonUp"/>
+        <!--<Button Content="Button" Background="Transparent" />-->
+        <Label x:Name="lblLogin" Content="Вход" Grid.Column="5" MouseLeftButtonUp="lblLogin_MouseLeftButtonUp"/>
+    </Grid>
+</Window>
