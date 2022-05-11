@@ -63,5 +63,17 @@ namespace Core
         {
             return AnimalShelterEntities.GetContext().Employees.ToList();
         }
+        public static void SaveAnimalAppointment(AnimalAppointment appointment)
+        {
+            if (GetAnimalAppointments().FirstOrDefault(a => a.Id == appointment.Id) == null)
+                AnimalShelterEntities.GetContext().AnimalAppointments.Add(appointment);
+
+            AnimalShelterEntities.GetContext().SaveChanges();
+        }
+        public static List<Medicine> GetMedicines()
+        {
+            return AnimalShelterEntities.GetContext().Medicines.ToList();
+        }
+
     }
 }

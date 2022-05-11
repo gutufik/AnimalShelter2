@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Core;
 
 namespace AnimalShelterWPF.Pages
 {
@@ -19,10 +20,16 @@ namespace AnimalShelterWPF.Pages
     /// Interaction logic for MedicinesPage.xaml
     /// </summary>
     public partial class MedicinesPage : Page
-    {
+    { 
+        public List<Medicine> Medicines { get; set; }
         public MedicinesPage()
         {
             InitializeComponent();
+            Medicines = DataAccess.GetMedicines();
+            if (Medicines.Count == 0)
+                lblEmpty.Visibility = Visibility.Visible;
+
+            DataContext = Medicines;
         }
     }
 }

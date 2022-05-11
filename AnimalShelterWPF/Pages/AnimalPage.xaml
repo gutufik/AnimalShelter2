@@ -41,7 +41,7 @@
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1">
             <TextBlock Text="ArrivalDate" />
-            <DatePicker x:Name="tbDate" Text="{Binding ArrivalDate}"/>
+            <DatePicker x:Name="tbDate" SelectedDate="{Binding ArrivalDate}"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="2">
             <TextBlock Text="Type"/>

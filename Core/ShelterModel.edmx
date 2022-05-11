@@ -10,10 +10,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="TypeId" Type="int" />
           <Property Name="Breed" Type="nvarchar" MaxLength="50" />
-          <Property Name="ArrivalDate" Type="date" />
+          <Property Name="ArrivalDate" Type="date" Nullable="false" />
           <Property Name="StatusId" Type="int" />
           <Property Name="Height" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Weight" Type="decimal" Precision="18" Scale="2" />
@@ -29,9 +29,9 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Date" Type="date" />
-          <Property Name="AnimalId" Type="int" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="AnimalId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="AnimalType">
           <Key>
@@ -51,6 +51,13 @@
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="Phone" Type="nvarchar" MaxLength="11" />
           <Property Name="Address" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Medicine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -122,7 +129,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AnimalAppointment_Animal">
-          <End Role="Animal" Type="Self.Animal" Multiplicity="0..1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="1" />
           <End Role="AnimalAppointment" Type="Self.AnimalAppointment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Animal">
@@ -162,6 +169,7 @@
           <EntitySet Name="AnimalAppointment" EntityType="Self.AnimalAppointment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnimalType" EntityType="Self.AnimalType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medicine" EntityType="Self.Medicine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -195,15 +203,50 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AnimalShelterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AnimalShelterEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Animals" EntityType="AnimalShelterModel.Animal" />
+          <EntitySet Name="AnimalAppointments" EntityType="AnimalShelterModel.AnimalAppointment" />
+          <EntitySet Name="AnimalTypes" EntityType="AnimalShelterModel.AnimalType" />
+          <EntitySet Name="Employees" EntityType="AnimalShelterModel.Employee" />
+          <EntitySet Name="Roles" EntityType="AnimalShelterModel.Role" />
+          <EntitySet Name="Status" EntityType="AnimalShelterModel.Status" />
+          <EntitySet Name="sysdiagrams" EntityType="AnimalShelterModel.sysdiagram" />
+          <EntitySet Name="Users" EntityType="AnimalShelterModel.User" />
+          <AssociationSet Name="FK_Animal_AnimalType" Association="AnimalShelterModel.FK_Animal_AnimalType">
+            <End Role="AnimalType" EntitySet="AnimalTypes" />
+            <End Role="Animal" EntitySet="Animals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Animal_Employee" Association="AnimalShelterModel.FK_Animal_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Animal" EntitySet="Animals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Animal_Status" Association="AnimalShelterModel.FK_Animal_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Animal" EntitySet="Animals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnimalAppointment_Animal" Association="AnimalShelterModel.FK_AnimalAppointment_Animal">
+            <End Role="Animal" EntitySet="Animals" />
+            <End Role="AnimalAppointment" EntitySet="AnimalAppointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_User" Association="AnimalShelterModel.FK_Employee_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="AnimalShelterModel.FK_User_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="Medicines" EntityType="AnimalShelterModel.Medicine" />
+        </EntityContainer>
         <EntityType Name="Animal">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TypeId" Type="Int32" />
           <Property Name="Breed" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ArrivalDate" Type="DateTime" Precision="0" />
+          <Property Name="ArrivalDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="StatusId" Type="Int32" />
           <Property Name="Height" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Weight" Type="Decimal" Precision="18" Scale="2" />
@@ -214,175 +257,58 @@
           <Property Name="CapturePlace" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Sign" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CuratorId" Type="Int32" />
-          <NavigationProperty Name="AnimalType" Relationship="Self.FK_Animal_AnimalType" FromRole="Animal" ToRole="AnimalType" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_Animal_Employee" FromRole="Animal" ToRole="Employee" />
-          <NavigationProperty Name="Status" Relationship="Self.FK_Animal_Status" FromRole="Animal" ToRole="Status" />
-          <NavigationProperty Name="AnimalAppointments" Relationship="Self.FK_AnimalAppointment_Animal" FromRole="Animal" ToRole="AnimalAppointment" />
+          <NavigationProperty Name="AnimalType" Relationship="AnimalShelterModel.FK_Animal_AnimalType" FromRole="Animal" ToRole="AnimalType" />
+          <NavigationProperty Name="Employee" Relationship="AnimalShelterModel.FK_Animal_Employee" FromRole="Animal" ToRole="Employee" />
+          <NavigationProperty Name="Status" Relationship="AnimalShelterModel.FK_Animal_Status" FromRole="Animal" ToRole="Status" />
+          <NavigationProperty Name="AnimalAppointments" Relationship="AnimalShelterModel.FK_AnimalAppointment_Animal" FromRole="Animal" ToRole="AnimalAppointment" />
         </EntityType>
         <EntityType Name="AnimalAppointment">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Precision="0" />
-          <Property Name="AnimalId" Type="Int32" />
-          <NavigationProperty Name="Animal" Relationship="Self.FK_AnimalAppointment_Animal" FromRole="AnimalAppointment" ToRole="Animal" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AnimalId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Animal" Relationship="AnimalShelterModel.FK_AnimalAppointment_Animal" FromRole="AnimalAppointment" ToRole="Animal" />
         </EntityType>
         <EntityType Name="AnimalType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Animals" Relationship="Self.FK_Animal_AnimalType" FromRole="AnimalType" ToRole="Animal" />
+          <NavigationProperty Name="Animals" Relationship="AnimalShelterModel.FK_Animal_AnimalType" FromRole="AnimalType" ToRole="Animal" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="Int32" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SecondName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Animals" Relationship="Self.FK_Animal_Employee" FromRole="Employee" ToRole="Animal" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Employee_User" FromRole="Employee" ToRole="User" />
+          <NavigationProperty Name="Animals" Relationship="AnimalShelterModel.FK_Animal_Employee" FromRole="Employee" ToRole="Animal" />
+          <NavigationProperty Name="User" Relationship="AnimalShelterModel.FK_Employee_User" FromRole="Employee" ToRole="User" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+          <NavigationProperty Name="Users" Relationship="AnimalShelterModel.FK_User_Role" FromRole="Role" ToRole="User" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Animals" Relationship="Self.FK_Animal_Status" FromRole="Status" ToRole="Animal" />
+          <NavigationProperty Name="Animals" Relationship="AnimalShelterModel.FK_Animal_Status" FromRole="Status" ToRole="Animal" />
         </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RoleId" Type="Int32" />
-          <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_User" FromRole="User" ToRole="Employee" />
-          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
-        </EntityType>
-        <Association Name="FK_Animal_AnimalType">
-          <End Role="AnimalType" Type="Self.AnimalType" Multiplicity="0..1" />
-          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AnimalType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Animal">
-              <PropertyRef Name="TypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Animal_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Animal">
-              <PropertyRef Name="CuratorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Animal_Status">
-          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
-          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Status">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Animal">
-              <PropertyRef Name="StatusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AnimalAppointment_Animal">
-          <End Role="Animal" Type="Self.Animal" Multiplicity="0..1" />
-          <End Role="AnimalAppointment" Type="Self.AnimalAppointment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Animal">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AnimalAppointment">
-              <PropertyRef Name="AnimalId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Employee_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Employee">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_User_Role">
-          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="AnimalShelterEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Animals" EntityType="Self.Animal" />
-          <EntitySet Name="AnimalAppointments" EntityType="Self.AnimalAppointment" />
-          <EntitySet Name="AnimalTypes" EntityType="Self.AnimalType" />
-          <EntitySet Name="Employees" EntityType="Self.Employee" />
-          <EntitySet Name="Roles" EntityType="Self.Role" />
-          <EntitySet Name="Status" EntityType="Self.Status" />
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK_Animal_AnimalType" Association="Self.FK_Animal_AnimalType">
-            <End Role="AnimalType" EntitySet="AnimalTypes" />
-            <End Role="Animal" EntitySet="Animals" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Animal_Employee" Association="Self.FK_Animal_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="Animal" EntitySet="Animals" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Animal_Status" Association="Self.FK_Animal_Status">
-            <End Role="Status" EntitySet="Status" />
-            <End Role="Animal" EntitySet="Animals" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AnimalAppointment_Animal" Association="Self.FK_AnimalAppointment_Animal">
-            <End Role="Animal" EntitySet="Animals" />
-            <End Role="AnimalAppointment" EntitySet="AnimalAppointments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employee_User" Association="Self.FK_Employee_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Employee" EntitySet="Employees" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
-            <End Role="Role" EntitySet="Roles" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <EntitySet Name="sysdiagrams" EntityType="AnimalShelterModel.sysdiagram" />
-        </EntityContainer>
         <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -393,7 +319,97 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-      </Schema>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoleId" Type="Int32" />
+          <NavigationProperty Name="Employees" Relationship="AnimalShelterModel.FK_Employee_User" FromRole="User" ToRole="Employee" />
+          <NavigationProperty Name="Role" Relationship="AnimalShelterModel.FK_User_Role" FromRole="User" ToRole="Role" />
+        </EntityType>
+        <Association Name="FK_Animal_AnimalType">
+          <End Type="AnimalShelterModel.AnimalType" Role="AnimalType" Multiplicity="0..1" />
+          <End Type="AnimalShelterModel.Animal" Role="Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnimalType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Animal_Employee">
+          <End Type="AnimalShelterModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="AnimalShelterModel.Animal" Role="Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="CuratorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Animal_Status">
+          <End Type="AnimalShelterModel.Status" Role="Status" Multiplicity="0..1" />
+          <End Type="AnimalShelterModel.Animal" Role="Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnimalAppointment_Animal">
+          <End Type="AnimalShelterModel.Animal" Role="Animal" Multiplicity="1" />
+          <End Type="AnimalShelterModel.AnimalAppointment" Role="AnimalAppointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnimalAppointment">
+              <PropertyRef Name="AnimalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_User">
+          <End Type="AnimalShelterModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="AnimalShelterModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Type="AnimalShelterModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="AnimalShelterModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Medicine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -402,77 +418,67 @@
           <EntitySetMapping Name="Animals">
             <EntityTypeMapping TypeName="AnimalShelterModel.Animal">
               <MappingFragment StoreEntitySet="Animal">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
-                <ScalarProperty Name="Breed" ColumnName="Breed" />
-                <ScalarProperty Name="ArrivalDate" ColumnName="ArrivalDate" />
-                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
-                <ScalarProperty Name="Height" ColumnName="Height" />
-                <ScalarProperty Name="Weight" ColumnName="Weight" />
-                <ScalarProperty Name="Age" ColumnName="Age" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Color" ColumnName="Color" />
-                <ScalarProperty Name="Character" ColumnName="Character" />
-                <ScalarProperty Name="CapturePlace" ColumnName="CapturePlace" />
-                <ScalarProperty Name="Sign" ColumnName="Sign" />
                 <ScalarProperty Name="CuratorId" ColumnName="CuratorId" />
+                <ScalarProperty Name="Sign" ColumnName="Sign" />
+                <ScalarProperty Name="CapturePlace" ColumnName="CapturePlace" />
+                <ScalarProperty Name="Character" ColumnName="Character" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="ArrivalDate" ColumnName="ArrivalDate" />
+                <ScalarProperty Name="Breed" ColumnName="Breed" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AnimalAppointments">
             <EntityTypeMapping TypeName="AnimalShelterModel.AnimalAppointment">
               <MappingFragment StoreEntitySet="AnimalAppointment">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="AnimalId" ColumnName="AnimalId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AnimalTypes">
             <EntityTypeMapping TypeName="AnimalShelterModel.AnimalType">
               <MappingFragment StoreEntitySet="AnimalType">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="AnimalShelterModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="SecondName" ColumnName="SecondName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="AnimalShelterModel.Role">
               <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Status">
             <EntityTypeMapping TypeName="AnimalShelterModel.Status">
               <MappingFragment StoreEntitySet="Status">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="AnimalShelterModel.User">
-              <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -484,6 +490,24 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="AnimalShelterModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medicines">
+            <EntityTypeMapping TypeName="AnimalShelterModel.Medicine">
+              <MappingFragment StoreEntitySet="Medicine">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

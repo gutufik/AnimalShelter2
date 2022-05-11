@@ -24,7 +24,7 @@ namespace Core
         public string Name { get; set; }
         public Nullable<int> TypeId { get; set; }
         public string Breed { get; set; }
-        public Nullable<System.DateTime> ArrivalDate { get; set; }
+        public System.DateTime ArrivalDate { get; set; }
         public Nullable<int> StatusId { get; set; }
         public Nullable<decimal> Height { get; set; }
         public Nullable<decimal> Weight { get; set; }

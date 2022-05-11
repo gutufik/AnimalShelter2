@@ -9,6 +9,16 @@
       Title="MedicinesPage">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
         <Label  Content="Medicines"/>
+        <ListView Grid.Row="1" ItemsSource="{Binding}" DisplayMemberPath="Name">
+            
+        </ListView>
+
+        <Label x:Name="lblEmpty" Content="No medicines" FontSize="30" HorizontalAlignment="Center" 
+               VerticalAlignment="Center" Grid.Row="1" Visibility="Hidden"/>
     </Grid>
 </Page>

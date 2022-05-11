@@ -12,12 +12,9 @@ namespace Core
     using System;
     using System.Collections.Generic;
     
-    public partial class AnimalAppointment
+    public partial class Medicine
     {
         public int Id { get; set; }
-        public System.DateTime Date { get; set; }
-        public int AnimalId { get; set; }
-    
-        public virtual Animal Animal { get; set; }
+        public string Name { get; set; }
     }
 }

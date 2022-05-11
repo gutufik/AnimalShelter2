@@ -31,9 +31,18 @@ namespace AnimalShelterWPF.Pages
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            DataAccess.SaveAnimal(Animal);
+            try
+            {
+                if (Animal.ArrivalDate > DateTime.Now)
+                    throw new Exception();
+                DataAccess.SaveAnimal(Animal);
+                NavigationService.GoBack();
 
-            NavigationService.GoBack();
+            }
+            catch
+            {
+                MessageBox.Show("Некорректные данные");
+            }
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
