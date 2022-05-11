@@ -18,6 +18,7 @@
         <AssociationConnector Association="AnimalShelterModel.FK_AnimalAppointment_Animal" ManuallyRouted="false" />
         <AssociationConnector Association="AnimalShelterModel.FK_Employee_User" ManuallyRouted="false" />
         <AssociationConnector Association="AnimalShelterModel.FK_User_Role" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AnimalShelterModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

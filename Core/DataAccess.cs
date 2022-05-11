@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core
 {
-    public class DataAcccess
+    public class DataAccess
     {
         #region Animal
 

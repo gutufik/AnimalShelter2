@@ -9,6 +9,23 @@
       Title="AppointmentPage">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition  Height="4*"/>
+        </Grid.RowDefinitions>
+        <Label Content="New Appintment"/>
+        <StackPanel Grid.Row="1" Margin="30,0">
+            <TextBlock Text="Animal"/>
+            <ComboBox x:Name="cbAnimal" SelectedItem="{Binding Animal}" Margin="30,0"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="30,0">
+            <TextBlock Text="Date"/>
+            <DatePicker x:Name="dpDate" Text="{Binding Date}" Margin="30,0"/>
+        </StackPanel>
     </Grid>
 </Page>

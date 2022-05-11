@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:AnimalShelterWPF.Pages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CalendarPage">
@@ -18,6 +19,31 @@
     </Page.Resources>
     
     <Grid>
+        <Grid.Resources>
+            <Style
+      x:Key="SecondaryCalendarDayButton"
+      TargetType="CalendarDayButton"
+      BasedOn="{StaticResource MaterialDesignCalendarDayButton}">
+                <Setter
+        Property="materialDesign:CalendarAssist.SelectionColor"
+        Value="{DynamicResource SecondaryHueMidBrush}" />
+                <Setter
+        Property="materialDesign:CalendarAssist.SelectionForegroundColor"
+        Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+            </Style>
+            <Style
+      x:Key="SecondaryCalendarButton"
+      TargetType="CalendarButton"
+      BasedOn="{StaticResource MaterialDesignCalendarButton}">
+                <Setter
+        Property="materialDesign:CalendarAssist.SelectionColor"
+        Value="{DynamicResource SecondaryHueMidBrush}" />
+                <Setter
+        Property="materialDesign:CalendarAssist.SelectionForegroundColor"
+        Value="{DynamicResource SecondaryHueMidForegroundBrush}" />
+            </Style>
+        </Grid.Resources>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -26,6 +52,10 @@
             <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
         <Label Content="Calendar"/>
-        <Calendar  x:Name="Calendar" Grid.Row="1"/>
+        <Viewbox Grid.Row="1">
+            <Calendar x:Name="Calendar" 
+                materialDesign:CalendarAssist.Orientation="Horizontal" />
+            
+        </Viewbox>
     </Grid>
 </Page>

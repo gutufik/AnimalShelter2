@@ -94,6 +94,9 @@
     <Compile Include="Status.cs">
       <DependentUpon>ShelterModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>ShelterModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>ShelterModel.tt</DependentUpon>
     </Compile>

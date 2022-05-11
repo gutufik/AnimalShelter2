@@ -26,13 +26,18 @@ namespace AnimalShelterWPF.Pages
         {
             InitializeComponent();
 
-            Animals = DataAcccess.GetAnimals();
+            Animals = DataAccess.GetAnimals();
             DataContext = this;
         }
 
         private void btnAddAnimal_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Pages.AnimalPage());
+        }
+
+        private void btnAddAppintment_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Pages.AppointmentPage());
         }
     }
 }
