@@ -19,7 +19,7 @@
         <StackPanel Orientation="Horizontal" >
             <TextBlock Text="Animals" FontSize="30" VerticalAlignment="Center" Margin="20,0"/>
             <Button x:Name="btnAddAnimal" Content="Add animal" VerticalAlignment="Center" Margin="20,0" Click="btnAddAnimal_Click"/>
-            
+            <Button x:Name="btnAddAppintment" Content="Add appointment" Background="AliceBlue" Foreground="Purple"/>
         </StackPanel>
         <ListView
             Grid.Row="1"

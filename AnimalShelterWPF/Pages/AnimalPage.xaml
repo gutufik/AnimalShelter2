@@ -8,6 +8,12 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AnimalPage">
 
+    <Page.Resources>
+        <Style TargetType="StackPanel">
+            <Setter Property="Margin" Value="30,0"/>
+        </Style>
+    </Page.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -23,7 +29,7 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Label Content="New Animal" FontSize="30"/>
+        <Label Content="New Animal" FontSize="25"/>
         <Button x:Name="btnCancel" Content="Cancel" Grid.Column="3" 
                 Foreground="Gray" Background="Azure"/>
         <Button x:Name="btnSave" Content="Save" Grid.Column="4"/>
@@ -33,17 +39,18 @@
             <TextBox x:Name="tbName" Text="{Binding Name}"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1">
-            <TextBlock Text="Type"/>
-            <TextBox x:Name="tbType" Text="{Binding Type}"/>
+            <TextBlock Text="ArrivalDate" />
+            <DatePicker x:Name="tbDate" Text="{Binding ArrivalDate}"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="2">
+            <TextBlock Text="Type"/>
+            <ComboBox x:Name="tbType" SelectedItem="{Binding Type}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="3">
             <TextBlock Text="Breed"/>
             <TextBox x:Name="tbBreed" Text="{Binding Breed}"/>
-        </StackPanel >
-        <StackPanel Grid.Row="1" Grid.Column="3">
-            <TextBlock Text="ArrivalDate" />
-            <TextBox x:Name="tbDate" Text="{Binding ArrivalDate}"/>
         </StackPanel>
+
         <StackPanel Grid.Row="2" Grid.Column="0">
             <TextBlock Text="Height"/>
             <TextBox x:Name="tbHeight" Text="{Binding Height}"/>
@@ -53,16 +60,30 @@
             <TextBox x:Name="tbWeight" Text="{Binding Weight}"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="2">
+            <TextBlock Text="Color"/>
+            <TextBox x:Name="tbColor" Text="{Binding Color}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.Column="0">
             <TextBlock Text="Age"/>
             <TextBox x:Name="tbAge" Text="{Binding Age}"/>
         </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="3">
+        <StackPanel Grid.Row="3" Grid.Column="1">
             <TextBlock Text="Gender"/>
-            <TextBox x:Name="tbGender" Text="{Binding Gender}"/>
+            <ComboBox x:Name="tbGender" SelectedItem="{Binding Gender}"/>
         </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="4">
-            <TextBlock Text="Color"/>
-            <TextBox x:Name="tbColor" Text="{Binding Color}"/>
+
+        <StackPanel Grid.Row="4" Grid.Column="0">
+            <TextBlock Text="CapturePlace"/>
+            <ComboBox x:Name="tbCapturePlace" SelectedItem="{Binding CapturePlace}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="1">
+            <TextBlock Text="Sign"/>
+            <ComboBox x:Name="tbSign" SelectedItem="{Binding Sign}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="2">
+            <TextBlock Text="Character"/>
+            <ComboBox x:Name="tbCharacter" SelectedItem="{Binding Character}"/>
         </StackPanel>
     </Grid>
 </Page>

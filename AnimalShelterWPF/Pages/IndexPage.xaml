@@ -15,6 +15,7 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Label Content="Описание" FontSize="30"/>
+        <TextBlock Text="Это приложение, позволяющее облегчить работу приютов и реабилитационных центров животных, сэкономить время на ведении документации, помочь с учетом лечения животных и учетом лекарств. " 
+               FontSize="30" TextWrapping="Wrap"/>
     </Grid>
 </Page>

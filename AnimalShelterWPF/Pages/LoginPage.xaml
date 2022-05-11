@@ -9,6 +9,22 @@
       Title="LoginPage">
 
     <Grid>
-        <Label Content="Login"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Authorization" FontSize="30"/>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock Text="Login"/>
+            <TextBox Text="{Binding Login}"/>
+            <TextBlock Text="Password"/>
+            <PasswordBox />
+            <Button Content="Log in" Margin="20"/>
+        </StackPanel>
     </Grid>
 </Page>
