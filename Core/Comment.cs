@@ -12,24 +12,21 @@ namespace Core
     using System;
     using System.Collections.Generic;
     
-    public partial class AnimalAppointment
+    public partial class Comment
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AnimalAppointment()
+        public Comment()
         {
-            this.AppointmentMedicines = new HashSet<AppointmentMedicine>();
+            this.AnimalAppointments = new HashSet<AnimalAppointment>();
+            this.AnimalComments = new HashSet<AnimalComment>();
         }
     
         public int Id { get; set; }
-        public System.DateTime Date { get; set; }
-        public int AnimalId { get; set; }
-        public Nullable<int> TypeId { get; set; }
-        public Nullable<int> CommentId { get; set; }
+        public string Text { get; set; }
     
-        public virtual Animal Animal { get; set; }
-        public virtual AppointmentType AppointmentType { get; set; }
-        public virtual Comment Comment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AppointmentMedicine> AppointmentMedicines { get; set; }
+        public virtual ICollection<AnimalAppointment> AnimalAppointments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AnimalComment> AnimalComments { get; set; }
     }
 }

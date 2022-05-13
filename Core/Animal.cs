@@ -18,6 +18,7 @@ namespace Core
         public Animal()
         {
             this.AnimalAppointments = new HashSet<AnimalAppointment>();
+            this.AnimalComments = new HashSet<AnimalComment>();
         }
     
         public int Id { get; set; }
@@ -41,5 +42,7 @@ namespace Core
         public virtual Status Status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AnimalAppointment> AnimalAppointments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AnimalComment> AnimalComments { get; set; }
     }
 }

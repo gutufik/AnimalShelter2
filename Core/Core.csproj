@@ -64,6 +64,9 @@
     <Compile Include="AnimalAppointment.cs">
       <DependentUpon>ShelterModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="AnimalComment.cs">
+      <DependentUpon>ShelterModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="AnimalShelterEntities.cs" />
     <Compile Include="AnimalType.cs">
       <DependentUpon>ShelterModel.tt</DependentUpon>
@@ -72,6 +75,9 @@
       <DependentUpon>ShelterModel.tt</DependentUpon>
     </Compile>
     <Compile Include="AppointmentType.cs">
+      <DependentUpon>ShelterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Comment.cs">
       <DependentUpon>ShelterModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccess.cs" />

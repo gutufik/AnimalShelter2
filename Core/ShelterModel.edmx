@@ -33,6 +33,15 @@
           <Property Name="Date" Type="date" Nullable="false" />
           <Property Name="AnimalId" Type="int" Nullable="false" />
           <Property Name="TypeId" Type="int" />
+          <Property Name="CommentId" Type="int" />
+        </EntityType>
+        <EntityType Name="AnimalComment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AnimalId" Type="int" />
+          <Property Name="CommentId" Type="int" />
         </EntityType>
         <EntityType Name="AnimalType">
           <Key>
@@ -55,6 +64,13 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Text" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -168,6 +184,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_AnimalAppointment_Comment">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
+          <End Role="AnimalAppointment" Type="Self.AnimalAppointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnimalAppointment">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnimalComment_Animal">
+          <End Role="Animal" Type="Self.Animal" Multiplicity="0..1" />
+          <End Role="AnimalComment" Type="Self.AnimalComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnimalComment">
+              <PropertyRef Name="AnimalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnimalComment_Comment">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
+          <End Role="AnimalComment" Type="Self.AnimalComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnimalComment">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AppointmentMedicine_AnimalAppointment">
           <End Role="AnimalAppointment" Type="Self.AnimalAppointment" Multiplicity="0..1" />
           <End Role="AppointmentMedicine" Type="Self.AppointmentMedicine" Multiplicity="*" />
@@ -219,9 +271,11 @@
         <EntityContainer Name="AnimalShelterModelStoreContainer">
           <EntitySet Name="Animal" EntityType="Self.Animal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnimalAppointment" EntityType="Self.AnimalAppointment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnimalComment" EntityType="Self.AnimalComment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnimalType" EntityType="Self.AnimalType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AppointmentMedicine" EntityType="Self.AppointmentMedicine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AppointmentType" EntityType="Self.AppointmentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Medicine" EntityType="Self.Medicine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
@@ -248,6 +302,18 @@
             <End Role="AppointmentType" EntitySet="AppointmentType" />
             <End Role="AnimalAppointment" EntitySet="AnimalAppointment" />
           </AssociationSet>
+          <AssociationSet Name="FK_AnimalAppointment_Comment" Association="Self.FK_AnimalAppointment_Comment">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="AnimalAppointment" EntitySet="AnimalAppointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnimalComment_Animal" Association="Self.FK_AnimalComment_Animal">
+            <End Role="Animal" EntitySet="Animal" />
+            <End Role="AnimalComment" EntitySet="AnimalComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnimalComment_Comment" Association="Self.FK_AnimalComment_Comment">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="AnimalComment" EntitySet="AnimalComment" />
+          </AssociationSet>
           <AssociationSet Name="FK_AppointmentMedicine_AnimalAppointment" Association="Self.FK_AppointmentMedicine_AnimalAppointment">
             <End Role="AnimalAppointment" EntitySet="AnimalAppointment" />
             <End Role="AppointmentMedicine" EntitySet="AppointmentMedicine" />
@@ -272,9 +338,11 @@
         <EntityContainer Name="AnimalShelterEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Animals" EntityType="AnimalShelterModel.Animal" />
           <EntitySet Name="AnimalAppointments" EntityType="AnimalShelterModel.AnimalAppointment" />
+          <EntitySet Name="AnimalComments" EntityType="AnimalShelterModel.AnimalComment" />
           <EntitySet Name="AnimalTypes" EntityType="AnimalShelterModel.AnimalType" />
           <EntitySet Name="AppointmentMedicines" EntityType="AnimalShelterModel.AppointmentMedicine" />
           <EntitySet Name="AppointmentTypes" EntityType="AnimalShelterModel.AppointmentType" />
+          <EntitySet Name="Comments" EntityType="AnimalShelterModel.Comment" />
           <EntitySet Name="Employees" EntityType="AnimalShelterModel.Employee" />
           <EntitySet Name="Medicines" EntityType="AnimalShelterModel.Medicine" />
           <EntitySet Name="Roles" EntityType="AnimalShelterModel.Role" />
@@ -297,13 +365,25 @@
             <End Role="Animal" EntitySet="Animals" />
             <End Role="AnimalAppointment" EntitySet="AnimalAppointments" />
           </AssociationSet>
+          <AssociationSet Name="FK_AnimalComment_Animal" Association="AnimalShelterModel.FK_AnimalComment_Animal">
+            <End Role="Animal" EntitySet="Animals" />
+            <End Role="AnimalComment" EntitySet="AnimalComments" />
+          </AssociationSet>
           <AssociationSet Name="FK_AnimalAppointment_AppointmentType" Association="AnimalShelterModel.FK_AnimalAppointment_AppointmentType">
             <End Role="AppointmentType" EntitySet="AppointmentTypes" />
+            <End Role="AnimalAppointment" EntitySet="AnimalAppointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnimalAppointment_Comment" Association="AnimalShelterModel.FK_AnimalAppointment_Comment">
+            <End Role="Comment" EntitySet="Comments" />
             <End Role="AnimalAppointment" EntitySet="AnimalAppointments" />
           </AssociationSet>
           <AssociationSet Name="FK_AppointmentMedicine_AnimalAppointment" Association="AnimalShelterModel.FK_AppointmentMedicine_AnimalAppointment">
             <End Role="AnimalAppointment" EntitySet="AnimalAppointments" />
             <End Role="AppointmentMedicine" EntitySet="AppointmentMedicines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnimalComment_Comment" Association="AnimalShelterModel.FK_AnimalComment_Comment">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="AnimalComment" EntitySet="AnimalComments" />
           </AssociationSet>
           <AssociationSet Name="FK_AppointmentMedicine_Medicine" Association="AnimalShelterModel.FK_AppointmentMedicine_Medicine">
             <End Role="Medicine" EntitySet="Medicines" />
@@ -341,6 +421,7 @@
           <NavigationProperty Name="Employee" Relationship="AnimalShelterModel.FK_Animal_Employee" FromRole="Animal" ToRole="Employee" />
           <NavigationProperty Name="Status" Relationship="AnimalShelterModel.FK_Animal_Status" FromRole="Animal" ToRole="Status" />
           <NavigationProperty Name="AnimalAppointments" Relationship="AnimalShelterModel.FK_AnimalAppointment_Animal" FromRole="Animal" ToRole="AnimalAppointment" />
+          <NavigationProperty Name="AnimalComments" Relationship="AnimalShelterModel.FK_AnimalComment_Animal" FromRole="Animal" ToRole="AnimalComment" />
         </EntityType>
         <EntityType Name="AnimalAppointment">
           <Key>
@@ -350,9 +431,21 @@
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="AnimalId" Type="Int32" Nullable="false" />
           <Property Name="TypeId" Type="Int32" />
+          <Property Name="CommentId" Type="Int32" />
           <NavigationProperty Name="Animal" Relationship="AnimalShelterModel.FK_AnimalAppointment_Animal" FromRole="AnimalAppointment" ToRole="Animal" />
           <NavigationProperty Name="AppointmentType" Relationship="AnimalShelterModel.FK_AnimalAppointment_AppointmentType" FromRole="AnimalAppointment" ToRole="AppointmentType" />
+          <NavigationProperty Name="Comment" Relationship="AnimalShelterModel.FK_AnimalAppointment_Comment" FromRole="AnimalAppointment" ToRole="Comment" />
           <NavigationProperty Name="AppointmentMedicines" Relationship="AnimalShelterModel.FK_AppointmentMedicine_AnimalAppointment" FromRole="AnimalAppointment" ToRole="AppointmentMedicine" />
+        </EntityType>
+        <EntityType Name="AnimalComment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AnimalId" Type="Int32" />
+          <Property Name="CommentId" Type="Int32" />
+          <NavigationProperty Name="Animal" Relationship="AnimalShelterModel.FK_AnimalComment_Animal" FromRole="AnimalComment" ToRole="Animal" />
+          <NavigationProperty Name="Comment" Relationship="AnimalShelterModel.FK_AnimalComment_Comment" FromRole="AnimalComment" ToRole="Comment" />
         </EntityType>
         <EntityType Name="AnimalType">
           <Key>
@@ -379,6 +472,15 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AnimalAppointments" Relationship="AnimalShelterModel.FK_AnimalAppointment_AppointmentType" FromRole="AppointmentType" ToRole="AnimalAppointment" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AnimalAppointments" Relationship="AnimalShelterModel.FK_AnimalAppointment_Comment" FromRole="Comment" ToRole="AnimalAppointment" />
+          <NavigationProperty Name="AnimalComments" Relationship="AnimalShelterModel.FK_AnimalComment_Comment" FromRole="Comment" ToRole="AnimalComment" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -487,6 +589,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_AnimalComment_Animal">
+          <End Type="AnimalShelterModel.Animal" Role="Animal" Multiplicity="0..1" />
+          <End Type="AnimalShelterModel.AnimalComment" Role="AnimalComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnimalComment">
+              <PropertyRef Name="AnimalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AnimalAppointment_AppointmentType">
           <End Type="AnimalShelterModel.AppointmentType" Role="AppointmentType" Multiplicity="0..1" />
           <End Type="AnimalShelterModel.AnimalAppointment" Role="AnimalAppointment" Multiplicity="*" />
@@ -499,6 +613,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_AnimalAppointment_Comment">
+          <End Type="AnimalShelterModel.Comment" Role="Comment" Multiplicity="0..1" />
+          <End Type="AnimalShelterModel.AnimalAppointment" Role="AnimalAppointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnimalAppointment">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AppointmentMedicine_AnimalAppointment">
           <End Type="AnimalShelterModel.AnimalAppointment" Role="AnimalAppointment" Multiplicity="0..1" />
           <End Type="AnimalShelterModel.AppointmentMedicine" Role="AppointmentMedicine" Multiplicity="*" />
@@ -508,6 +634,18 @@
             </Principal>
             <Dependent Role="AppointmentMedicine">
               <PropertyRef Name="AppintmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnimalComment_Comment">
+          <End Type="AnimalShelterModel.Comment" Role="Comment" Multiplicity="0..1" />
+          <End Type="AnimalShelterModel.AnimalComment" Role="AnimalComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnimalComment">
+              <PropertyRef Name="CommentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -577,9 +715,19 @@
           <EntitySetMapping Name="AnimalAppointments">
             <EntityTypeMapping TypeName="AnimalShelterModel.AnimalAppointment">
               <MappingFragment StoreEntitySet="AnimalAppointment">
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
                 <ScalarProperty Name="TypeId" ColumnName="TypeId" />
                 <ScalarProperty Name="AnimalId" ColumnName="AnimalId" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnimalComments">
+            <EntityTypeMapping TypeName="AnimalShelterModel.AnimalComment">
+              <MappingFragment StoreEntitySet="AnimalComment">
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+                <ScalarProperty Name="AnimalId" ColumnName="AnimalId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -605,6 +753,14 @@
             <EntityTypeMapping TypeName="AnimalShelterModel.AppointmentType">
               <MappingFragment StoreEntitySet="AppointmentType">
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="AnimalShelterModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
