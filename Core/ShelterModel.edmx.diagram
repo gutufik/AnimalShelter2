@@ -4,11 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f7e92e89bb3c42ef95aab1397447c015" Name="Diagram1" ZoomLevel="57">
+      <Diagram DiagramId="f7e92e89bb3c42ef95aab1397447c015" Name="Diagram1" ZoomLevel="70">
         <EntityTypeShape EntityType="AnimalShelterModel.Animal" Width="1.5" PointX="7.5" PointY="2.375" />
-        <EntityTypeShape EntityType="AnimalShelterModel.AnimalAppointment" Width="1.5" PointX="9.75" PointY="3.875" />
+        <EntityTypeShape EntityType="AnimalShelterModel.AnimalAppointment" Width="1.5" PointX="9.75" PointY="3.5" />
         <EntityTypeShape EntityType="AnimalShelterModel.AnimalType" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="AnimalShelterModel.AppointmentMedicine" Width="1.5" PointX="12" PointY="3.75" />
+        <EntityTypeShape EntityType="AnimalShelterModel.AppointmentType" Width="1.5" PointX="7.5" PointY="8.875" />
         <EntityTypeShape EntityType="AnimalShelterModel.Employee" Width="1.5" PointX="5.25" PointY="3.375" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Medicine" Width="1.5" PointX="9.75" PointY="0.875" />
         <EntityTypeShape EntityType="AnimalShelterModel.Role" Width="1.5" PointX="0.75" PointY="3.875" />
         <EntityTypeShape EntityType="AnimalShelterModel.Status" Width="1.5" PointX="5.25" PointY="7.125" />
         <EntityTypeShape EntityType="AnimalShelterModel.sysdiagram" Width="1.5" PointX="0.75" PointY="7.125" />
@@ -17,9 +20,11 @@
         <AssociationConnector Association="AnimalShelterModel.FK_Animal_Employee" />
         <AssociationConnector Association="AnimalShelterModel.FK_Animal_Status" />
         <AssociationConnector Association="AnimalShelterModel.FK_AnimalAppointment_Animal" />
+        <AssociationConnector Association="AnimalShelterModel.FK_AnimalAppointment_AppointmentType" />
+        <AssociationConnector Association="AnimalShelterModel.FK_AppointmentMedicine_AnimalAppointment" />
+        <AssociationConnector Association="AnimalShelterModel.FK_AppointmentMedicine_Medicine" />
         <AssociationConnector Association="AnimalShelterModel.FK_Employee_User" />
         <AssociationConnector Association="AnimalShelterModel.FK_User_Role" />
-        <EntityTypeShape EntityType="AnimalShelterModel.Medicine" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

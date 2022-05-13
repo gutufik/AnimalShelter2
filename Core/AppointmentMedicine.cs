@@ -12,18 +12,13 @@ namespace Core
     using System;
     using System.Collections.Generic;
     
-    public partial class Medicine
+    public partial class AppointmentMedicine
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Medicine()
-        {
-            this.AppointmentMedicines = new HashSet<AppointmentMedicine>();
-        }
-    
         public int Id { get; set; }
-        public string Name { get; set; }
+        public Nullable<int> AppintmentId { get; set; }
+        public Nullable<int> MedicineId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AppointmentMedicine> AppointmentMedicines { get; set; }
+        public virtual AnimalAppointment AnimalAppointment { get; set; }
+        public virtual Medicine Medicine { get; set; }
     }
 }

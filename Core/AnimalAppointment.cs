@@ -14,10 +14,20 @@ namespace Core
     
     public partial class AnimalAppointment
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public AnimalAppointment()
+        {
+            this.AppointmentMedicines = new HashSet<AppointmentMedicine>();
+        }
+    
         public int Id { get; set; }
         public System.DateTime Date { get; set; }
         public int AnimalId { get; set; }
+        public Nullable<int> TypeId { get; set; }
     
         public virtual Animal Animal { get; set; }
+        public virtual AppointmentType AppointmentType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AppointmentMedicine> AppointmentMedicines { get; set; }
     }
 }

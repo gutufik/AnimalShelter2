@@ -68,6 +68,12 @@
     <Compile Include="AnimalType.cs">
       <DependentUpon>ShelterModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="AppointmentMedicine.cs">
+      <DependentUpon>ShelterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppointmentType.cs">
+      <DependentUpon>ShelterModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccess.cs" />
     <Compile Include="Employee.cs">
       <DependentUpon>ShelterModel.tt</DependentUpon>

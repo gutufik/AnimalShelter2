@@ -74,6 +74,13 @@ namespace Core
         {
             return AnimalShelterEntities.GetContext().Medicines.ToList();
         }
+        public static void SaveMedicine(Medicine medicine)
+        {
+            if (GetMedicines().FirstOrDefault(m => m.Id == medicine.Id) == null)
+                AnimalShelterEntities.GetContext().Medicines.Add(medicine);
+
+            AnimalShelterEntities.GetContext().SaveChanges();
+        }
 
     }
 }

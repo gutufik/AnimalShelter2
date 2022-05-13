@@ -13,8 +13,15 @@
             <RowDefinition/>
             <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="btnAddMedicine" Content="add medicine" 
+                Click="btnAddMedicine_Click" Grid.Column="2"/>
         <Label  Content="Medicines"/>
-        <ListView Grid.Row="1" ItemsSource="{Binding}" DisplayMemberPath="Name">
+        <ListView Grid.Row="1" ItemsSource="{Binding}" DisplayMemberPath="Name" Grid.ColumnSpan="3">
             
         </ListView>
 

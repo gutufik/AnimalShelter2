@@ -17,24 +17,22 @@ using Core;
 namespace AnimalShelterWPF.Pages
 {
     /// <summary>
-    /// Interaction logic for MedicinesPage.xaml
+    /// Interaction logic for MedicinePage.xaml
     /// </summary>
-    public partial class MedicinesPage : Page
-    { 
-        public List<Medicine> Medicines { get; set; }
-        public MedicinesPage()
+    public partial class MedicinePage : Page
+    {
+        public Medicine Medicine { get; set; }
+        public MedicinePage()
         {
             InitializeComponent();
-            Medicines = DataAccess.GetMedicines();
-            if (Medicines.Count == 0)
-                lblEmpty.Visibility = Visibility.Visible;
+            Medicine = new Medicine();
 
-            DataContext = Medicines;
+            DataContext = Medicine;
         }
 
-        private void btnAddMedicine_Click(object sender, RoutedEventArgs e)
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new MedicinePage());
+            DataAccess.SaveMedicine(Medicine);
         }
     }
 }
