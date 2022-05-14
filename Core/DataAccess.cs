@@ -30,9 +30,9 @@ namespace Core
 
         public static void DeleteAnimal(Animal animal)
         {
-            //AnimalShelterEntities.GetContext().Animals.Remove(animal);
+            AnimalShelterEntities.GetContext().Animals.Remove(animal);
 
-            //AnimalShelterEntities.GetContext().SaveChanges();
+            AnimalShelterEntities.GetContext().SaveChanges();
         }
         #endregion 
 

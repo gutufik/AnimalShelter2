@@ -24,6 +24,7 @@
                     Background="AliceBlue" Foreground="Purple" Click="btnAddAppintment_Click"/>
         </StackPanel>
         <ListView
+            x:Name="lvAnimals"
             Grid.Row="1"
                 ItemsSource="{Binding Animals}">
             <ListView.View>
@@ -53,6 +54,13 @@
                                 <ComboBoxItem
                                     Content="Test3" />
                                 </ComboBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="btnDelete" Content="Delete" Click="btnDelete_Click"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

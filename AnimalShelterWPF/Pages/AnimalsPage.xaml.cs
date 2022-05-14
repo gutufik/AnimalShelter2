@@ -39,5 +39,18 @@ namespace AnimalShelterWPF.Pages
         {
             NavigationService.Navigate(new Pages.AppointmentPage());
         }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            var senderButton = sender as Button;
+            var animal = senderButton.DataContext as Animal;
+
+            DataAccess.DeleteAnimal(animal);
+            Animals = DataAccess.GetAnimals();
+            lvAnimals.ItemsSource = Animals;
+
+            lvAnimals.Items.Refresh();
+
+        }
     }
 }
