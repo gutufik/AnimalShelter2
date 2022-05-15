@@ -11,11 +11,14 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Это приложение, позволяющее облегчить работу приютов и реабилитационных центров животных, сэкономить время на ведении документации, помочь с учетом лечения животных и учетом лекарств. " 
+        <StackPanel>
+            <TextBlock Padding="20" Text="Это приложение, позволяющее облегчить работу приютов и реабилитационных центров животных, сэкономить время на ведении документации, помочь с учетом лечения животных и учетом лекарств. " 
                FontSize="30" TextWrapping="Wrap"/>
+        </StackPanel>
     </Grid>
 </Page>

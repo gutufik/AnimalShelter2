@@ -12,30 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Core;
 
 namespace AnimalShelterWPF.Pages
 {
     /// <summary>
-    /// Interaction logic for LoginPage.xaml
+    /// Interaction logic for RegistrationPage.xaml
     /// </summary>
-    public partial class LoginPage : Page
+    public partial class RegistrationPage : Page
     {
-        public LoginPage()
+        public RegistrationPage()
         {
             InitializeComponent();
-        }
-
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
-        {
-            App.User = new User();
-            NavigationService.Navigate(new Pages.IndexPage());
-        }
-
-        private void btnRegister_Click(object sender, RoutedEventArgs e)
-        {
-            App.User = new User();
-            NavigationService.Navigate(new Pages.IndexPage());
         }
     }
 }

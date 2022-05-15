@@ -20,15 +20,30 @@ namespace AnimalShelterWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Dictionary<string, Page> pages;
+
         public MainWindow()
         {
+            pages = new Dictionary<string, Page> 
+            {
+                {"Главная", new Pages.IndexPage()},
+                {"Животные", new Pages.AnimalsPage()},
+                {"Календарь", new Pages.CalendarPage()},
+                {"Медикаменты", new Pages.MedicinesPage()},
+                {"Вход", new Pages.LoginPage()},
+            };
+
             InitializeComponent();
-            MainFrame.NavigationService.Navigate(new Pages.IndexPage());
+            MainFrame.NavigationService.Navigate(new Pages.LoginPage());
         }
 
-        private void lblMain_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void LabelMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new Pages.IndexPage());
+            var page = (sender as Label).Content.ToString();
+            if (App.User != null)
+                MainFrame.NavigationService.Navigate(pages[page]);
+            else
+                MainFrame.NavigationService.Navigate(new Pages.LoginPage());
         }
 
         private void lblAnimals_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)

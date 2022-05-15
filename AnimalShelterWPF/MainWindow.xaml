@@ -5,7 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AnimalShelterWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" MinHeight="450" MinWidth="800">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Foreground" Value="BlueViolet"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -20,11 +27,11 @@
             <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
         <Frame x:Name="MainFrame" Grid.Row="1" Grid.ColumnSpan="10" NavigationUIVisibility="Hidden"/>
-        <Label x:Name="lblMain" Content="Главная" MouseLeftButtonUp="lblMain_MouseLeftButtonUp"/>
-        <Label x:Name="lblAnimals" Content="Животные" Grid.Column="2" MouseLeftButtonUp="lblAnimals_MouseLeftButtonUp" />
-        <Label x:Name="lblCalendar" Content="Календарь" Grid.Column="3" MouseLeftButtonUp="lblCalendar_MouseLeftButtonUp"/>
-        <Label x:Name="lblMedicines" Content="Медикаменты" Grid.Column="4" MouseLeftButtonUp="lblMedicines_MouseLeftButtonUp"/>
+        <Label x:Name="lblMain" Content="Главная" MouseLeftButtonUp="LabelMouseLeftButtonUp"/>
+        <Label x:Name="lblAnimals" Content="Животные" Grid.Column="2" MouseLeftButtonUp="LabelMouseLeftButtonUp" />
+        <Label x:Name="lblCalendar" Content="Календарь" Grid.Column="3" MouseLeftButtonUp="LabelMouseLeftButtonUp"/>
+        <Label x:Name="lblMedicines" Content="Медикаменты" Grid.Column="4" MouseLeftButtonUp="LabelMouseLeftButtonUp"/>
         <!--<Button Content="Button" Background="Transparent" />-->
-        <Label x:Name="lblLogin" Content="Вход" Grid.Column="5" MouseLeftButtonUp="lblLogin_MouseLeftButtonUp"/>
+        <Label x:Name="lblLogin" Content="Вход" Grid.Column="5" MouseLeftButtonUp="LabelMouseLeftButtonUp"/>
     </Grid>
 </Window>
