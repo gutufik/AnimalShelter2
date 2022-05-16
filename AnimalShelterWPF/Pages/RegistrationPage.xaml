@@ -9,6 +9,28 @@
       Title="RegistrationPage">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Content="Registration" HorizontalAlignment="Center" 
+           Grid.Column="1" FontSize="25"/>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock Text="Login"/>
+            <TextBox x:Name="tbLogin" Text="{Binding Login}"/>
+            <TextBlock Text="Password"/>
+            <PasswordBox x:Name="pbPassword" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="btnlogin" Click="btnlogin_Click" Content="Log in" Margin="20"/>
+                <Button x:Name="btnRegister" Content="Register" Click="btnRegister_Click" Margin="20"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>

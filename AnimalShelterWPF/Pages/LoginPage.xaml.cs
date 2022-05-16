@@ -28,14 +28,21 @@ namespace AnimalShelterWPF.Pages
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            App.User = new User();
-            NavigationService.Navigate(new Pages.IndexPage());
+            var login = tbLogin.Text;
+            var password = pbPassword.Password.ToString();
+
+            App.User = DataAccess.GetUser(login, password);
+
+            if (App.User != null)
+                NavigationService.Navigate(new Pages.IndexPage());
+            else
+                MessageBox.Show("Неверный логин или пароль");
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-            App.User = new User();
-            NavigationService.Navigate(new Pages.IndexPage());
+            //App.User = new User();
+            NavigationService.Navigate(new Pages.RegistrationPage());
         }
     }
 }

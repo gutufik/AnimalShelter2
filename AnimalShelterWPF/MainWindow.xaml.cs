@@ -43,27 +43,7 @@ namespace AnimalShelterWPF
             if (App.User != null)
                 MainFrame.NavigationService.Navigate(pages[page]);
             else
-                MainFrame.NavigationService.Navigate(new Pages.LoginPage());
-        }
-
-        private void lblAnimals_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            MainFrame.NavigationService.Navigate(new Pages.AnimalsPage());
-        }
-
-        private void lblCalendar_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            MainFrame.NavigationService.Navigate(new Pages.CalendarPage());
-        }
-
-        private void lblMedicines_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            MainFrame.NavigationService.Navigate(new Pages.MedicinesPage());
-        }
-
-        private void lblLogin_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            MainFrame.NavigationService.Navigate(new Pages.LoginPage());
+                MessageBox.Show("Для перехода по страницам нужно авторизоваться");
         }
     }
 }

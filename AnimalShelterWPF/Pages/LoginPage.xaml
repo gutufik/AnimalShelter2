@@ -18,12 +18,13 @@
             <RowDefinition/>
             <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
-        <Label Content="Authorization" FontSize="30"/>
+        <Label Content="Authorization" FontSize="30"
+               HorizontalAlignment="Center" Grid.Column="1"/>
         <StackPanel Grid.Row="1" Grid.Column="1">
             <TextBlock Text="Login"/>
-            <TextBox Text="{Binding Login}"/>
+            <TextBox x:Name="tbLogin"/>
             <TextBlock Text="Password"/>
-            <PasswordBox />
+            <PasswordBox x:Name="pbPassword"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="btnLogin" Content="Log in" 
                     Click="btnLogin_Click" Margin="20"/>

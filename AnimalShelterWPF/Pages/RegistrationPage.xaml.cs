@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Core;
 
 namespace AnimalShelterWPF.Pages
 {
@@ -20,9 +21,27 @@ namespace AnimalShelterWPF.Pages
     /// </summary>
     public partial class RegistrationPage : Page
     {
+        public User User { get; set; }
+
         public RegistrationPage()
         {
             InitializeComponent();
+            User = new User();
+            DataContext = User;
+        }
+
+        private void btnRegister_Click(object sender, RoutedEventArgs e)
+        {
+            User.Password = pbPassword.Password.ToString();
+
+            DataAccess.RegisterUser(User);
+            App.User = User;
+            NavigationService.Navigate(new Pages.IndexPage());
+        }
+
+        private void btnlogin_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

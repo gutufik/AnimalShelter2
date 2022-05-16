@@ -56,7 +56,7 @@ namespace Core
 
         public static User GetUser(string login, string password)
         {
-            return AnimalShelterEntities.GetContext().Users.FirstOrDefault(u => u.Login == login && u.Password == password);
+            return GetUsers().FirstOrDefault(u => u.Login == login && u.Password == password);
         }
 
         public static List<Employee> GetEmployees()
@@ -80,6 +80,18 @@ namespace Core
                 AnimalShelterEntities.GetContext().Medicines.Add(medicine);
 
             AnimalShelterEntities.GetContext().SaveChanges();
+        }
+
+        public static void RegisterUser(User user)
+        {
+            AnimalShelterEntities.GetContext().Users.Add(user);
+
+            AnimalShelterEntities.GetContext().SaveChanges();
+        }
+
+        public static List<User> GetUsers()
+        {
+            return AnimalShelterEntities.GetContext().Users.ToList();
         }
 
     }
