@@ -18,9 +18,9 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="btnAddMedicine" Content="add medicine" 
+        <Button x:Name="btnAddMedicine" Content="Добавить" 
                 Click="btnAddMedicine_Click" Grid.Column="2"/>
-        <Label  Content="Medicines"/>
+        <Label  Content="Медикаменты" FontSize="25"/>
         <ListView Grid.Row="1" ItemsSource="{Binding}" DisplayMemberPath="Name" Grid.ColumnSpan="3">
             
         </ListView>

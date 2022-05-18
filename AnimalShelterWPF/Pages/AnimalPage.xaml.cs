@@ -22,10 +22,24 @@ namespace AnimalShelterWPF.Pages
     public partial class AnimalPage : Page
     {
         public Animal Animal { get; set; }
+        public List<AnimalType> Types { get; set; }
+        public List<Gender> Genders { get; set; }
+        public List<Employee> Curators { get; set; }
+
         public AnimalPage()
         {
             InitializeComponent();
             Animal = new Animal();
+            Types = DataAccess.GetAnimalTypes();
+            Genders = DataAccess.GetGenders();
+            Curators = DataAccess.GetEmployees();
+
+            dpDate.DisplayDateStart = DateTime.Now - TimeSpan.FromDays(30);
+            dpDate.DisplayDateEnd = DateTime.Now;
+
+            cbTypes.ItemsSource = Types;
+            cbGenders.ItemsSource = Genders;
+            cbCurator.ItemsSource = Curators;
             DataContext = Animal;
         }
 

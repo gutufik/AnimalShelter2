@@ -30,6 +30,9 @@ namespace AnimalShelterWPF.Pages
             Animals = DataAccess.GetAnimals();
             Appointment = new AnimalAppointment();
 
+            dpDate.DisplayDateStart = DateTime.Now - TimeSpan.FromDays(30);
+            dpDate.DisplayDateEnd = DateTime.Now + TimeSpan.FromDays(30);
+
             DataContext = this;
         }
 
@@ -47,6 +50,11 @@ namespace AnimalShelterWPF.Pages
             {
                 MessageBox.Show("Не все поля заполнены");
             }
+
+        }
+
+        private void btnGoBack_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

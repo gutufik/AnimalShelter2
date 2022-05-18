@@ -84,6 +84,9 @@
     <Compile Include="Employee.cs">
       <DependentUpon>ShelterModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Gender.cs">
+      <DependentUpon>ShelterModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Medicine.cs">
       <DependentUpon>ShelterModel.tt</DependentUpon>
     </Compile>

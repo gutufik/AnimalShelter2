@@ -51,7 +51,7 @@
             <RowDefinition/>
             <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
-        <Label Content="Calendar"/>
+        <Label Content="Календарь назначений" FontSize="25"/>
         <Viewbox Grid.Row="1">
             <Calendar x:Name="Calendar" 
                 materialDesign:CalendarAssist.Orientation="Horizontal" />

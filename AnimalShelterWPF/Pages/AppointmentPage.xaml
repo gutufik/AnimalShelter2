@@ -18,16 +18,22 @@
             <RowDefinition Height="4*"/>
             <RowDefinition  Height="4*"/>
         </Grid.RowDefinitions>
-        <Label Content="New Appintment"/>
+        <Label Content="Новое назначение" FontSize="25"/>
         <StackPanel Grid.Row="1" Margin="30,0">
-            <TextBlock Text="Animal"/>
+            <TextBlock Text="Животное"/>
             <ComboBox x:Name="cbAnimal" ItemsSource="{Binding Animals}" DisplayMemberPath="Name"
                       SelectedItem="{Binding Appointment.Animal}" Margin="30,0"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" Margin="30,0">
-            <TextBlock Text="Date"/>
+            <TextBlock Text="Дата"/>
             <DatePicker x:Name="dpDate" Text="{Binding Appointment.Date}" Margin="30,0"/>
         </StackPanel>
-        <Button x:Name="btnSave" Content="Save" Click="btnSave_Click"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="1">
+            <Button x:Name="btnGoBack" Content="Назад" Background="AliceBlue" 
+                    Foreground="Purple" 
+                    Click="btnGoBack_Click" Margin="20,0"/>
+            <Button x:Name="btnSave" Content="Сохранить" Click="btnSave_Click" Margin="20,0"/>
+            
+        </StackPanel>
     </Grid>
 </Page>

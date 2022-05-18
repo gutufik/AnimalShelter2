@@ -18,7 +18,7 @@
           <Property Name="Height" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Weight" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Age" Type="int" />
-          <Property Name="Gender" Type="bit" />
+          <Property Name="GenderId" Type="int" />
           <Property Name="Color" Type="nchar" MaxLength="10" />
           <Property Name="Character" Type="nvarchar" MaxLength="50" />
           <Property Name="CapturePlace" Type="nvarchar" MaxLength="200" />
@@ -84,6 +84,13 @@
           <Property Name="Phone" Type="nvarchar" MaxLength="11" />
           <Property Name="Address" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Medicine">
           <Key>
             <PropertyRef Name="Id" />
@@ -145,6 +152,18 @@
             </Principal>
             <Dependent Role="Animal">
               <PropertyRef Name="CuratorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Animal_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="GenderId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -277,6 +296,7 @@
           <EntitySet Name="AppointmentType" EntityType="Self.AppointmentType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Medicine" EntityType="Self.Medicine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
@@ -288,6 +308,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Animal_Employee" Association="Self.FK_Animal_Employee">
             <End Role="Employee" EntitySet="Employee" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Animal_Gender" Association="Self.FK_Animal_Gender">
+            <End Role="Gender" EntitySet="Gender" />
             <End Role="Animal" EntitySet="Animal" />
           </AssociationSet>
           <AssociationSet Name="FK_Animal_Status" Association="Self.FK_Animal_Status">
@@ -344,6 +368,7 @@
           <EntitySet Name="AppointmentTypes" EntityType="AnimalShelterModel.AppointmentType" />
           <EntitySet Name="Comments" EntityType="AnimalShelterModel.Comment" />
           <EntitySet Name="Employees" EntityType="AnimalShelterModel.Employee" />
+          <EntitySet Name="Genders" EntityType="AnimalShelterModel.Gender" />
           <EntitySet Name="Medicines" EntityType="AnimalShelterModel.Medicine" />
           <EntitySet Name="Roles" EntityType="AnimalShelterModel.Role" />
           <EntitySet Name="Status" EntityType="AnimalShelterModel.Status" />
@@ -355,6 +380,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Animal_Employee" Association="AnimalShelterModel.FK_Animal_Employee">
             <End Role="Employee" EntitySet="Employees" />
+            <End Role="Animal" EntitySet="Animals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Animal_Gender" Association="AnimalShelterModel.FK_Animal_Gender">
+            <End Role="Gender" EntitySet="Genders" />
             <End Role="Animal" EntitySet="Animals" />
           </AssociationSet>
           <AssociationSet Name="FK_Animal_Status" Association="AnimalShelterModel.FK_Animal_Status">
@@ -411,7 +440,7 @@
           <Property Name="Height" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Weight" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Age" Type="Int32" />
-          <Property Name="Gender" Type="Boolean" />
+          <Property Name="GenderId" Type="Int32" />
           <Property Name="Color" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Character" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CapturePlace" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
@@ -419,6 +448,7 @@
           <Property Name="CuratorId" Type="Int32" />
           <NavigationProperty Name="AnimalType" Relationship="AnimalShelterModel.FK_Animal_AnimalType" FromRole="Animal" ToRole="AnimalType" />
           <NavigationProperty Name="Employee" Relationship="AnimalShelterModel.FK_Animal_Employee" FromRole="Animal" ToRole="Employee" />
+          <NavigationProperty Name="Gender" Relationship="AnimalShelterModel.FK_Animal_Gender" FromRole="Animal" ToRole="Gender" />
           <NavigationProperty Name="Status" Relationship="AnimalShelterModel.FK_Animal_Status" FromRole="Animal" ToRole="Status" />
           <NavigationProperty Name="AnimalAppointments" Relationship="AnimalShelterModel.FK_AnimalAppointment_Animal" FromRole="Animal" ToRole="AnimalAppointment" />
           <NavigationProperty Name="AnimalComments" Relationship="AnimalShelterModel.FK_AnimalComment_Animal" FromRole="Animal" ToRole="AnimalComment" />
@@ -496,6 +526,14 @@
           <NavigationProperty Name="Animals" Relationship="AnimalShelterModel.FK_Animal_Employee" FromRole="Employee" ToRole="Animal" />
           <NavigationProperty Name="User" Relationship="AnimalShelterModel.FK_Employee_User" FromRole="Employee" ToRole="User" />
         </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Animals" Relationship="AnimalShelterModel.FK_Animal_Gender" FromRole="Gender" ToRole="Animal" />
+        </EntityType>
         <EntityType Name="Medicine">
           <Key>
             <PropertyRef Name="Id" />
@@ -562,6 +600,18 @@
             </Principal>
             <Dependent Role="Animal">
               <PropertyRef Name="CuratorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Animal_Gender">
+          <End Type="AnimalShelterModel.Gender" Role="Gender" Multiplicity="0..1" />
+          <End Type="AnimalShelterModel.Animal" Role="Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="GenderId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -699,7 +749,7 @@
                 <ScalarProperty Name="CapturePlace" ColumnName="CapturePlace" />
                 <ScalarProperty Name="Character" ColumnName="Character" />
                 <ScalarProperty Name="Color" ColumnName="Color" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
                 <ScalarProperty Name="Age" ColumnName="Age" />
                 <ScalarProperty Name="Weight" ColumnName="Weight" />
                 <ScalarProperty Name="Height" ColumnName="Height" />
@@ -774,6 +824,14 @@
                 <ScalarProperty Name="SecondName" ColumnName="SecondName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genders">
+            <EntityTypeMapping TypeName="AnimalShelterModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -93,6 +93,10 @@ namespace Core
         {
             return AnimalShelterEntities.GetContext().Users.ToList();
         }
+        public static List<Gender> GetGenders()
+        {
+            return AnimalShelterEntities.GetContext().Genders.ToList();
+        }
 
     }
 }

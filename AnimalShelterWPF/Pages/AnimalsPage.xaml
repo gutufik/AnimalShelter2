@@ -17,10 +17,10 @@
             <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" >
-            <TextBlock Text="Animals" FontSize="30" VerticalAlignment="Center" Margin="20,0"/>
-            <Button x:Name="btnAddAnimal" Content="Add animal" 
+            <TextBlock Text="Животные" FontSize="30" VerticalAlignment="Center" Margin="20,0"/>
+            <Button x:Name="btnAddAnimal" Content="Добавить животное" 
                     VerticalAlignment="Center" Margin="20,0" Click="btnAddAnimal_Click"/>
-            <Button x:Name="btnAddAppintment" Content="Add appointment" 
+            <Button x:Name="btnAddAppintment" Content="Добавить назначение" 
                     Background="AliceBlue" Foreground="Purple" Click="btnAddAppintment_Click"/>
         </StackPanel>
         <ListView
@@ -31,18 +31,18 @@
                 <GridView>
                     <GridViewColumn
                     DisplayMemberBinding="{Binding ArrivalDate}"
-                    Header="ArrivalDate" />
+                    Header="Дата поступления" />
                     <GridViewColumn
                     DisplayMemberBinding="{Binding Name}"
-                    Header="Name" />
+                    Header="Имя" />
                     <GridViewColumn
                     DisplayMemberBinding="{Binding Type.Name}"
-                    Header="Type.Name" />
+                    Header="Вид" />
                     <GridViewColumn
                     DisplayMemberBinding="{Binding Status.Name}"
-                    Header="Status.Name" />
+                    Header="Статус" />
                     <GridViewColumn
-                        Header="Options">
+                        Header="Опции">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <ComboBox
@@ -60,7 +60,7 @@
                     <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="btnDelete" Content="Delete" Click="btnDelete_Click"/>
+                                <Button x:Name="btnDelete" Content="Удалить" Click="btnDelete_Click"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

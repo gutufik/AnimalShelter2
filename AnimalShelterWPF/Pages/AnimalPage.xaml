@@ -29,62 +29,62 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Label Content="New Animal" FontSize="25"/>
-        <Button x:Name="btnCancel" Content="Cancel" Grid.Column="3" 
+        <Label Content="Новое животное" FontSize="25"/>
+        <Button x:Name="btnCancel" Content="Назад" Grid.Column="3" 
                 Foreground="Gray" Background="Azure" Click="btnCancel_Click"/>
-        <Button x:Name="btnSave" Content="Save"
+        <Button x:Name="btnSave" Content="Добавить"
                 Click="btnSave_Click" Grid.Column="4"/>
         
         <StackPanel Grid.Row="1">
-            <TextBlock Text="Name"/>
+            <TextBlock Text="Кличка"/>
             <TextBox x:Name="tbName" Text="{Binding Name}"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1">
-            <TextBlock Text="ArrivalDate" />
-            <DatePicker x:Name="tbDate" SelectedDate="{Binding ArrivalDate}"/>
+            <TextBlock Text="Дата прибытия" />
+            <DatePicker x:Name="dpDate" SelectedDate="{Binding ArrivalDate}"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="2">
-            <TextBlock Text="Type"/>
-            <ComboBox x:Name="tbType" SelectedItem="{Binding Type}"/>
+            <TextBlock Text="Вид"/>
+            <ComboBox x:Name="cbTypes" DisplayMemberPath="Name" SelectedItem="{Binding Type}"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="3">
-            <TextBlock Text="Breed"/>
+            <TextBlock Text="Порода"/>
             <TextBox x:Name="tbBreed" Text="{Binding Breed}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="0">
-            <TextBlock Text="Height"/>
+            <TextBlock Text="Рост"/>
             <TextBox x:Name="tbHeight" Text="{Binding Height}"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1">
-            <TextBlock Text="Weight"/>
+            <TextBlock Text="Вес"/>
             <TextBox x:Name="tbWeight" Text="{Binding Weight}"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="2">
-            <TextBlock Text="Color"/>
+            <TextBlock Text="Окрас"/>
             <TextBox x:Name="tbColor" Text="{Binding Color}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.Column="0">
-            <TextBlock Text="Age"/>
+            <TextBlock Text="Возраст"/>
             <TextBox x:Name="tbAge" Text="{Binding Age}"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1">
-            <TextBlock Text="Gender"/>
-            <ComboBox x:Name="tbGender" SelectedItem="{Binding Gender}"/>
+            <TextBlock Text="Пол"/>
+            <ComboBox x:Name="cbGenders" DisplayMemberPath="Name" SelectedItem="{Binding Gender}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="4" Grid.Column="0">
-            <TextBlock Text="CapturePlace"/>
-            <ComboBox x:Name="tbCapturePlace" SelectedItem="{Binding CapturePlace}"/>
+            <TextBlock Text="Место отлова"/>
+            <TextBox x:Name="tbCapturePlace" Text="{Binding CapturePlace}"/>
         </StackPanel>
         <StackPanel Grid.Row="4" Grid.Column="1">
-            <TextBlock Text="Sign"/>
-            <ComboBox x:Name="tbSign" SelectedItem="{Binding Sign}"/>
+            <TextBlock Text="Признаки"/>
+            <TextBox x:Name="tbSign" Text="{Binding Sign}"/>
         </StackPanel>
-        <StackPanel Grid.Row="4" Grid.Column="2">
-            <TextBlock Text="Character"/>
-            <ComboBox x:Name="tbCharacter" SelectedItem="{Binding Character}"/>
+        <StackPanel Grid.Row="4" Grid.Column="3">
+            <TextBlock Text="Куратор"/>
+            <ComboBox x:Name="cbCurator" DisplayMemberPath="FirstName" SelectedItem="{Binding Curator}" />
         </StackPanel>
     </Grid>
 </Page>

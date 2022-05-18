@@ -19,6 +19,7 @@ namespace Core
         {
             this.AnimalAppointments = new HashSet<AnimalAppointment>();
             this.AnimalComments = new HashSet<AnimalComment>();
+            ArrivalDate = DateTime.Now;
         }
     
         public int Id { get; set; }
@@ -30,7 +31,7 @@ namespace Core
         public Nullable<decimal> Height { get; set; }
         public Nullable<decimal> Weight { get; set; }
         public Nullable<int> Age { get; set; }
-        public Nullable<bool> Gender { get; set; }
+        public Nullable<int> GenderId { get; set; }
         public string Color { get; set; }
         public string Character { get; set; }
         public string CapturePlace { get; set; }
@@ -39,6 +40,7 @@ namespace Core
     
         public virtual AnimalType AnimalType { get; set; }
         public virtual Employee Employee { get; set; }
+        public virtual Gender Gender { get; set; }
         public virtual Status Status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AnimalAppointment> AnimalAppointments { get; set; }

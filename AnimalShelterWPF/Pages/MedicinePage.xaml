@@ -21,7 +21,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Button x:Name="btnAdd" Content="Add" Click="btnAdd_Click" Grid.Column="2" />
-        <TextBlock Text="Name" Grid.Column="1" Grid.Row="1" FontSize="25"/>
+        <TextBlock Text="Название" Grid.Column="1" Grid.Row="1" FontSize="25"/>
         <TextBox x:Name="tbName" Grid.Column="1" Grid.Row="2" Text="{Binding Name}"/>
     </Grid>
 </Page>
