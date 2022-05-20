@@ -37,6 +37,7 @@ namespace Core
         public string CapturePlace { get; set; }
         public string Sign { get; set; }
         public Nullable<int> CuratorId { get; set; }
+        public byte[] Image { get; set; }
     
         public virtual AnimalType AnimalType { get; set; }
         public virtual Employee Employee { get; set; }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Core;
+using Microsoft.Win32;
 
 namespace AnimalShelterWPF.Pages
 {
@@ -62,6 +64,26 @@ namespace AnimalShelterWPF.Pages
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void btnAddImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog
+            {
+                Filter = "*.png|*.png|*.jpeg|*.jpeg|*.jpg|*.jpg"
+            };
+
+            if (fileDialog.ShowDialog().Value)
+            {
+                var photo = File.ReadAllBytes(fileDialog.FileName);
+                //if (photo.Length > 1024 * 150)  //Размер фотографии не должен превышать 150 Кбайт
+                //{
+                //    MessageBox.Show("Размер фотографии не должен превышать 150 КБ", "Ошибка");
+                //    return;
+                //}
+                Animal.Image = photo;
+                animalImage.Source = new BitmapImage(new Uri(fileDialog.FileName));
+            }
         }
     }
 }

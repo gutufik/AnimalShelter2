@@ -26,6 +26,8 @@ namespace AnimalShelterWPF.Pages
         {
             InitializeComponent();
 
+            DataAccess.RefreshListsEvent += RefreshList;
+
             Animals = DataAccess.GetAnimals();
             DataContext = this;
         }
@@ -51,6 +53,13 @@ namespace AnimalShelterWPF.Pages
 
             lvAnimals.Items.Refresh();
 
+        }
+        private void RefreshList()
+        {
+            Animals = DataAccess.GetAnimals();
+            lvAnimals.ItemsSource = Animals;
+
+            lvAnimals.Items.Refresh();
         }
     }
 }

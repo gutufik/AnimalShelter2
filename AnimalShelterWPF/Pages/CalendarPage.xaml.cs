@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Core;
 
 namespace AnimalShelterWPF.Pages
 {
@@ -20,9 +21,27 @@ namespace AnimalShelterWPF.Pages
     /// </summary>
     public partial class CalendarPage : Page
     {
+
+        public List<AnimalAppointment> Appointments { get; set; }
         public CalendarPage()
         {
             InitializeComponent();
+            foreach (var appintment in DataAccess.GetAnimalAppointments())
+            {
+                appointmentCalendar.SelectedDates.Add(appintment.Date);
+            }
+        }
+
+        private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Appointments = DataAccess.GetAnimalAppointments(((DateTime)appointmentCalendar.SelectedDate).Date);
+
+            foreach (var appintment in DataAccess.GetAnimalAppointments())
+            {
+                appointmentCalendar.SelectedDates.Add(appintment.Date);
+            }
+            lvAppointments.ItemsSource = Appointments;
+            lvAppointments.Items.Refresh();
         }
     }
 }

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalShelterWPF", "AnimalShelterWPF\AnimalShelterWPF.csproj", "{12A983D9-83CF-4455-8806-8BB6335D0BDC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalShelterWeb", "AnimalShelterWeb\AnimalShelterWeb.csproj", "{C5919B8B-A607-4EB9-BD19-CB974BAE4C9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{12A983D9-83CF-4455-8806-8BB6335D0BDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12A983D9-83CF-4455-8806-8BB6335D0BDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12A983D9-83CF-4455-8806-8BB6335D0BDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5919B8B-A607-4EB9-BD19-CB974BAE4C9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5919B8B-A607-4EB9-BD19-CB974BAE4C9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5919B8B-A607-4EB9-BD19-CB974BAE4C9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5919B8B-A607-4EB9-BD19-CB974BAE4C9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -46,16 +46,35 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
         <Label Content="Календарь назначений" FontSize="25"/>
-        <Viewbox Grid.Row="1">
-            <Calendar x:Name="Calendar" 
+        <Viewbox Grid.Row="1" HorizontalAlignment="Left">
+            <Calendar x:Name="appointmentCalendar" 
+                      SelectionMode="MultipleRange"
+                      SelectedDatesChanged="Calendar_SelectedDatesChanged"
                 materialDesign:CalendarAssist.Orientation="Horizontal" />
-            
         </Viewbox>
+        <ListView x:Name="lvAppointments" 
+                  Grid.Column="1" Grid.Row="1"
+                  ItemsSource="{Binding Appointments}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                    DisplayMemberBinding="{Binding Date}"
+                    Header="Дата" />
+                    <GridViewColumn
+                    DisplayMemberBinding="{Binding Animal.Name}"
+                    Header="Животное" />
+                    <GridViewColumn
+                    DisplayMemberBinding="{Binding Type.Name}"
+                    Header="Тип назначения" />
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Page>

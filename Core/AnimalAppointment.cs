@@ -18,7 +18,6 @@ namespace Core
         public AnimalAppointment()
         {
             this.AppointmentMedicines = new HashSet<AppointmentMedicine>();
-            Date = DateTime.Now;
         }
     
         public int Id { get; set; }

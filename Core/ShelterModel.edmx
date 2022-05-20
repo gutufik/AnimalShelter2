@@ -24,6 +24,7 @@
           <Property Name="CapturePlace" Type="nvarchar" MaxLength="200" />
           <Property Name="Sign" Type="nvarchar(max)" />
           <Property Name="CuratorId" Type="int" />
+          <Property Name="Image" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="AnimalAppointment">
           <Key>
@@ -452,6 +453,7 @@
           <NavigationProperty Name="Status" Relationship="AnimalShelterModel.FK_Animal_Status" FromRole="Animal" ToRole="Status" />
           <NavigationProperty Name="AnimalAppointments" Relationship="AnimalShelterModel.FK_AnimalAppointment_Animal" FromRole="Animal" ToRole="AnimalAppointment" />
           <NavigationProperty Name="AnimalComments" Relationship="AnimalShelterModel.FK_AnimalComment_Animal" FromRole="Animal" ToRole="AnimalComment" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="AnimalAppointment">
           <Key>
@@ -744,6 +746,7 @@
           <EntitySetMapping Name="Animals">
             <EntityTypeMapping TypeName="AnimalShelterModel.Animal">
               <MappingFragment StoreEntitySet="Animal">
+                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="CuratorId" ColumnName="CuratorId" />
                 <ScalarProperty Name="Sign" ColumnName="Sign" />
                 <ScalarProperty Name="CapturePlace" ColumnName="CapturePlace" />

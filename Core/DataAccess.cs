@@ -9,8 +9,11 @@ namespace Core
     public class DataAccess
     {
         public delegate void RefreshTitleDelegate();
-
         public static event RefreshTitleDelegate RefreshTitleEvent;
+
+        public delegate void RefreshListsDelegate();
+
+        public static event RefreshListsDelegate RefreshListsEvent;
 
         #region Animal
 
@@ -30,6 +33,7 @@ namespace Core
                 AnimalShelterEntities.GetContext().Animals.Add(animal);
 
             AnimalShelterEntities.GetContext().SaveChanges();
+            RefreshListsEvent?.Invoke();
         }
 
         public static void DeleteAnimal(Animal animal)
@@ -37,6 +41,7 @@ namespace Core
             AnimalShelterEntities.GetContext().Animals.Remove(animal);
 
             AnimalShelterEntities.GetContext().SaveChanges();
+            RefreshListsEvent?.Invoke();
         }
         #endregion 
 
@@ -51,6 +56,11 @@ namespace Core
         public static List<AnimalAppointment> GetAnimalAppointments(Animal animal)
         {
             return GetAnimalAppointments().Where(aa => aa.AnimalId == animal.Id).ToList();
+        }
+
+        public static List<AnimalAppointment> GetAnimalAppointments(DateTime date)
+        {
+            return GetAnimalAppointments().Where(aa => aa.Date == date).ToList();
         }
 
         public static List<Status> GetAnimalStatuses()
