@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Core;
+using AnimalShelterWPF.Pages;
 
 namespace AnimalShelterWPF
 {
@@ -21,18 +22,18 @@ namespace AnimalShelterWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Dictionary<string, Page> pages;
+        private Dictionary<string, Type> pages;
 
         public MainWindow()
         {
-            pages = new Dictionary<string, Page> 
+            pages = new Dictionary<string, Type> 
             {
-                {"Главная", new Pages.IndexPage()},
-                {"Животные", new Pages.AnimalsPage()},
-                {"Календарь", new Pages.CalendarPage()},
-                {"Медикаменты", new Pages.MedicinesPage()},
-                {"Вход", new Pages.LoginPage()},
-                {"Аккаунт", new Pages.AccountPage()},
+                {"Главная", typeof(IndexPage)},
+                {"Животные", typeof(AnimalsPage)},
+                {"Календарь", typeof(CalendarPage)},
+                {"Медикаменты", typeof(MedicinesPage)},
+                {"Вход", typeof(LoginPage)},
+                {"Аккаунт", typeof(AccountPage)},
             };
 
             InitializeComponent();
@@ -45,7 +46,7 @@ namespace AnimalShelterWPF
         {
             var page = (sender as Button).Content.ToString();
             if (App.User != null)
-                MainFrame.NavigationService.Navigate(pages[page]);
+                MainFrame.NavigationService.Navigate(Activator.CreateInstance(pages[page]));
             else
                 MessageBox.Show("Для перехода по страницам нужно авторизоваться");
         }

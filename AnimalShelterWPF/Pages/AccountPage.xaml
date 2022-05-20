@@ -25,10 +25,21 @@
         </Grid.RowDefinitions>
         <TextBlock Text="Аккаунт" Grid.Column="1" Grid.ColumnSpan="2"
                    FontSize="25" HorizontalAlignment="Center"/>
-        <TextBlock Grid.Row="1" Grid.Column="1" Text="Логин" />
-        <TextBlock Grid.Row="2" Grid.Column="1" Text="Фамилия" />
-        <TextBlock Grid.Row="3" Grid.Column="1" Text="Имя" />
-        <Button Grid.Row="4" Grid.Column="1" x:Name="btnSave" Content="Сохранить"/>
-        <Button Grid.Row="4" Grid.Column="2" x:Name="btnExit" Content="Выйти"/>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock  Text="Логин" />
+            <TextBox x:Name="tbLogin" Text="{Binding Login}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <TextBlock  Text="Фамилия" />
+            <TextBox x:Name="tbFirstName" Text="{Binding Employee.FirstName}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="1">
+            <TextBlock  Text="Имя" />
+            <TextBox x:Name="tbLastName" Text="{Binding Employee.LastName}"/>
+        </StackPanel>
+        <Button x:Name="btnSave" Grid.Row="4" Grid.Column="1" 
+                Click="btnSave_Click" Content="Сохранить"/>
+        <Button x:Name="btnExit" Grid.Row="4" Grid.Column="2" 
+                Click="btnExit_Click" Content="Выйти"/>
     </Grid>
 </Page>

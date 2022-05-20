@@ -26,7 +26,7 @@
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" Margin="30,0">
             <TextBlock Text="Дата"/>
-            <DatePicker x:Name="dpDate" Text="{Binding Appointment.Date}" Margin="30,0"/>
+            <DatePicker x:Name="dpDate" SelectedDate="{Binding Appointment.Date}" Margin="30,0"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="1">
             <Button x:Name="btnGoBack" Content="Назад" Background="AliceBlue" 

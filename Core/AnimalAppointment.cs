@@ -25,6 +25,7 @@ namespace Core
         public int AnimalId { get; set; }
         public Nullable<int> TypeId { get; set; }
         public Nullable<int> CommentId { get; set; }
+        public bool IsDeleted { get; set; }
     
         public virtual Animal Animal { get; set; }
         public virtual AppointmentType AppointmentType { get; set; }

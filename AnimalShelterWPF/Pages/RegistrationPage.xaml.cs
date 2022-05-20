@@ -27,15 +27,15 @@ namespace AnimalShelterWPF.Pages
         {
             InitializeComponent();
             User = new User();
+
             DataContext = User;
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
             User.Password = pbPassword.Password.ToString();
-
-            DataAccess.RegisterUser(User);
-            App.User = User;
+            DataAccess.SaveUser(User);
+            App.User = DataAccess.GetUser(User.Login, User.Password);
             NavigationService.Navigate(new Pages.IndexPage());
         }
 

@@ -19,7 +19,7 @@ namespace Core
 
         public static List<Animal> GetAnimals()
         {
-            return AnimalShelterEntities.GetContext().Animals.ToList();
+            return AnimalShelterEntities.GetContext().Animals.Where(a => !a.IsDeleted).ToList();
         }
 
         public static Animal GetAnimal(int id)
@@ -38,7 +38,7 @@ namespace Core
 
         public static void DeleteAnimal(Animal animal)
         {
-            AnimalShelterEntities.GetContext().Animals.Remove(animal);
+            animal.IsDeleted = true;
 
             AnimalShelterEntities.GetContext().SaveChanges();
             RefreshListsEvent?.Invoke();
@@ -99,9 +99,10 @@ namespace Core
             AnimalShelterEntities.GetContext().SaveChanges();
         }
 
-        public static void RegisterUser(User user)
+        public static void SaveUser(User user)
         {
-            AnimalShelterEntities.GetContext().Users.Add(user);
+            if (GetUsers().FirstOrDefault(u => u.Id == user.Id) == null)
+                AnimalShelterEntities.GetContext().Users.Add(user);
 
             AnimalShelterEntities.GetContext().SaveChanges();
         }

@@ -61,6 +61,7 @@
         </Viewbox>
         <ListView x:Name="lvAppointments" 
                   Grid.Column="1" Grid.Row="1"
+                  SelectionChanged="lvAppointments_SelectionChanged"
                   ItemsSource="{Binding Appointments}">
             <ListView.View>
                 <GridView>

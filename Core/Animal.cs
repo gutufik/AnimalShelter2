@@ -19,7 +19,6 @@ namespace Core
         {
             this.AnimalAppointments = new HashSet<AnimalAppointment>();
             this.AnimalComments = new HashSet<AnimalComment>();
-            ArrivalDate = DateTime.Now;
         }
     
         public int Id { get; set; }
@@ -38,6 +37,7 @@ namespace Core
         public string Sign { get; set; }
         public Nullable<int> CuratorId { get; set; }
         public byte[] Image { get; set; }
+        public bool IsDeleted { get; set; }
     
         public virtual AnimalType AnimalType { get; set; }
         public virtual Employee Employee { get; set; }

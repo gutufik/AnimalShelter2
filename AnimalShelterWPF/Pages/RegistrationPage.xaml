@@ -29,9 +29,9 @@
             <TextBlock Text="Подтверждение пароля"/>
             <PasswordBox x:Name="pbConfirmPassword" />
             <TextBlock Text="Фамилия"/>
-            <TextBox x:Name="tbFirstName"/>
-            <TextBlock Text="Имя"/>
-            <TextBox x:Name="tbLastName"/>
+            <TextBox x:Name="tbFirstName" Text="{Binding Employee.FirstName}"/>
+            <TextBlock Text="Имя" />
+            <TextBox x:Name="tbLastName" Text="{Binding Employee.LastName}"/>
             <Button x:Name="btnlogin" Click="btnlogin_Click"
                     FontSize="12" Foreground="Gray" Background="Transparent"
                     BorderBrush="Transparent" HorizontalAlignment="Left"

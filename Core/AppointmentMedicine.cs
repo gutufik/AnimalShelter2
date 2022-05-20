@@ -17,6 +17,7 @@ namespace Core
         public int Id { get; set; }
         public Nullable<int> AppintmentId { get; set; }
         public Nullable<int> MedicineId { get; set; }
+        public bool IsDeleted { get; set; }
     
         public virtual AnimalAppointment AnimalAppointment { get; set; }
         public virtual Medicine Medicine { get; set; }

@@ -35,6 +35,18 @@ namespace AnimalShelterWPF.Pages
 
             DataContext = this;
         }
+        public AppointmentPage(AnimalAppointment appointment)
+        {
+            InitializeComponent();
+
+            Animals = DataAccess.GetAnimals();
+            Appointment = appointment;
+
+            dpDate.DisplayDateStart = DateTime.Now - TimeSpan.FromDays(30);
+            dpDate.DisplayDateEnd = DateTime.Now + TimeSpan.FromDays(30);
+
+            DataContext = this;
+        }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {

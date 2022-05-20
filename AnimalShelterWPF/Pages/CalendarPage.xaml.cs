@@ -26,9 +26,9 @@ namespace AnimalShelterWPF.Pages
         public CalendarPage()
         {
             InitializeComponent();
-            foreach (var appintment in DataAccess.GetAnimalAppointments())
+            foreach (var appointment in DataAccess.GetAnimalAppointments())
             {
-                appointmentCalendar.SelectedDates.Add(appintment.Date);
+                appointmentCalendar.SelectedDates.Add(appointment.Date);
             }
         }
 
@@ -42,6 +42,16 @@ namespace AnimalShelterWPF.Pages
             }
             lvAppointments.ItemsSource = Appointments;
             lvAppointments.Items.Refresh();
+        }
+
+        private void lvAppointments_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var appointment = (sender as ListView).SelectedItem as AnimalAppointment;
+
+            if (appointment != null)
+            {
+                NavigationService.Navigate(new AppointmentPage(appointment));
+            }
         }
     }
 }
