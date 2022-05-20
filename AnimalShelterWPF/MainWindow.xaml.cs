@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Core;
 
 namespace AnimalShelterWPF
 {
@@ -31,19 +32,27 @@ namespace AnimalShelterWPF
                 {"Календарь", new Pages.CalendarPage()},
                 {"Медикаменты", new Pages.MedicinesPage()},
                 {"Вход", new Pages.LoginPage()},
+                {"Аккаунт", new Pages.AccountPage()},
             };
 
             InitializeComponent();
+
+            DataAccess.RefreshTitleEvent += RefreshUserPageTitle;
             MainFrame.NavigationService.Navigate(new Pages.LoginPage());
         }
 
-        private void LabelMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void TtileClick(object sender, RoutedEventArgs e)
         {
-            var page = (sender as Label).Content.ToString();
+            var page = (sender as Button).Content.ToString();
             if (App.User != null)
                 MainFrame.NavigationService.Navigate(pages[page]);
             else
                 MessageBox.Show("Для перехода по страницам нужно авторизоваться");
+        }
+
+        public void RefreshUserPageTitle()
+        {
+            btnLogin.Content = "Аккаунт";
         }
     }
 }

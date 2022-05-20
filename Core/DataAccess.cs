@@ -8,6 +8,10 @@ namespace Core
 {
     public class DataAccess
     {
+        public delegate void RefreshTitleDelegate();
+
+        public static event RefreshTitleDelegate RefreshTitleEvent;
+
         #region Animal
 
         public static List<Animal> GetAnimals()
@@ -56,7 +60,10 @@ namespace Core
 
         public static User GetUser(string login, string password)
         {
-            return GetUsers().FirstOrDefault(u => u.Login == login && u.Password == password);
+            var user = GetUsers().FirstOrDefault(u => u.Login == login && u.Password == password);
+            if (user != null)
+                RefreshTitleEvent?.Invoke();
+            return user;
         }
 
         public static List<Employee> GetEmployees()

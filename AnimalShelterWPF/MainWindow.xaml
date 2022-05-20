@@ -28,11 +28,30 @@
             <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
         <Frame x:Name="MainFrame" Grid.Row="1" Grid.ColumnSpan="10" NavigationUIVisibility="Hidden"/>
-        <Label x:Name="lblMain" Content="Главная" MouseLeftButtonUp="LabelMouseLeftButtonUp"/>
-        <Label x:Name="lblAnimals" Content="Животные" Grid.Column="2" MouseLeftButtonUp="LabelMouseLeftButtonUp" />
-        <Label x:Name="lblCalendar" Content="Календарь" Grid.Column="3" MouseLeftButtonUp="LabelMouseLeftButtonUp"/>
-        <Label x:Name="lblMedicines" Content="Медикаменты" Grid.Column="4" MouseLeftButtonUp="LabelMouseLeftButtonUp"/>
-        <!--<Button Content="Button" Background="Transparent" />-->
-        <Label x:Name="lblLogin" Content="Вход" Grid.Column="5" MouseLeftButtonUp="LabelMouseLeftButtonUp"/>
+        
+        <Button x:Name="btnMain" Content="Главная" 
+                FontSize="15"
+                Background="Transparent" BorderBrush="Transparent"
+                Foreground="Black" Click="TtileClick"/>
+        <Button x:Name="btnAnimals" Content="Животные" 
+               FontSize="15"
+               Background="Transparent" BorderBrush="Transparent"
+               Foreground="Black"
+               Grid.Column="2" Click="TtileClick" />
+        <Button x:Name="btnCalendar" Content="Календарь" 
+                FontSize="15"
+                Background="Transparent" BorderBrush="Transparent"
+                Foreground="Black"
+                Grid.Column="3" Click="TtileClick"/>
+        <Button x:Name="btnMedicines" Content="Медикаменты" 
+                FontSize="15"
+                Background="Transparent" BorderBrush="Transparent"
+                Foreground="Black"
+                Grid.Column="4" Click="TtileClick"/>
+        <Button x:Name="btnLogin" Content="Вход" Grid.Column="5" 
+                FontSize="15"
+                Background="Transparent" BorderBrush="Transparent"
+                Foreground="Black"
+                Click="TtileClick"/>
     </Grid>
 </Window>

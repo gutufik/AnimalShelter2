@@ -34,7 +34,10 @@ namespace AnimalShelterWPF.Pages
             App.User = DataAccess.GetUser(login, password);
 
             if (App.User != null)
+            {
                 NavigationService.Navigate(new Pages.IndexPage());
+
+            }
             else
                 MessageBox.Show("Неверный логин или пароль");
         }

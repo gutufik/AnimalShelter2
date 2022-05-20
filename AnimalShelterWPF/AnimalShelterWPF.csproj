@@ -86,6 +86,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\AccountPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\AnimalPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -124,6 +128,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\AccountPage.xaml.cs">
+      <DependentUpon>AccountPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AnimalPage.xaml.cs">
       <DependentUpon>AnimalPage.xaml</DependentUpon>
     </Compile>
