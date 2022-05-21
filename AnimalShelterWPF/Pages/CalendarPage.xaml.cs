@@ -70,5 +70,11 @@ namespace AnimalShelterWPF.Pages
             var appointment = new AnimalAppointment((DateTime)appointmentCalendar.SelectedDate);
             NavigationService.Navigate(new AppointmentPage(appointment));
         }
+        public void RefreshList()
+        {
+            Appointments = DataAccess.GetAnimalAppointments(((DateTime)appointmentCalendar.SelectedDate).Date);
+            lvAppointments.ItemsSource = Appointments;
+            lvAppointments.Items.Refresh();
+        }
     }
 }

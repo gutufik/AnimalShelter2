@@ -31,7 +31,6 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="1">
             <Button x:Name="btnGoBack" Content="Назад" Background="AliceBlue" 
-                    Foreground="Purple" 
                     Click="btnGoBack_Click" Margin="20,0"/>
             <Button x:Name="btnSave" Content="Сохранить" Click="btnSave_Click" Margin="20,0"/>
             

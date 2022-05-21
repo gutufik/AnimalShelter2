@@ -14,11 +14,6 @@ namespace Core
     
     public partial class User
     {
-        public User()
-        { 
-            Employee = new Employee();
-        }
-
         public int Id { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }

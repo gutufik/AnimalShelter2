@@ -22,7 +22,6 @@ namespace Core
         }
     
         public int Id { get; set; }
-        public Nullable<int> UserId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

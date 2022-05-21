@@ -21,7 +21,7 @@
             <Button x:Name="btnAddAnimal" Content="Добавить животное" 
                     VerticalAlignment="Center" Margin="20,0" Click="btnAddAnimal_Click"/>
             <Button x:Name="btnAddAppintment" Content="Добавить назначение" 
-                    Background="AliceBlue" Foreground="Purple" Click="btnAddAppintment_Click"/>
+                    Background="AliceBlue" Click="btnAddAppintment_Click"/>
         </StackPanel>
         <ListView
             x:Name="lvAnimals"

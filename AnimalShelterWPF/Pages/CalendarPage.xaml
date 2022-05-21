@@ -53,32 +53,39 @@
             <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
         <Label Content="Календарь назначений" FontSize="25"/>
+        <Button x:Name="btnAddAppointment"
+                    Content="Добавить"
+                    HorizontalAlignment="Right"
+                    Grid.Column="1"
+                    Margin="30,0"
+                    Click="btnAddAppointment_Click"/>
         <Viewbox Grid.Row="1" HorizontalAlignment="Left">
             <Calendar x:Name="appointmentCalendar" 
                       SelectionMode="MultipleRange"
                       SelectedDatesChanged="Calendar_SelectedDatesChanged"
                 materialDesign:CalendarAssist.Orientation="Horizontal" />
         </Viewbox>
+
         <ListView x:Name="lvAppointments" 
                   Grid.Column="1" Grid.Row="1"
                   SelectionChanged="lvAppointments_SelectionChanged"
                   ItemsSource="{Binding Appointments}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn
                     DisplayMemberBinding="{Binding Date}"
                     Header="Дата" />
-                    <GridViewColumn
+                        <GridViewColumn
                     DisplayMemberBinding="{Binding Animal.Name}"
                     Header="Животное" />
-                    <GridViewColumn
+                        <GridViewColumn
                     DisplayMemberBinding="{Binding AppointmentType.Name}"
                     Header="Тип назначения" />
-                </GridView>
-            </ListView.View>
-        </ListView>
+                    </GridView>
+                </ListView.View>
+            </ListView>
 
-        <StackPanel x:Name="spNoAppointments" 
+            <StackPanel x:Name="spNoAppointments" 
                     Visibility="Hidden"
                     Grid.Column="1" Grid.Row="1">
             <TextBlock x:Name="tbNoAppointments"
@@ -86,12 +93,8 @@
                        FontSize="20"
                        HorizontalAlignment="Center"
                        Text="На этот день пока нет назначений"/>
-            <Button x:Name="btnAddAppointment"
-                    Content="Добавить"
-                    HorizontalAlignment="Center"
-                    Click="btnAddAppointment_Click"/>
             
         </StackPanel>
-
+        
     </Grid>
 </Page>

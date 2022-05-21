@@ -15,16 +15,7 @@ namespace Core
     public partial class AnimalAppointment
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AnimalAppointment()
-        {
-            this.AppointmentMedicines = new HashSet<AppointmentMedicine>();
-            Date = DateTime.Now;
-        }
-        public AnimalAppointment(DateTime date)
-        {
-            this.AppointmentMedicines = new HashSet<AppointmentMedicine>();
-            Date = date;
-        }
+    
         public int Id { get; set; }
         public System.DateTime Date { get; set; }
         public int AnimalId { get; set; }

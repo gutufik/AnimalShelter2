@@ -26,7 +26,7 @@ namespace AnimalShelterWPF.Pages
         public RegistrationPage()
         {
             InitializeComponent();
-            User = new User();
+            User = new User() { Employee = new Employee() };
 
             DataContext = User;
         }
