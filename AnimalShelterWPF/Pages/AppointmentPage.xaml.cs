@@ -23,12 +23,14 @@ namespace AnimalShelterWPF.Pages
     {
         public List<Animal> Animals { get; set; }
         public AnimalAppointment Appointment { get; set; }
+        public List<AppointmentType> Types { get; set; }
         public AppointmentPage()
         {
             InitializeComponent();
 
-            Animals = DataAccess.GetAnimals();
             Appointment = new AnimalAppointment();
+            Animals = DataAccess.GetAnimals();
+            Types = DataAccess.GetAppointmentTypes();
 
             dpDate.DisplayDateStart = DateTime.Now - TimeSpan.FromDays(30);
             dpDate.DisplayDateEnd = DateTime.Now + TimeSpan.FromDays(30);
@@ -39,8 +41,9 @@ namespace AnimalShelterWPF.Pages
         {
             InitializeComponent();
 
-            Animals = DataAccess.GetAnimals();
             Appointment = appointment;
+            Animals = DataAccess.GetAnimals();
+            Types = DataAccess.GetAppointmentTypes();
 
             dpDate.DisplayDateStart = DateTime.Now - TimeSpan.FromDays(30);
             dpDate.DisplayDateEnd = DateTime.Now + TimeSpan.FromDays(30);
@@ -67,7 +70,7 @@ namespace AnimalShelterWPF.Pages
 
         private void btnGoBack_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.GoBack();
         }
     }
 }

@@ -19,6 +19,7 @@ namespace Core
         {
             this.AnimalAppointments = new HashSet<AnimalAppointment>();
             this.AnimalComments = new HashSet<AnimalComment>();
+            ArrivalDate = DateTime.Now;
         }
     
         public int Id { get; set; }

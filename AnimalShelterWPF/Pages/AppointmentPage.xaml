@@ -15,8 +15,9 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition Height="4*"/>
-            <RowDefinition  Height="4*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition  Height="3*"/>
+            <RowDefinition  Height="3*"/>
         </Grid.RowDefinitions>
         <Label Content="Новое назначение" FontSize="25"/>
         <StackPanel Grid.Row="1" Margin="30,0">
@@ -34,6 +35,17 @@
                     Click="btnGoBack_Click" Margin="20,0"/>
             <Button x:Name="btnSave" Content="Сохранить" Click="btnSave_Click" Margin="20,0"/>
             
+        </StackPanel>
+        <StackPanel Grid.Row="2" Margin="30,0">
+            <TextBlock Text="Тип назначения" />
+            <ComboBox x:Name="cbAppointmentType"
+                      DisplayMemberPath="Name"
+                      SelectedItem="{Binding Appointment.AppointmentType}"
+                      ItemsSource="{Binding Types}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Margin="30,0">
+            <TextBlock Text="Комментарий"/>
+            <TextBox VerticalScrollBarVisibility="Auto"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -115,6 +115,9 @@ namespace Core
         {
             return AnimalShelterEntities.GetContext().Genders.ToList();
         }
-
+        public static List<AppointmentType> GetAppointmentTypes()
+        { 
+            return AnimalShelterEntities.GetContext().AppointmentTypes.ToList();
+        }
     }
 }

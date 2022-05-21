@@ -72,10 +72,26 @@
                     DisplayMemberBinding="{Binding Animal.Name}"
                     Header="Животное" />
                     <GridViewColumn
-                    DisplayMemberBinding="{Binding Type.Name}"
+                    DisplayMemberBinding="{Binding AppointmentType.Name}"
                     Header="Тип назначения" />
                 </GridView>
             </ListView.View>
         </ListView>
+
+        <StackPanel x:Name="spNoAppointments" 
+                    Visibility="Hidden"
+                    Grid.Column="1" Grid.Row="1">
+            <TextBlock x:Name="tbNoAppointments"
+                       Margin="20"
+                       FontSize="20"
+                       HorizontalAlignment="Center"
+                       Text="На этот день пока нет назначений"/>
+            <Button x:Name="btnAddAppointment"
+                    Content="Добавить"
+                    HorizontalAlignment="Center"
+                    Click="btnAddAppointment_Click"/>
+            
+        </StackPanel>
+
     </Grid>
 </Page>

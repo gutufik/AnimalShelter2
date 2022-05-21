@@ -30,6 +30,7 @@ namespace AnimalShelterWPF.Pages
             {
                 appointmentCalendar.SelectedDates.Add(appointment.Date);
             }
+            DataContext = this;
         }
 
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
@@ -40,8 +41,18 @@ namespace AnimalShelterWPF.Pages
             {
                 appointmentCalendar.SelectedDates.Add(appintment.Date);
             }
-            lvAppointments.ItemsSource = Appointments;
-            lvAppointments.Items.Refresh();
+            if (Appointments.Count != 0)
+            {
+                lvAppointments.ItemsSource = Appointments;
+                lvAppointments.Items.Refresh();
+                lvAppointments.Visibility = Visibility.Visible;
+                spNoAppointments.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                lvAppointments.Visibility = Visibility.Hidden;
+                spNoAppointments.Visibility = Visibility.Visible;
+            }
         }
 
         private void lvAppointments_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -52,6 +63,12 @@ namespace AnimalShelterWPF.Pages
             {
                 NavigationService.Navigate(new AppointmentPage(appointment));
             }
+        }
+
+        private void btnAddAppointment_Click(object sender, RoutedEventArgs e)
+        {
+            var appointment = new AnimalAppointment((DateTime)appointmentCalendar.SelectedDate);
+            NavigationService.Navigate(new AppointmentPage(appointment));
         }
     }
 }
