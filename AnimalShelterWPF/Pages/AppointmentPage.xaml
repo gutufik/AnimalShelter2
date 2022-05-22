@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:AnimalShelterWPF.Pages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AppointmentPage">
@@ -19,20 +20,30 @@
             <RowDefinition  Height="3*"/>
             <RowDefinition  Height="3*"/>
         </Grid.RowDefinitions>
-        <Label Content="Новое назначение" FontSize="25"/>
+        <Label Content="Новое назначение" FontSize="25" Margin="30,0"/>
         <StackPanel Grid.Row="1" Margin="30,0">
             <TextBlock Text="Животное"/>
             <ComboBox x:Name="cbAnimal" ItemsSource="{Binding Animals}" DisplayMemberPath="Name"
-                      SelectedItem="{Binding Appointment.Animal}" Margin="30,0"/>
+                      SelectedItem="{Binding Appointment.Animal}" />
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" Margin="30,0">
             <TextBlock Text="Дата"/>
-            <DatePicker x:Name="dpDate" SelectedDate="{Binding Appointment.Date}" Margin="30,0"/>
+            <DatePicker x:Name="dpDate" SelectedDate="{Binding Appointment.Date}" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="1">
             <Button x:Name="btnGoBack" Content="Назад" Background="AliceBlue" 
                     Click="btnGoBack_Click" Margin="20,0"/>
             <Button x:Name="btnSave" Content="Сохранить" Click="btnSave_Click" Margin="20,0"/>
+            
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" Margin="30,0">
+            <TextBlock Text="Время"/>
+            <materialDesign:TimePicker
+                x:Name="tpAppointmentTime"
+                SelectedTime="{Binding Appointment.Time}"
+                HorizontalAlignment="Left"
+                  Width="150"
+                  Style="{StaticResource MaterialDesignFloatingHintTimePicker}"/>
             
         </StackPanel>
         <StackPanel Grid.Row="2" Margin="30,0">

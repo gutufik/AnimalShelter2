@@ -30,6 +30,7 @@ namespace AnimalShelterWPF.Pages
             {
                 appointmentCalendar.SelectedDates.Add(appointment.Date);
             }
+            DataAccess.RefreshListsEvent += RefreshList;
             DataContext = this;
         }
 

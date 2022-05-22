@@ -33,6 +33,12 @@ namespace AnimalShelterWPF.Pages
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             DataAccess.SaveMedicine(Medicine);
+            NavigationService.GoBack();
+        }
+
+        private void btnGoBack_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

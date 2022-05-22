@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f7e92e89bb3c42ef95aab1397447c015" Name="Diagram1" ZoomLevel="80">
-        <EntityTypeShape EntityType="AnimalShelterModel.Animal" Width="1.5" PointX="3" PointY="3.5" />
+      <Diagram DiagramId="f7e92e89bb3c42ef95aab1397447c015" Name="Diagram1" ZoomLevel="159">
+        <EntityTypeShape EntityType="AnimalShelterModel.Animal" Width="1.5" PointX="4.625" PointY="4.375" />
         <EntityTypeShape EntityType="AnimalShelterModel.AnimalAppointment" Width="1.5" PointX="5.25" PointY="0.75" />
         <EntityTypeShape EntityType="AnimalShelterModel.AnimalComment" Width="1.5" PointX="8.25" PointY="5.125" />
         <EntityTypeShape EntityType="AnimalShelterModel.AnimalType" Width="1.5" PointX="0.75" PointY="1.75" />
@@ -14,11 +14,11 @@
         <EntityTypeShape EntityType="AnimalShelterModel.Comment" Width="1.5" PointX="3" PointY="10.25" />
         <EntityTypeShape EntityType="AnimalShelterModel.Employee" Width="1.5" PointX="0.75" PointY="4.875" />
         <EntityTypeShape EntityType="AnimalShelterModel.Gender" Width="1.5" PointX="0.75" PointY="9.375" />
-        <EntityTypeShape EntityType="AnimalShelterModel.Medicine" Width="1.5" PointX="5.25" PointY="8.375" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Medicine" Width="1.5" PointX="6.375" PointY="9.5" />
         <EntityTypeShape EntityType="AnimalShelterModel.Role" Width="1.5" PointX="3.75" PointY="13.375" />
         <EntityTypeShape EntityType="AnimalShelterModel.Status" Width="1.5" PointX="0.75" PointY="11.875" />
         <EntityTypeShape EntityType="AnimalShelterModel.sysdiagram" Width="1.5" PointX="8.75" PointY="8.125" />
-        <EntityTypeShape EntityType="AnimalShelterModel.User" Width="1.5" PointX="6" PointY="5" />
+        <EntityTypeShape EntityType="AnimalShelterModel.User" Width="1.5" PointX="6.25" PointY="4.875" />
         <AssociationConnector Association="AnimalShelterModel.FK_Animal_AnimalType" />
         <AssociationConnector Association="AnimalShelterModel.FK_Animal_Employee" />
         <AssociationConnector Association="AnimalShelterModel.FK_Animal_Gender" />

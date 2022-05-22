@@ -28,7 +28,11 @@ namespace AnimalShelterWPF.Pages
         {
             InitializeComponent();
 
-            Appointment = new AnimalAppointment();
+            Appointment = new AnimalAppointment()
+            {
+                Date = DateTime.Now,
+                Time = DateTime.Now.TimeOfDay
+            };
             Animals = DataAccess.GetAnimals();
             Types = DataAccess.GetAppointmentTypes();
 
@@ -57,7 +61,7 @@ namespace AnimalShelterWPF.Pages
             {
                 if (Appointment.Date > DateTime.Now)
                     throw new Exception();
-
+                Appointment.Time = ((DateTime)tpAppointmentTime.SelectedTime).TimeOfDay;
                 DataAccess.SaveAnimalAppointment(Appointment);
                 NavigationService.GoBack();
             }

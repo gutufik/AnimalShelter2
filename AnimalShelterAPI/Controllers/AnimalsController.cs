@@ -17,6 +17,12 @@ namespace AnimalShelterAPI.Controllers
                 animal.Image = null;
             return animals;
         }
+        // GET api/<AppointmentsController>/5
+        [HttpGet("{id}")]
+        public Animal Get(int id)
+        {
+            return DataAccess.GetAnimal(id);
+        }
 
     }
 }

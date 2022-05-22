@@ -20,8 +20,11 @@
         </Grid.ColumnDefinitions>
         <Button x:Name="btnAddMedicine" Content="Добавить" 
                 Click="btnAddMedicine_Click" Grid.Column="2"/>
-        <Label  Content="Медикаменты" FontSize="25"/>
-        <ListView Grid.Row="1" ItemsSource="{Binding}" DisplayMemberPath="Name" Grid.ColumnSpan="3">
+        <Label  Content="Медикаменты" 
+                Margin="30,0" FontSize="25"/>
+        <ListView Grid.Row="1" 
+                  ItemsSource="{Binding}" DisplayMemberPath="Name" 
+                  Grid.ColumnSpan="3" Margin="20,0">
             
         </ListView>
 

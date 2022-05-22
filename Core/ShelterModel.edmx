@@ -33,6 +33,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Time" Type="time" Precision="7" Nullable="false" />
           <Property Name="AnimalId" Type="int" Nullable="false" />
           <Property Name="TypeId" Type="int" />
           <Property Name="CommentId" Type="int" />
@@ -483,6 +484,7 @@
           <NavigationProperty Name="AppointmentType" Relationship="AnimalShelterModel.FK_AnimalAppointment_AppointmentType" FromRole="AnimalAppointment" ToRole="AppointmentType" />
           <NavigationProperty Name="Comment" Relationship="AnimalShelterModel.FK_AnimalAppointment_Comment" FromRole="AnimalAppointment" ToRole="Comment" />
           <NavigationProperty Name="AppointmentMedicines" Relationship="AnimalShelterModel.FK_AppointmentMedicine_AnimalAppointment" FromRole="AnimalAppointment" ToRole="AppointmentMedicine" />
+          <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
         </EntityType>
         <EntityType Name="AnimalComment">
           <Key>
@@ -795,6 +797,7 @@
           <EntitySetMapping Name="AnimalAppointments">
             <EntityTypeMapping TypeName="AnimalShelterModel.AnimalAppointment">
               <MappingFragment StoreEntitySet="AnimalAppointment">
+                <ScalarProperty Name="Time" ColumnName="Time" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="CommentId" ColumnName="CommentId" />
                 <ScalarProperty Name="TypeId" ColumnName="TypeId" />

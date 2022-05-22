@@ -15,6 +15,10 @@ namespace Core
     public partial class AnimalAppointment
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public AnimalAppointment()
+        {
+            this.AppointmentMedicines = new HashSet<AppointmentMedicine>();
+        }
     
         public int Id { get; set; }
         public System.DateTime Date { get; set; }
@@ -22,6 +26,7 @@ namespace Core
         public Nullable<int> TypeId { get; set; }
         public Nullable<int> CommentId { get; set; }
         public bool IsDeleted { get; set; }
+        public System.TimeSpan Time { get; set; }
     
         public virtual Animal Animal { get; set; }
         public virtual AppointmentType AppointmentType { get; set; }

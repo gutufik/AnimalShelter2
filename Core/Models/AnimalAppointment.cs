@@ -8,15 +8,11 @@ namespace Core
 {
     public partial class AnimalAppointment
     {
-        public AnimalAppointment()
-        {
-            this.AppointmentMedicines = new HashSet<AppointmentMedicine>();
-            Date = DateTime.Now;
-        }
         public AnimalAppointment(DateTime date) : base()
         {
             //this.AppointmentMedicines = new HashSet<AppointmentMedicine>();
             Date = date;
+            Time = date.TimeOfDay;
         }
     }
 }

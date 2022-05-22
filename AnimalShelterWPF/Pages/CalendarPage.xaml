@@ -52,7 +52,8 @@
             <RowDefinition/>
             <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
-        <Label Content="Календарь назначений" FontSize="25"/>
+        <Label Content="Календарь назначений" 
+               FontSize="25" Margin="30,0"/>
         <Button x:Name="btnAddAppointment"
                     Content="Добавить"
                     HorizontalAlignment="Right"

@@ -62,6 +62,11 @@ namespace Core
         {
             return GetAnimalAppointments().Where(aa => aa.Date == date).ToList();
         }
+        public static AnimalAppointment GetAnimalAppointment(int id)
+        {
+            return GetAnimalAppointments().FirstOrDefault(aa => aa.Id == id);
+        }
+
 
         public static List<Status> GetAnimalStatuses()
         {
@@ -86,6 +91,7 @@ namespace Core
                 AnimalShelterEntities.GetContext().AnimalAppointments.Add(appointment);
 
             AnimalShelterEntities.GetContext().SaveChanges();
+            RefreshListsEvent?.Invoke();
         }
         public static List<Medicine> GetMedicines()
         {
