@@ -125,5 +125,12 @@ namespace Core
         { 
             return AnimalShelterEntities.GetContext().AppointmentTypes.ToList();
         }
+        public static void DeleteAnimalAppointment(AnimalAppointment appointment)
+        {
+            appointment.IsDeleted = true;
+
+            AnimalShelterEntities.GetContext().SaveChanges();
+            RefreshListsEvent?.Invoke();
+        }
     }
 }

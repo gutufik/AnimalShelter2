@@ -26,20 +26,25 @@ namespace AnimalShelterAPI.Controllers
 
         // POST api/<AppointmentsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] AnimalAppointment appointment)
         {
+            DataAccess.SaveAnimalAppointment(appointment);
         }
 
         // PUT api/<AppointmentsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] AnimalAppointment appointment)
         {
+            appointment.Id = id;
+            DataAccess.SaveAnimalAppointment(appointment);
         }
 
         // DELETE api/<AppointmentsController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var appointment = DataAccess.GetAnimalAppointment(id);
+            DataAccess.DeleteAnimalAppointment(appointment);
         }
     }
 }
