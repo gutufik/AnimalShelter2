@@ -1,0 +1,120 @@
+﻿@using Core;
+
+@model IEnumerable<Animal>
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>View</h1>
+
+<a asp-action="Create"><button class="btn-dark">Добавить животное</button></a>
+<a asp-controller="Appointment" asp-action="Create"><button class="btn-danger" >Добавить назначение</button></a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Breed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Height)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GenderId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Character)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CapturePlace)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sign)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CuratorId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Breed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivalDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Height)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GenderId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Character)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CapturePlace)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sign)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CuratorId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
