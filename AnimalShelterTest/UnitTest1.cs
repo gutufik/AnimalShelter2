@@ -1,4 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Core;
+using System.Configuration;
 
 namespace AnimalShelterTest
 {
@@ -8,6 +10,9 @@ namespace AnimalShelterTest
         [TestMethod]
         public void TestMethod1()
         {
+            var strings = ConfigurationManager.ConnectionStrings;
+            DataAccess.GetAnimal(1);
+            //var users = DataAccess.GetUsers();
         }
     }
 }

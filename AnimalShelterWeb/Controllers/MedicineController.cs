@@ -17,6 +17,11 @@ namespace AnimalShelterWeb.Controllers
         {
             return View();
         }
-
+        [HttpPost]
+        public IActionResult Create(Medicine medicine)
+        { 
+            DataAccess.SaveMedicine(medicine);
+            return View(medicine);
+        }
     }
 }

@@ -1,0 +1,24 @@
+﻿@using Core;
+
+
+<input class="form-control" type="date"  @bind-DateValue="@DateValue" @bind-DateValue:event="@ValueChanged"/>
+<button >button</button>
+@foreach (var appointment in DataAccess.GetAnimalAppointments(DateValue))
+{
+    <p>@appointment.Animal.Name</p>    
+}
+
+
+
+
+    @code {
+        [Parameter]
+        public DateTime DateValue { get; set; } = DateTime.Now;
+        public string ValueChanged = "";
+        public void MethodOnClick()
+        {
+            
+        }
+
+
+}

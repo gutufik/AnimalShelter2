@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimalShelterWeb", "AnimalS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimalShelterAPI", "AnimalShelterAPI\AnimalShelterAPI.csproj", "{61CD48CF-F931-43D4-8F3C-967243D42C72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalShelterTest", "AnimalShelterTest\AnimalShelterTest.csproj", "{ED7CCD08-59B1-4F42-B7CD-0A8C557D15D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimalShelterTest", "AnimalShelterTest\AnimalShelterTest.csproj", "{ED7CCD08-59B1-4F42-B7CD-0A8C557D15D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -29,5 +29,12 @@ namespace AnimalShelterWeb.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Create(Animal animal)
+        { 
+            DataAccess.SaveAnimal(animal);
+            return RedirectToAction("Index");
+        }
     }
 }

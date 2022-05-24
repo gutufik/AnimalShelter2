@@ -1,9 +1,15 @@
-﻿@*
+﻿@using AnimalShelterWeb.Views.Shared.Calendar;
+
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+@{
+    ViewData["Title"] = "Calendar";
+}
+<h1>Календарь</h1>
 
-<div id="calendar"></div>
-<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
-<script src=/js/calendar.js></script>
+<input type="date" 
+<component type="typeof(CalendarComponent)" render-mode="ServerPrerendered"/>
+
 @{
 }

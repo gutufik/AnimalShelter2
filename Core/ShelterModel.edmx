@@ -19,7 +19,7 @@
           <Property Name="Weight" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Age" Type="int" />
           <Property Name="GenderId" Type="int" />
-          <Property Name="Color" Type="nchar" MaxLength="10" />
+          <Property Name="Color" Type="nvarchar" MaxLength="50" />
           <Property Name="Character" Type="nvarchar" MaxLength="50" />
           <Property Name="CapturePlace" Type="nvarchar" MaxLength="200" />
           <Property Name="Sign" Type="nvarchar(max)" />
@@ -456,7 +456,7 @@
           <Property Name="Weight" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Age" Type="Int32" />
           <Property Name="GenderId" Type="Int32" />
-          <Property Name="Color" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Character" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CapturePlace" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Sign" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />

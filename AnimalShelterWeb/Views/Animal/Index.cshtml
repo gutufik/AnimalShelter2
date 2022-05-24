@@ -3,10 +3,10 @@
 @model IEnumerable<Animal>
 
 @{
-    ViewData["Title"] = "View";
+    ViewData["Title"] = "Animals";
 }
 
-<h1>View</h1>
+<h1>Животные</h1>
 
 <a asp-action="Create"><button class="btn-dark">Добавить животное</button></a>
 <a asp-controller="Appointment" asp-action="Create"><button class="btn-danger" >Добавить назначение</button></a>
@@ -14,50 +14,18 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                Дата поступления
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Имя
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TypeId)
+                Вид
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Breed)
+                Статус
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ArrivalDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StatusId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Height)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Weight)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Age)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GenderId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Color)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Character)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CapturePlace)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Sign)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CuratorId)
-            </th>
+            
             <th></th>
         </tr>
     </thead>
@@ -65,49 +33,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                @item.ArrivalDate
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @item.Name
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TypeId)
+                @item.AnimalType.Name
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Breed)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ArrivalDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StatusId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Height)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Weight)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Age)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GenderId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Color)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Character)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CapturePlace)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sign)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CuratorId)
+                @item.Status.Name
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
