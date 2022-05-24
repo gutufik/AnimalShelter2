@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Core;
 
 namespace AnimalShelterWeb.Controllers
 {
@@ -8,7 +9,8 @@ namespace AnimalShelterWeb.Controllers
         [Authorize]
         public IActionResult Index()
         {
-            return View();
+            var appointments = DataAccess.GetAnimalAppointments();
+            return View(appointments);
         }
     }
 }

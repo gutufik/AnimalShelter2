@@ -30,12 +30,29 @@ namespace AnimalShelterAPI
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-);
+                );
+            services.AddSwaggerGen(s =>
+                s.SwaggerDoc(
+                    "v1", new Microsoft.OpenApi.Models.OpenApiInfo 
+                    {
+                       Version = "V1",
+                       Title = "AnimalShelter API",
+                       Description = "API for shelter"
+                    })
+                    );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Shelter API");
+                c.RoutePrefix = String.Empty;
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
