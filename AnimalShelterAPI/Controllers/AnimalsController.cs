@@ -10,40 +10,56 @@ namespace AnimalShelterAPI.Controllers
     public class AnimalsController : ControllerBase
     {
         [HttpGet]
-        public IEnumerable<Animal> Get()
+        public ActionResult<IEnumerable<Animal>> Get()
         {
             var animals = DataAccess.GetAnimals();
             foreach (var animal in animals)
                 animal.Image = null;
-            return animals;
+
+            if (animals == null)
+                return NoContent();
+
+            return Ok(animals);
         }
         // GET api/<AppointmentsController>/5
         [HttpGet("{id}")]
-        public Animal Get(int id)
+        public ActionResult<Animal> Get(int id)
         {
-            return DataAccess.GetAnimal(id);
+            var animal = DataAccess.GetAnimal(id);
+            if (animal == null)
+                return NotFound();
+
+            return Ok(animal);
         }
         // POST api/<AppointmentsController>
         [HttpPost]
-        public void Post([FromBody] Animal animal)
+        public ActionResult Post([FromBody] Animal animal)
         {
             DataAccess.SaveAnimal(animal);
+            return Ok();
         }
 
         // PUT api/<AppointmentsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Animal animal)
+        public ActionResult<Animal> Put(int id, [FromBody] Animal animal)
         {
             animal.Id = id;
+            if (DataAccess.GetAnimal(id) == null)
+                return BadRequest();
+
             DataAccess.SaveAnimal(animal);
+            return Ok(DataAccess.GetAnimal(id));
         }
 
         // DELETE api/<AppointmentsController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
             var animal = DataAccess.GetAnimal(id);
+            if (animal == null)
+                return BadRequest();
             DataAccess.DeleteAnimal(animal);
+            return Ok();
         }
 
     }

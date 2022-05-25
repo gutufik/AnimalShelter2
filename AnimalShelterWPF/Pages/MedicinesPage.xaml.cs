@@ -30,11 +30,28 @@ namespace AnimalShelterWPF.Pages
                 lblEmpty.Visibility = Visibility.Visible;
 
             DataContext = Medicines;
+            DataAccess.RefreshListsEvent += RefreshList;
         }
 
         private void btnAddMedicine_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new MedicinePage());
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            var senderButton = sender as Button;
+            var medicine = senderButton.DataContext as Medicine;
+
+            DataAccess.DeleteMedicine(medicine);
+            
+        }
+        private void RefreshList()
+        {
+            Medicines = DataAccess.GetMedicines();
+            lvMedicines.ItemsSource = Medicines;
+
+            lvMedicines.Items.Refresh();
         }
     }
 }

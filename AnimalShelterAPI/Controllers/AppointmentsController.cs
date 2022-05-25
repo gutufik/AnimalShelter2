@@ -12,39 +12,57 @@ namespace AnimalShelterAPI.Controllers
     {
         // GET: api/<AppointmentsController>
         [HttpGet]
-        public IEnumerable<AnimalAppointment> Get()
+        public ActionResult<IEnumerable<AnimalAppointment>> Get()
         {
-            return DataAccess.GetAnimalAppointments();
+            var appointments = DataAccess.GetAnimalAppointments();
+            if (appointments == null)
+                return NoContent();
+
+            return Ok(appointments);
         }
 
         // GET api/<AppointmentsController>/5
         [HttpGet("{id}")]
-        public AnimalAppointment Get(int id)
+        public ActionResult<AnimalAppointment> Get(int id)
         {
-            return DataAccess.GetAnimalAppointment(id);
+            var appointment = DataAccess.GetAnimalAppointment(id);
+            if (appointment == null)
+                return NotFound();
+
+            return Ok(appointment);
         }
 
         // POST api/<AppointmentsController>
         [HttpPost]
-        public void Post([FromBody] AnimalAppointment appointment)
+        public ActionResult Post([FromBody] AnimalAppointment appointment)
         {
             DataAccess.SaveAnimalAppointment(appointment);
+            return Ok();
         }
 
         // PUT api/<AppointmentsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] AnimalAppointment appointment)
+        public ActionResult<AnimalAppointment> Put(int id, [FromBody] AnimalAppointment appointment)
         {
             appointment.Id = id;
+
+            if (DataAccess.GetAnimalAppointment(id) == null)
+                return BadRequest();
+
             DataAccess.SaveAnimalAppointment(appointment);
+            return Ok(DataAccess.GetAnimalAppointment(id));
         }
 
         // DELETE api/<AppointmentsController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
             var appointment = DataAccess.GetAnimalAppointment(id);
+            if (appointment == null)
+                return BadRequest();
+
             DataAccess.DeleteAnimalAppointment(appointment);
+            return Ok();
         }
     }
 }

@@ -43,15 +43,15 @@ namespace Core
             AnimalShelterEntities.GetContext().SaveChanges();
             RefreshListsEvent?.Invoke();
         }
-        #endregion 
-
         public static List<AnimalType> GetAnimalTypes()
         { 
             return AnimalShelterEntities.GetContext().AnimalTypes.ToList();
         }
+        #endregion 
+
         public static List<AnimalAppointment> GetAnimalAppointments()
         {
-            return AnimalShelterEntities.GetContext().AnimalAppointments.ToList();
+            return AnimalShelterEntities.GetContext().AnimalAppointments.Where(a => !a.IsDeleted).ToList();
         }
         public static List<AnimalAppointment> GetAnimalAppointments(Animal animal)
         {
@@ -95,7 +95,7 @@ namespace Core
         }
         public static List<Medicine> GetMedicines()
         {
-            return AnimalShelterEntities.GetContext().Medicines.ToList();
+            return AnimalShelterEntities.GetContext().Medicines.Where(m => !m.IsDeleted).ToList();
         }
         public static void SaveMedicine(Medicine medicine)
         {
@@ -103,6 +103,12 @@ namespace Core
                 AnimalShelterEntities.GetContext().Medicines.Add(medicine);
 
             AnimalShelterEntities.GetContext().SaveChanges();
+        }
+        public static void DeleteMedicine(Medicine medicine)
+        {
+            medicine.IsDeleted = true;
+            SaveMedicine(medicine);
+            RefreshListsEvent?.Invoke();
         }
 
         public static void SaveUser(User user)
@@ -128,7 +134,7 @@ namespace Core
         public static void DeleteAnimalAppointment(AnimalAppointment appointment)
         {
             appointment.IsDeleted = true;
-
+            appointment.Animal.IsDeleted = true;
             AnimalShelterEntities.GetContext().SaveChanges();
             RefreshListsEvent?.Invoke();
         }

@@ -17,7 +17,6 @@ namespace Core
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Comment()
         {
-            this.AnimalAppointments = new HashSet<AnimalAppointment>();
             this.AnimalComments = new HashSet<AnimalComment>();
         }
     
@@ -25,8 +24,6 @@ namespace Core
         public string Text { get; set; }
         public bool IsDeleted { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AnimalAppointment> AnimalAppointments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AnimalComment> AnimalComments { get; set; }
     }

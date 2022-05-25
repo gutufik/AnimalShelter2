@@ -18,14 +18,33 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="btnAddMedicine" Content="Добавить" 
-                Click="btnAddMedicine_Click" Grid.Column="2"/>
+        <Button x:Name="btnAddMedicine"
+                Content="Добавить"
+                Grid.Column="2"
+                HorizontalAlignment="Right"
+                Margin="30,0"
+                Click="btnAddMedicine_Click"/>
         <Label  Content="Медикаменты" 
-                Margin="30,0" FontSize="25"/>
+            Margin="30,0" FontSize="25"/>
         <ListView Grid.Row="1" 
-                  ItemsSource="{Binding}" DisplayMemberPath="Name" 
+                  ItemsSource="{Binding}"
+                  x:Name="lvMedicines"
                   Grid.ColumnSpan="3" Margin="20,0">
-            
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                    DisplayMemberBinding="{Binding Name}"
+                    Header="Название" />
+
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="btnDelete" Content="Удалить" Click="btnDelete_Click"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
         </ListView>
 
         <Label x:Name="lblEmpty" Content="No medicines" FontSize="30" HorizontalAlignment="Center" 
