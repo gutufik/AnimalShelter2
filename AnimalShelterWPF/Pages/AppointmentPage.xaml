@@ -36,15 +36,27 @@
             <Button x:Name="btnSave" Content="Сохранить" Click="btnSave_Click" Margin="20,0"/>
             
         </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="1" Margin="30,0">
-            <TextBlock Text="Время"/>
-            <materialDesign:TimePicker
-                x:Name="tpAppointmentTime"
-                SelectedTime="{Binding Appointment.Time}"
-                HorizontalAlignment="Left"
-                  Width="150"
-                  Style="{StaticResource MaterialDesignFloatingHintTimePicker}"/>
-            
+        <StackPanel Grid.Row="2" Grid.Column="1"
+                    Orientation="Horizontal"
+                    Margin="30,0">
+            <StackPanel Margin="20,0">
+                <TextBlock Text="Лекарства"/>
+                <ListView x:Name="lvMedicines"
+                          ItemsSource="{Binding Appointment.AppointmentMedicines}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Medicine.Name}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </StackPanel>
+            <StackPanel Margin="20,0">
+                <TextBlock Text="Выберите лекарства"/>
+                <ComboBox x:Name="cbMedicines" ItemsSource="{Binding Medicines}"
+                          DisplayMemberPath="Name"
+                          SelectionChanged="cbMedicines_SelectionChanged"/>
+            </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="2" Margin="30,0">
             <TextBlock Text="Тип назначения" />

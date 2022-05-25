@@ -60,7 +60,7 @@ namespace Core
 
         public static List<AnimalAppointment> GetAnimalAppointments(DateTime date)
         {
-            return GetAnimalAppointments().Where(aa => aa.Date == date).ToList();
+            return GetAnimalAppointments().Where(aa => aa.Date == date.Date).ToList();
         }
         public static AnimalAppointment GetAnimalAppointment(int id)
         {

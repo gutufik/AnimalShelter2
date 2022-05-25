@@ -24,6 +24,7 @@ namespace AnimalShelterWPF.Pages
         public List<Animal> Animals { get; set; }
         public AnimalAppointment Appointment { get; set; }
         public List<AppointmentType> Types { get; set; }
+        public List<Medicine> Medicines { get; set; }
         public AppointmentPage()
         {
             InitializeComponent();
@@ -35,6 +36,7 @@ namespace AnimalShelterWPF.Pages
             };
             Animals = DataAccess.GetAnimals();
             Types = DataAccess.GetAppointmentTypes();
+            Medicines = DataAccess.GetMedicines();
 
             dpDate.DisplayDateStart = DateTime.Now - TimeSpan.FromDays(30);
             dpDate.DisplayDateEnd = DateTime.Now + TimeSpan.FromDays(30);
@@ -48,6 +50,7 @@ namespace AnimalShelterWPF.Pages
             Appointment = appointment;
             Animals = DataAccess.GetAnimals();
             Types = DataAccess.GetAppointmentTypes();
+            Medicines = DataAccess.GetMedicines();
 
             dpDate.DisplayDateStart = DateTime.Now - TimeSpan.FromDays(30);
             dpDate.DisplayDateEnd = DateTime.Now + TimeSpan.FromDays(30);
@@ -61,7 +64,6 @@ namespace AnimalShelterWPF.Pages
             {
                 if (Appointment.Date > DateTime.Now)
                     throw new Exception();
-                Appointment.Time = ((DateTime)tpAppointmentTime.SelectedTime).TimeOfDay;
                 DataAccess.SaveAnimalAppointment(Appointment);
                 NavigationService.GoBack();
             }
@@ -75,6 +77,16 @@ namespace AnimalShelterWPF.Pages
         private void btnGoBack_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void cbMedicines_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var medicine = cbMedicines.SelectedItem as Medicine;
+            if (Appointment.AppointmentMedicines.Where(m => m.Medicine.Id == medicine.Id).Count() == 0)
+                Appointment.AppointmentMedicines.Add(new AppointmentMedicine { Medicine = medicine });
+
+            lvMedicines.ItemsSource = Appointment.AppointmentMedicines;
+            lvMedicines.Items.Refresh();
         }
     }
 }
