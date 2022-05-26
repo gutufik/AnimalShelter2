@@ -4,21 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f7e92e89bb3c42ef95aab1397447c015" Name="Diagram1" ZoomLevel="78">
-        <EntityTypeShape EntityType="AnimalShelterModel.Animal" Width="1.5" PointX="3" PointY="3.875" />
-        <EntityTypeShape EntityType="AnimalShelterModel.AnimalAppointment" Width="1.5" PointX="8.25" PointY="5.25" />
-        <EntityTypeShape EntityType="AnimalShelterModel.AnimalComment" Width="1.5" PointX="5.25" PointY="5.5" />
-        <EntityTypeShape EntityType="AnimalShelterModel.AnimalType" Width="1.5" PointX="0.75" PointY="8.75" />
-        <EntityTypeShape EntityType="AnimalShelterModel.AppointmentMedicine" Width="1.5" PointX="10.5" PointY="5.5" />
-        <EntityTypeShape EntityType="AnimalShelterModel.AppointmentType" Width="1.5" PointX="6" PointY="2.75" />
-        <EntityTypeShape EntityType="AnimalShelterModel.Comment" Width="1.5" PointX="3" PointY="0.75" />
+      <Diagram DiagramId="f7e92e89bb3c42ef95aab1397447c015" Name="Diagram1" ZoomLevel="89">
+        <EntityTypeShape EntityType="AnimalShelterModel.Animal" Width="1.5" PointX="6" PointY="3.875" />
+        <EntityTypeShape EntityType="AnimalShelterModel.AnimalAppointment" Width="1.5" PointX="11.25" PointY="5.25" />
+        <EntityTypeShape EntityType="AnimalShelterModel.AnimalComment" Width="1.5" PointX="8.25" PointY="5.5" />
+        <EntityTypeShape EntityType="AnimalShelterModel.AnimalType" Width="1.5" PointX="3.75" PointY="11.25" />
+        <EntityTypeShape EntityType="AnimalShelterModel.AppointmentMedicine" Width="1.5" PointX="13.5" PointY="5.5" />
+        <EntityTypeShape EntityType="AnimalShelterModel.AppointmentType" Width="1.5" PointX="9" PointY="2.75" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Comment" Width="1.5" PointX="6" PointY="0.75" />
         <EntityTypeShape EntityType="AnimalShelterModel.Employee" Width="1.5" PointX="0.75" PointY="5.5" />
-        <EntityTypeShape EntityType="AnimalShelterModel.Gender" Width="1.5" PointX="0.75" PointY="2.25" />
-        <EntityTypeShape EntityType="AnimalShelterModel.Medicine" Width="1.5" PointX="8.25" PointY="1.75" />
-        <EntityTypeShape EntityType="AnimalShelterModel.Role" Width="1.5" PointX="5.75" PointY="8.875" />
-        <EntityTypeShape EntityType="AnimalShelterModel.Status" Width="1.5" PointX="0.75" PointY="11.25" />
-        <EntityTypeShape EntityType="AnimalShelterModel.sysdiagram" Width="1.5" PointX="7.75" PointY="8.875" />
-        <EntityTypeShape EntityType="AnimalShelterModel.User" Width="1.5" PointX="3" PointY="11.75" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Gender" Width="1.5" PointX="3.75" PointY="2.25" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Medicine" Width="1.5" PointX="11.25" PointY="1.75" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Role" Width="1.5" PointX="0.75" PointY="1.875" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Status" Width="1.5" PointX="3.75" PointY="8.75" />
+        <EntityTypeShape EntityType="AnimalShelterModel.sysdiagram" Width="1.5" PointX="0.75" PointY="8.875" />
+        <EntityTypeShape EntityType="AnimalShelterModel.User" Width="1.5" PointX="3" PointY="5.5" />
         <AssociationConnector Association="AnimalShelterModel.FK_Animal_AnimalType" />
         <AssociationConnector Association="AnimalShelterModel.FK_Animal_Employee" />
         <AssociationConnector Association="AnimalShelterModel.FK_Animal_Gender" />

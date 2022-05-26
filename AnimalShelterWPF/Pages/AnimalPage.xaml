@@ -29,7 +29,7 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Label Content="Новое животное" FontSize="25"/>
+        <Label Content="Новое животное" FontSize="25" Grid.ColumnSpan="3"/>
         <Button x:Name="btnCancel" Content="Назад" Grid.Column="3" 
                 Foreground="Gray" Background="Azure" Click="btnCancel_Click"/>
         <Button x:Name="btnSave" Content="Добавить"

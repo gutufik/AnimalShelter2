@@ -13,30 +13,30 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="TypeId" Type="int" />
           <Property Name="Breed" Type="nvarchar" MaxLength="50" />
-          <Property Name="ArrivalDate" Type="date" Nullable="false" />
+          <Property Name="ArrivalDate" Type="date" />
           <Property Name="StatusId" Type="int" />
-          <Property Name="Height" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Weight" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Height" Type="int" />
+          <Property Name="Weight" Type="int" />
           <Property Name="Age" Type="int" />
           <Property Name="GenderId" Type="int" />
           <Property Name="Color" Type="nvarchar" MaxLength="50" />
           <Property Name="Character" Type="nvarchar" MaxLength="50" />
-          <Property Name="CapturePlace" Type="nvarchar" MaxLength="200" />
-          <Property Name="Sign" Type="nvarchar(max)" />
+          <Property Name="CapturePlace" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sign" Type="nvarchar" MaxLength="50" />
           <Property Name="CuratorId" Type="int" />
-          <Property Name="Image" Type="varbinary(max)" />
+          <Property Name="Image" Type="binary" MaxLength="50" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="AnimalAppointment">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
-          <Property Name="Time" Type="time" Precision="7" Nullable="false" />
-          <Property Name="AnimalId" Type="int" Nullable="false" />
+          <Property Name="AnimalId" Type="int" />
           <Property Name="TypeId" Type="int" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Time" Type="time" Precision="7" />
         </EntityType>
         <EntityType Name="AnimalComment">
           <Key>
@@ -60,7 +60,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AppintmentId" Type="int" />
+          <Property Name="AppointmentId" Type="int" />
           <Property Name="MedicineId" Type="int" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
@@ -110,8 +110,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="200" />
-          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -190,7 +189,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AnimalAppointment_Animal">
-          <End Role="Animal" Type="Self.Animal" Multiplicity="1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="0..1" />
           <End Role="AnimalAppointment" Type="Self.AnimalAppointment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Animal">
@@ -245,7 +244,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="AppointmentMedicine">
-              <PropertyRef Name="AppintmentId" />
+              <PropertyRef Name="AppointmentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -405,18 +404,18 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TypeId" Type="Int32" />
           <Property Name="Breed" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ArrivalDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ArrivalDate" Type="DateTime" Precision="0" />
           <Property Name="StatusId" Type="Int32" />
-          <Property Name="Height" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Weight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Height" Type="Int32" />
+          <Property Name="Weight" Type="Int32" />
           <Property Name="Age" Type="Int32" />
           <Property Name="GenderId" Type="Int32" />
           <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Character" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CapturePlace" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Sign" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CapturePlace" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sign" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CuratorId" Type="Int32" />
-          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Image" Type="Binary" MaxLength="50" FixedLength="true" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="AnimalType" Relationship="AnimalShelterModel.FK_Animal_AnimalType" FromRole="Animal" ToRole="AnimalType" />
           <NavigationProperty Name="Employee" Relationship="AnimalShelterModel.FK_Animal_Employee" FromRole="Animal" ToRole="Employee" />
@@ -429,12 +428,12 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="AnimalId" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="AnimalId" Type="Int32" />
           <Property Name="TypeId" Type="Int32" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Time" Type="Time" Precision="7" />
           <NavigationProperty Name="Animal" Relationship="AnimalShelterModel.FK_AnimalAppointment_Animal" FromRole="AnimalAppointment" ToRole="Animal" />
           <NavigationProperty Name="AppointmentType" Relationship="AnimalShelterModel.FK_AnimalAppointment_AppointmentType" FromRole="AnimalAppointment" ToRole="AppointmentType" />
           <NavigationProperty Name="AppointmentMedicines" Relationship="AnimalShelterModel.FK_AppointmentMedicine_AnimalAppointment" FromRole="AnimalAppointment" ToRole="AppointmentMedicine" />
@@ -464,7 +463,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AppintmentId" Type="Int32" />
+          <Property Name="AppointmentId" Type="Int32" />
           <Property Name="MedicineId" Type="Int32" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="AnimalAppointment" Relationship="AnimalShelterModel.FK_AppointmentMedicine_AnimalAppointment" FromRole="AppointmentMedicine" ToRole="AnimalAppointment" />
@@ -522,8 +521,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -604,7 +602,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AnimalAppointment_Animal">
-          <End Type="AnimalShelterModel.Animal" Role="Animal" Multiplicity="1" />
+          <End Type="AnimalShelterModel.Animal" Role="Animal" Multiplicity="0..1" />
           <End Type="AnimalShelterModel.AnimalAppointment" Role="AnimalAppointment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Animal">
@@ -647,7 +645,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="AppointmentMedicine">
-              <PropertyRef Name="AppintmentId" />
+              <PropertyRef Name="AppointmentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -719,10 +717,10 @@
           <EntitySetMapping Name="AnimalAppointments">
             <EntityTypeMapping TypeName="AnimalShelterModel.AnimalAppointment">
               <MappingFragment StoreEntitySet="AnimalAppointment">
+                <ScalarProperty Name="Time" ColumnName="Time" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="TypeId" ColumnName="TypeId" />
                 <ScalarProperty Name="AnimalId" ColumnName="AnimalId" />
-                <ScalarProperty Name="Time" ColumnName="Time" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -752,7 +750,7 @@
               <MappingFragment StoreEntitySet="AppointmentMedicine">
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="MedicineId" ColumnName="MedicineId" />
-                <ScalarProperty Name="AppintmentId" ColumnName="AppintmentId" />
+                <ScalarProperty Name="AppointmentId" ColumnName="AppointmentId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -806,7 +804,6 @@
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="AnimalShelterModel.Role">
               <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
