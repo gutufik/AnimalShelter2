@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Core;
 using System.Collections.Generic;
+using System.Linq;
+using Core.Models;
 
 namespace AnimalShelterAPI.Controllers
 {
@@ -12,9 +14,7 @@ namespace AnimalShelterAPI.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Animal>> Get()
         {
-            var animals = DataAccess.GetAnimals();
-            foreach (var animal in animals)
-                animal.Image = null;
+            var animals = DataAccess.GetAnimals().Select(x => new AnimalModel(x)); 
 
             if (animals == null)
                 return NoContent();
@@ -25,7 +25,8 @@ namespace AnimalShelterAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<Animal> Get(int id)
         {
-            var animal = DataAccess.GetAnimal(id);
+            var animal = new AnimalModel(DataAccess.GetAnimal(id));
+
             if (animal == null)
                 return NotFound();
 
@@ -48,7 +49,7 @@ namespace AnimalShelterAPI.Controllers
                 return BadRequest();
 
             DataAccess.SaveAnimal(animal);
-            return Ok(DataAccess.GetAnimal(id));
+            return Ok(new AnimalModel(DataAccess.GetAnimal(id)));
         }
 
         // DELETE api/<AppointmentsController>/5

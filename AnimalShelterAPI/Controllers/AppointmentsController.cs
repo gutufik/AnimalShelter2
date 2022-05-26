@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Core;
+using Core.Models;
+using System.Linq;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,7 +16,7 @@ namespace AnimalShelterAPI.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<AnimalAppointment>> Get()
         {
-            var appointments = DataAccess.GetAnimalAppointments();
+            var appointments = DataAccess.GetAnimalAppointments().Select(aa => new AppointmentModel(aa));
             if (appointments == null)
                 return NoContent();
 
@@ -25,7 +27,7 @@ namespace AnimalShelterAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<AnimalAppointment> Get(int id)
         {
-            var appointment = DataAccess.GetAnimalAppointment(id);
+            var appointment = new AppointmentModel(DataAccess.GetAnimalAppointment(id));
             if (appointment == null)
                 return NotFound();
 
@@ -50,7 +52,7 @@ namespace AnimalShelterAPI.Controllers
                 return BadRequest();
 
             DataAccess.SaveAnimalAppointment(appointment);
-            return Ok(DataAccess.GetAnimalAppointment(id));
+            return Ok(new AppointmentModel(DataAccess.GetAnimalAppointment(id)));
         }
 
         // DELETE api/<AppointmentsController>/5

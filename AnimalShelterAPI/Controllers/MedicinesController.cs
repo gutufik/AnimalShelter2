@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Core;
+using Core.Models;
+using System.Linq;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,7 +16,7 @@ namespace AnimalShelterAPI.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Medicine>> Get()
         {
-            var medicines = DataAccess.GetMedicines();
+            var medicines = DataAccess.GetMedicines().Select(m => new MedicineModel(m));
             if (medicines == null)
                 return NoContent();
 
