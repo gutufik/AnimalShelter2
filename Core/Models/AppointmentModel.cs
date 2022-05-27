@@ -8,6 +8,14 @@ namespace Core.Models
 {
     public class AppointmentModel
     {
+        public AppointmentModel()
+        {
+            Id = 0;
+            Date = new DateTime();
+            Time = new TimeSpan();
+            AnimalId = 0;
+            TypeId = 0;
+        }
         public AppointmentModel(AnimalAppointment appointment)
         { 
             Id = appointment.Id;

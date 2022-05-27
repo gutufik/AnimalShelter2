@@ -17,7 +17,7 @@ namespace Core
             Age = age;
         }
 
-        public Animal(AnimalModel model)
+        public Animal(AnimalModel model) : base()
         {
             Id = model.Id;
             Name = model.Name;

@@ -16,9 +16,18 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel>
-            <TextBlock Padding="20" Text="Это приложение, позволяющее облегчить работу приютов и реабилитационных центров животных, сэкономить время на ведении документации, помочь с учетом лечения животных и учетом лекарств. " 
+        <Border
+            CornerRadius="50"
+            Background="#8cf5bb">
+            <StackPanel>
+            <TextBlock Padding="20" 
+                       Text="Это приложение, позволяющее облегчить работу приютов и реабилитационных центров животных, сэкономить время на ведении документации, помочь с учетом лечения животных и учетом лекарств. " 
+                       TextAlignment="Center"
                FontSize="30" TextWrapping="Wrap"/>
         </StackPanel>
+        </Border>
+        <Image Grid.Column="1" 
+               Source="/Images/IndexImage.png" 
+               Stretch="Fill"/>
     </Grid>
 </Page>

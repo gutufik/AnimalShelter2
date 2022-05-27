@@ -9,6 +9,25 @@ namespace Core.Models
 {
     public class AnimalModel
     {
+        public AnimalModel()
+        {
+            Id = 0;
+            Name = "";
+            TypeId = 0;
+            Breed = "";
+            ArrivalDate = new DateTime();
+            StatusId = 0;
+            Height = 0;
+            Weight = 0;
+            Age = 0;
+            GenderId = 0;
+            Color = "";
+            Character = "";
+            CapturePlace = "";
+            Sign = "";
+            CuratorId = 0;
+        }
+
         public AnimalModel(Animal animal)
         { 
             Id = animal.Id;

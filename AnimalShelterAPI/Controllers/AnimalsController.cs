@@ -36,8 +36,15 @@ namespace AnimalShelterAPI.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] AnimalModel model)
         {
-            DataAccess.SaveAnimal(new Animal(model));
-            return Ok();
+            try
+            {
+                DataAccess.SaveAnimal(new Animal(model));
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         // PUT api/<AppointmentsController>/5
@@ -47,9 +54,15 @@ namespace AnimalShelterAPI.Controllers
             model.Id = id;
             if (DataAccess.GetAnimal(id) == null)
                 return BadRequest();
-
-            DataAccess.SaveAnimal(new Animal(model));
-            return Ok(new AnimalModel(DataAccess.GetAnimal(id)));
+            try
+            {
+                DataAccess.SaveAnimal(new Animal(model));
+                return Ok(new AnimalModel(DataAccess.GetAnimal(id)));
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         // DELETE api/<AppointmentsController>/5

@@ -61,5 +61,11 @@ namespace AnimalShelterWPF.Pages
 
             lvAnimals.Items.Refresh();
         }
+
+        private void lvAnimals_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var animal = lvAnimals.SelectedItem as Animal;
+            NavigationService.Navigate(new AnimalPage(animal));
+        }
     }
 }

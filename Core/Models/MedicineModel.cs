@@ -8,6 +8,11 @@ namespace Core.Models
 {
     public class MedicineModel
     {
+        public MedicineModel()
+        {
+            Id = 0;
+            Name = "";
+        }
         public MedicineModel(Medicine medicine)
         {
             Id = medicine.Id;

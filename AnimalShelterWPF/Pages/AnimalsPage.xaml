@@ -27,7 +27,8 @@
             Margin="100,0"
             x:Name="lvAnimals"
             Grid.Row="1"
-                ItemsSource="{Binding Animals}">
+            SelectionChanged="lvAnimals_SelectionChanged"
+            ItemsSource="{Binding Animals}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn

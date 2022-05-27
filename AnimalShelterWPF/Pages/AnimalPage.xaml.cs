@@ -44,6 +44,23 @@ namespace AnimalShelterWPF.Pages
             cbCurator.ItemsSource = Curators;
             DataContext = Animal;
         }
+        public AnimalPage(Animal animal)
+        {
+            InitializeComponent();
+            Animal = animal;
+
+            Types = DataAccess.GetAnimalTypes();
+            Genders = DataAccess.GetGenders();
+            Curators = DataAccess.GetEmployees();
+
+            dpDate.DisplayDateStart = DateTime.Now - TimeSpan.FromDays(30);
+            dpDate.DisplayDateEnd = DateTime.Now;
+
+            cbTypes.ItemsSource = Types;
+            cbGenders.ItemsSource = Genders;
+            cbCurator.ItemsSource = Curators;
+            DataContext = Animal;
+        }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
@@ -76,11 +93,7 @@ namespace AnimalShelterWPF.Pages
             if (fileDialog.ShowDialog().Value)
             {
                 var photo = File.ReadAllBytes(fileDialog.FileName);
-                //if (photo.Length > 1024 * 150)  //Размер фотографии не должен превышать 150 Кбайт
-                //{
-                //    MessageBox.Show("Размер фотографии не должен превышать 150 КБ", "Ошибка");
-                //    return;
-                //}
+
                 Animal.Image = photo;
                 animalImage.Source = new BitmapImage(new Uri(fileDialog.FileName));
             }

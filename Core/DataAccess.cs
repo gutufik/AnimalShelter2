@@ -103,6 +103,7 @@ namespace Core
                 AnimalShelterEntities.GetContext().Medicines.Add(medicine);
 
             AnimalShelterEntities.GetContext().SaveChanges();
+            RefreshListsEvent?.Invoke();
         }
         public static void DeleteMedicine(Medicine medicine)
         {
