@@ -12,7 +12,7 @@ namespace AnimalShelterAPI.Controllers
     public class AnimalsController : ControllerBase
     {
         [HttpGet]
-        public ActionResult<IEnumerable<Animal>> Get()
+        public ActionResult<IEnumerable<AnimalModel>> Get()
         {
             var animals = DataAccess.GetAnimals().Select(x => new AnimalModel(x)); 
 
@@ -23,7 +23,7 @@ namespace AnimalShelterAPI.Controllers
         }
         // GET api/<AppointmentsController>/5
         [HttpGet("{id}")]
-        public ActionResult<Animal> Get(int id)
+        public ActionResult<AnimalModel> Get(int id)
         {
             var animal = new AnimalModel(DataAccess.GetAnimal(id));
 
@@ -34,21 +34,21 @@ namespace AnimalShelterAPI.Controllers
         }
         // POST api/<AppointmentsController>
         [HttpPost]
-        public ActionResult Post([FromBody] Animal animal)
+        public ActionResult Post([FromBody] AnimalModel model)
         {
-            DataAccess.SaveAnimal(animal);
+            DataAccess.SaveAnimal(new Animal(model));
             return Ok();
         }
 
         // PUT api/<AppointmentsController>/5
         [HttpPut("{id}")]
-        public ActionResult<Animal> Put(int id, [FromBody] Animal animal)
+        public ActionResult<Animal> Put(int id, [FromBody] AnimalModel model)
         {
-            animal.Id = id;
+            model.Id = id;
             if (DataAccess.GetAnimal(id) == null)
                 return BadRequest();
 
-            DataAccess.SaveAnimal(animal);
+            DataAccess.SaveAnimal(new Animal(model));
             return Ok(new AnimalModel(DataAccess.GetAnimal(id)));
         }
 

@@ -25,9 +25,9 @@ namespace AnimalShelterAPI.Controllers
 
         // POST api/<MedicinesController>
         [HttpPost]
-        public ActionResult Post([FromBody] Medicine medicine)
+        public ActionResult Post([FromBody] MedicineModel model)
         {
-            DataAccess.SaveMedicine(medicine);
+            DataAccess.SaveMedicine(new Medicine(model));
             return Ok();
         }
     }

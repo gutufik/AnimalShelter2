@@ -14,7 +14,7 @@ namespace AnimalShelterAPI.Controllers
     {
         // GET: api/<AppointmentsController>
         [HttpGet]
-        public ActionResult<IEnumerable<AnimalAppointment>> Get()
+        public ActionResult<IEnumerable<AppointmentModel>> Get()
         {
             var appointments = DataAccess.GetAnimalAppointments().Select(aa => new AppointmentModel(aa));
             if (appointments == null)
@@ -25,7 +25,7 @@ namespace AnimalShelterAPI.Controllers
 
         // GET api/<AppointmentsController>/5
         [HttpGet("{id}")]
-        public ActionResult<AnimalAppointment> Get(int id)
+        public ActionResult<AppointmentModel> Get(int id)
         {
             var appointment = new AppointmentModel(DataAccess.GetAnimalAppointment(id));
             if (appointment == null)
@@ -36,22 +36,22 @@ namespace AnimalShelterAPI.Controllers
 
         // POST api/<AppointmentsController>
         [HttpPost]
-        public ActionResult Post([FromBody] AnimalAppointment appointment)
+        public ActionResult Post([FromBody] AppointmentModel model)
         {
-            DataAccess.SaveAnimalAppointment(appointment);
+            DataAccess.SaveAnimalAppointment(new AnimalAppointment(model));
             return Ok();
         }
 
         // PUT api/<AppointmentsController>/5
         [HttpPut("{id}")]
-        public ActionResult<AnimalAppointment> Put(int id, [FromBody] AnimalAppointment appointment)
+        public ActionResult<AnimalAppointment> Put(int id, [FromBody] AppointmentModel model)
         {
-            appointment.Id = id;
+            model.Id = id;
 
             if (DataAccess.GetAnimalAppointment(id) == null)
                 return BadRequest();
 
-            DataAccess.SaveAnimalAppointment(appointment);
+            DataAccess.SaveAnimalAppointment(new AnimalAppointment(model));
             return Ok(new AppointmentModel(DataAccess.GetAnimalAppointment(id)));
         }
 
