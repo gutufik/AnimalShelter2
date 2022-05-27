@@ -139,5 +139,46 @@ namespace Core
             AnimalShelterEntities.GetContext().SaveChanges();
             RefreshListsEvent?.Invoke();
         }
+        public static void UpdateAnimal(Animal animal)
+        {
+            var baseAnimal = GetAnimal(animal.Id);
+
+            baseAnimal.Name = animal.Name;
+            baseAnimal.TypeId = animal.TypeId;
+            baseAnimal.Breed = animal.Breed;
+            baseAnimal.ArrivalDate = animal.ArrivalDate;
+            baseAnimal.StatusId = animal.StatusId;
+            baseAnimal.Height = animal.Height;
+            baseAnimal.Weight = animal.Weight;
+            baseAnimal.Age = animal.Age;
+            baseAnimal.GenderId = animal.GenderId;
+            baseAnimal.Color = animal.Color;
+            baseAnimal.Character = animal.Character;
+            baseAnimal.CapturePlace = animal.CapturePlace;
+            baseAnimal.Sign = animal.Sign;
+            baseAnimal.CuratorId = animal.CuratorId;
+
+            SaveAnimal(baseAnimal);
+        }
+
+        public static void UpdateAppointment(AnimalAppointment appointment)
+        {
+            var baseAppointment = GetAnimalAppointment(appointment.Id);
+
+            baseAppointment.Id = appointment.Id;
+            baseAppointment.Date = appointment.Date;
+            baseAppointment.Time = appointment.Time;
+            baseAppointment.AnimalId = appointment.AnimalId;
+            baseAppointment.TypeId = appointment.TypeId;
+
+            SaveAnimalAppointment(baseAppointment);
+        }
+
+        //public static void UpdateMedicine(Medicine medicine)
+        //{
+        //    var baseMedicine = GetMedicine(medicine.Id);
+
+
+        //}
     }
 }

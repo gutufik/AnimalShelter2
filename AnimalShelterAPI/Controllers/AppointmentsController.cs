@@ -51,7 +51,7 @@ namespace AnimalShelterAPI.Controllers
             if (DataAccess.GetAnimalAppointment(id) == null)
                 return BadRequest();
 
-            DataAccess.SaveAnimalAppointment(new AnimalAppointment(model));
+            DataAccess.UpdateAppointment(new AnimalAppointment(model));
             return Ok(new AppointmentModel(DataAccess.GetAnimalAppointment(id)));
         }
 

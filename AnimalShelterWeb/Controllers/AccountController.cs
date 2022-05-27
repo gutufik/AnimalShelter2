@@ -12,9 +12,10 @@ namespace AnimalShelterWeb.Controllers
 {
     public class AccountController : Controller
     {
+        public static Employee Employee { get; set; }
         public IActionResult Index()
         {
-            return View();
+            return View(Employee);
         }
         [HttpGet]
         public IActionResult Register()
@@ -38,6 +39,7 @@ namespace AnimalShelterWeb.Controllers
                     };
                     DataAccess.SaveUser(user);
 
+                    Employee = user.Employee;
 
                     await Authenticate(user); // аутентификация
 
@@ -64,7 +66,7 @@ namespace AnimalShelterWeb.Controllers
                 if (user != null)
                 {
                     await Authenticate(user); // аутентификация
-                    //User = user;
+                    Employee = user.Employee;
                     return RedirectToAction("Index", "Home");
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");

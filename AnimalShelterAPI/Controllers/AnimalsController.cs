@@ -56,7 +56,7 @@ namespace AnimalShelterAPI.Controllers
                 return BadRequest();
             try
             {
-                DataAccess.SaveAnimal(new Animal(model));
+                DataAccess.UpdateAnimal(new Animal(model));
                 return Ok(new AnimalModel(DataAccess.GetAnimal(id)));
             }
             catch
