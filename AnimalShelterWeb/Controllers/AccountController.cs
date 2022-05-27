@@ -7,15 +7,22 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AnimalShelterWeb.Controllers
 {
     public class AccountController : Controller
     {
-        public static Employee Employee { get; set; }
+        public User User { get; set; }
+        [Authorize]
         public IActionResult Index()
         {
-            return View(Employee);
+            if (Request.Cookies["Id"] != null)
+            {
+                var userId = int.Parse(Request.Cookies["Id"]);
+                User = DataAccess.GetUser(userId);
+            }
+            return View(User);
         }
         [HttpGet]
         public IActionResult Register()
@@ -39,7 +46,7 @@ namespace AnimalShelterWeb.Controllers
                     };
                     DataAccess.SaveUser(user);
 
-                    Employee = user.Employee;
+                    User = user;
 
                     await Authenticate(user); // аутентификация
 
@@ -66,7 +73,7 @@ namespace AnimalShelterWeb.Controllers
                 if (user != null)
                 {
                     await Authenticate(user); // аутентификация
-                    Employee = user.Employee;
+                    User = user;
                     return RedirectToAction("Index", "Home");
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
@@ -75,17 +82,27 @@ namespace AnimalShelterWeb.Controllers
         }
         private async Task Authenticate(User user)
         {
-            // создаем один claim
             var claims = new List<Claim>
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, user.Id.ToString()),
-                //new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role?.Name)
             };
-            // создаем объект ClaimsIdentity
+
             ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,
                 ClaimsIdentity.DefaultRoleClaimType);
-            // установка аутентификационных куки
+
+            Response.Cookies.Append("Id", user.Id.ToString());
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+        }
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return Redirect("~/");
+        }
+        [HttpPost]
+        public IActionResult SaveUser(User user)
+        {
+            DataAccess.SaveUser(user);
+            return Redirect("~/");
         }
     }
 }

@@ -27,7 +27,6 @@
             Margin="100,0"
             x:Name="lvAnimals"
             Grid.Row="1"
-            SelectionChanged="lvAnimals_SelectionChanged"
             ItemsSource="{Binding Animals}">
             <ListView.View>
                 <GridView>
@@ -43,6 +42,13 @@
                     <GridViewColumn
                     DisplayMemberBinding="{Binding Status.Name}"
                     Header="Статус" />
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="btnEdit" Content="Подробнее" Click="btnEdit_Click"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                     <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>

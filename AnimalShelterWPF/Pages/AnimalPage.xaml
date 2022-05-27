@@ -32,7 +32,7 @@
         <Label Content="Новое животное" FontSize="25"/>
         <Button x:Name="btnCancel" Content="Назад" Grid.Column="3" 
                 Foreground="Gray" Background="Azure" Click="btnCancel_Click"/>
-        <Button x:Name="btnSave" Content="Добавить"
+        <Button x:Name="btnSave" Content="Сохранить"
                 Click="btnSave_Click" Grid.Column="4"/>
         
         <StackPanel Grid.Row="1">
@@ -90,6 +90,6 @@
         <Button x:Name="btnAddImage" Content="Выбрать фото" Grid.Row="2" Grid.Column="3"
                 Click="btnAddImage_Click"/>
 
-        <Image x:Name="animalImage" Grid.Row="2" Grid.Column="4"/>
+        <Image x:Name="animalImage" Grid.Row="2" Grid.Column="4" Source="{Binding Image}" />
     </Grid>
 </Page>

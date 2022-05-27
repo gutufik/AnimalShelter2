@@ -62,9 +62,10 @@ namespace AnimalShelterWPF.Pages
             lvAnimals.Items.Refresh();
         }
 
-        private void lvAnimals_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            var animal = lvAnimals.SelectedItem as Animal;
+            var animal = (sender as Button).DataContext as Animal;
+
             NavigationService.Navigate(new AnimalPage(animal));
         }
     }

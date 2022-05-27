@@ -1,47 +1,49 @@
-﻿@model Core.Employee
+﻿@model Core.User
 
 @{
     ViewData["Title"] = "Account";
 }
 
-<h1>Account</h1>
-
-<h4>Employee</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Index">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsDeleted" /> @Html.DisplayNameFor(model => model.IsDeleted)
-                </label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+<h2>Аккаунт</h2>
+@{
+    <div>
+        <form method="post" asp-controller="Account" asp-action="SaveClient">
+        <input type="hidden" asp-for="Id" value="@Model.Id"/>
+        <input type="hidden" asp-for="EmployeeId" value="@Model.EmployeeId"/>
+        <input type="hidden" asp-for="Employee.Id" value="@Model.Employee.Id"/>
+        <input type="hidden" asp-for="Password" value="@Model.Password"/>
+            <table>
+                <tr>
+                    <td>
+                        <label>Логин</label>
+                    </td>
+                    <td>
+                        <input type="text" asp-for="Login" value="@Model.Login" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Имя</label>
+                    </td>
+                    <td>
+                        <input type="text" asp-for="Employee.FirstName" value="@Model.Employee.FirstName" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Фамилия</label>
+                    </td>
+                    <td>
+                        <input type="text" asp-for="Employee.LastName" value="@Model.Employee.LastName" />
+                    </td>
+                </tr>
+            </table>
+            <button type="submit" class="btn-primary" asp-controller="Account" asp-action="SaveUser">Сохранить</button>
+            <button asp-controller="Account" class="btn-danger" asp-action="Logout">Выйти</button>
         </form>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+}
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
