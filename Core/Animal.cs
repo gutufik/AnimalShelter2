@@ -15,11 +15,7 @@ namespace Core
     public partial class Animal
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Animal()
-        {
-            this.AnimalAppointments = new HashSet<AnimalAppointment>();
-            this.AnimalComments = new HashSet<AnimalComment>();
-        }
+        
     
         public int Id { get; set; }
         public string Name { get; set; }

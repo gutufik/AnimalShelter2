@@ -16,6 +16,13 @@ namespace Core
             Color = color;
             Age = age;
         }
+        public Animal()
+        {
+            ArrivalDate = DateTime.Today;
+
+            this.AnimalAppointments = new HashSet<AnimalAppointment>();
+            this.AnimalComments = new HashSet<AnimalComment>();
+        }
 
         public Animal(AnimalModel model) : base()
         {

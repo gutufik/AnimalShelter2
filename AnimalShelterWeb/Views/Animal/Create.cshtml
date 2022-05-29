@@ -9,9 +9,9 @@
 
 <h4>Animal</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+<div class="row card">
+    <div class="card-body">
+        <form asp-action="Create" class="d-flex flex-wrap justify-content-around">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -92,7 +92,16 @@
             </div>
             <div class="form-group">
                 <label asp-for="CuratorId" class="control-label"></label>
-                <input asp-for="CuratorId" class="form-control" />
+                <select asp-for="CuratorId" class="form-control" >
+                    @foreach (Employee employee in DataAccess.GetEmployees())
+                    {
+                        <option value=@employee.Id>
+                            <p>
+                                @employee.FirstName @employee.LastName
+                            </p>
+                        </option>
+                    }
+                </select>
                 <span asp-validation-for="CuratorId" class="text-danger"></span>
             </div>
             <div class="form-group">

@@ -33,7 +33,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @item.ArrivalDate
+                @item.ArrivalDate.Date.ToLongDateString()
             </td>
             <td>
                 @item.Name
@@ -45,9 +45,8 @@
                 @item.Status.Name
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Подробнее", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
             </td>
         </tr>
 }

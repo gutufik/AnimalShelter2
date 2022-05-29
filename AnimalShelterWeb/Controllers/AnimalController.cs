@@ -22,6 +22,8 @@ namespace AnimalShelterWeb.Controllers
         [Authorize]
         public IActionResult Edit(Animal animal)
         {
+
+            //DataAccess.SaveAnimal(animal);
             return View();
         }
         [Authorize]
@@ -35,6 +37,13 @@ namespace AnimalShelterWeb.Controllers
         { 
             DataAccess.SaveAnimal(animal);
             return RedirectToAction("Index");
+        }
+        public IActionResult Delete(int id)
+        {
+            var animal = DataAccess.GetAnimal(id);
+            DataAccess.DeleteAnimal(animal);
+
+            return Redirect("~/animal/");
         }
     }
 }

@@ -26,12 +26,14 @@ namespace AnimalShelterWPF.Pages
         public Animal Animal { get; set; }
         public List<AnimalType> Types { get; set; }
         public List<Gender> Genders { get; set; }
+        public List<Status> Statuses { get; set; }
         public List<Employee> Curators { get; set; }
 
         public AnimalPage()
         {
             InitializeComponent();
             Animal = new Animal();
+            Statuses = DataAccess.GetAnimalStatuses();
             Types = DataAccess.GetAnimalTypes();
             Genders = DataAccess.GetGenders();
             Curators = DataAccess.GetEmployees();
@@ -39,16 +41,13 @@ namespace AnimalShelterWPF.Pages
             dpDate.DisplayDateStart = DateTime.Now - TimeSpan.FromDays(30);
             dpDate.DisplayDateEnd = DateTime.Now;
 
-            cbTypes.ItemsSource = Types;
-            cbGenders.ItemsSource = Genders;
-            cbCurator.ItemsSource = Curators;
-            DataContext = Animal;
+            DataContext = this;
         }
         public AnimalPage(Animal animal)
         {
             InitializeComponent();
             Animal = animal;
-
+            Statuses = DataAccess.GetAnimalStatuses();
             Types = DataAccess.GetAnimalTypes();
             Genders = DataAccess.GetGenders();
             Curators = DataAccess.GetEmployees();
@@ -56,14 +55,13 @@ namespace AnimalShelterWPF.Pages
             dpDate.DisplayDateStart = DateTime.Now - TimeSpan.FromDays(30);
             dpDate.DisplayDateEnd = DateTime.Now;
 
-            cbTypes.ItemsSource = Types;
-            cbGenders.ItemsSource = Genders;
-            cbCurator.ItemsSource = Curators;
-            DataContext = Animal;
+            DataContext = this;
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+
+            //Нужна нормальная валидация
             try
             {
                 if (Animal.ArrivalDate > DateTime.Now)

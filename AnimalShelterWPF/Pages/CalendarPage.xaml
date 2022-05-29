@@ -74,7 +74,7 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn
-                    DisplayMemberBinding="{Binding Date}"
+                    DisplayMemberBinding="{Binding Date, StringFormat=d, ConverterCulture=ru-RU}"
                     Header="Дата" />
                         <GridViewColumn
                     DisplayMemberBinding="{Binding Animal.Name}"

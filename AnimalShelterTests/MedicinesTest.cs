@@ -26,5 +26,10 @@ namespace AnimalShelterTests
                 Assert.IsFalse(medicines.Contains(medicine));
             }
         }
+        [TestMethod]
+        public void TryAddEqualMedicines()
+        { 
+            
+        }
     }
 }

@@ -18,20 +18,20 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" >
             <TextBlock Text="Животные" FontSize="30" VerticalAlignment="Center" Margin="20,0"/>
-            <Button x:Name="btnAddAnimal" Content="Добавить животное" 
+            <Button x:Name="btnAddAnimal" Content="Добавить животное"
                     VerticalAlignment="Center" Margin="20,0" Click="btnAddAnimal_Click"/>
             <Button x:Name="btnAddAppintment" Content="Добавить назначение" 
                     Background="AliceBlue" Click="btnAddAppintment_Click"/>
         </StackPanel>
         <ListView
-            Margin="100,0"
+            Margin="73,0"
             x:Name="lvAnimals"
             Grid.Row="1"
             ItemsSource="{Binding Animals}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
-                    DisplayMemberBinding="{Binding ArrivalDate}"
+                    DisplayMemberBinding="{Binding ArrivalDate, StringFormat=d, ConverterCulture=ru-RU}"
                     Header="Дата поступления" />
                     <GridViewColumn
                     DisplayMemberBinding="{Binding Name}"
