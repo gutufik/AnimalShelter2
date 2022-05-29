@@ -54,12 +54,19 @@
         </Grid.RowDefinitions>
         <Label Content="Календарь назначений" 
                FontSize="25" Margin="30,0"/>
-        <Button x:Name="btnAddAppointment"
-                    Content="Добавить"
+        <StackPanel Grid.Column="1" 
                     HorizontalAlignment="Right"
-                    Grid.Column="1"
-                    Margin="30,0"
-                    Click="btnAddAppointment_Click"/>
+                    Orientation="Horizontal">
+            <Button x:Name="btnExport"
+                    Click="ExportAppointments"
+                    Content="Экспорт"/>
+            <Button x:Name="btnAddAppointment"
+                        Content="Добавить"
+                        HorizontalAlignment="Right"
+                        Grid.Column="1"
+                        Margin="30,0"
+                        Click="btnAddAppointment_Click"/>
+        </StackPanel>
         <Viewbox Grid.Row="1" HorizontalAlignment="Left">
             <Calendar x:Name="appointmentCalendar" 
                       SelectionMode="MultipleRange"

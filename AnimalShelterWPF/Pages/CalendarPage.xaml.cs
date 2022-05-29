@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Core;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace AnimalShelterWPF.Pages
 {
@@ -76,6 +77,32 @@ namespace AnimalShelterWPF.Pages
             Appointments = DataAccess.GetAnimalAppointments(((DateTime)appointmentCalendar.SelectedDate).Date);
             lvAppointments.ItemsSource = Appointments;
             lvAppointments.Items.Refresh();
+        }
+        public void ExportAppointments(object sender, RoutedEventArgs e)
+        {
+            var application = new Excel.Application();
+            Excel.Workbook workbook = application.Workbooks.Add(Type.Missing);
+            Excel.Worksheet worksheet = application.Worksheets.Item[1];
+            int rowIndex = 2;
+
+            worksheet.Name = $"Назначения";
+            
+            worksheet.Cells[1][1] = "Дата";
+            worksheet.Cells[2][1] = "Животное";
+            worksheet.Cells[3][1] = "Тип назначения";
+
+            for (int i = 0; i < Appointments.Count; i++)
+            {
+                worksheet.Cells[1][rowIndex] = Appointments[i].Date.ToShortDateString();
+                worksheet.Cells[2][rowIndex] = Appointments[i].Animal.Name;
+                worksheet.Cells[3][rowIndex] = Appointments[i].AppointmentType.Name;
+                rowIndex++;
+            }
+            worksheet.Columns.AutoFit();
+            worksheet.Rows.AutoFit();
+
+            application.Visible = true;
+
         }
     }
 }

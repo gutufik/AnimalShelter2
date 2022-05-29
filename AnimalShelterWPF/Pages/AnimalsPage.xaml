@@ -22,6 +22,9 @@
                     VerticalAlignment="Center" Margin="20,0" Click="btnAddAnimal_Click"/>
             <Button x:Name="btnAddAppintment" Content="Добавить назначение" 
                     Background="AliceBlue" Click="btnAddAppintment_Click"/>
+            <Button x:Name="btnExport" Click="Export"
+                    Margin="20,0"
+                    Content="Экспорт"/>
         </StackPanel>
         <ListView
             Margin="73,0"
