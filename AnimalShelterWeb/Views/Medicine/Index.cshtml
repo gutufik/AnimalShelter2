@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Core.Medicine>
+﻿@model List<Core.Medicine>
 
 @{
     ViewData["Title"] = "Medicines";
@@ -17,27 +17,25 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                Номер
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Название
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@for (int i = 0; i < Model.Count; i++) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                @(i+1)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Model[i].Name
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Удалить", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }

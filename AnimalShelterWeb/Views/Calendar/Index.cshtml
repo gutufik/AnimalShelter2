@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Core.AnimalAppointment>
+﻿@model List<Core.AnimalAppointment>
 
 @{
     ViewData["Title"] = "Календарь";
@@ -17,16 +17,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                Номер
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Date)
+                Дата
             </th>
             <th>
-                Animal
+                Животное
             </th>
             <th>
-                Type
+                Тип
             </th>
             <th></th>
         </tr>
@@ -35,7 +35,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                @(Model.IndexOf(item) + 1)
             </td>
             <td>
                 @item.Date.Date.ToShortDateString()
@@ -47,8 +47,8 @@
                 @item.AppointmentType.Name
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Редактировать", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Удалить", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }
