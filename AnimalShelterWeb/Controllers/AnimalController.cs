@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Core;
 using Microsoft.AspNetCore.Authorization;
+using System.IO;
 
 namespace AnimalShelterWeb.Controllers
 {

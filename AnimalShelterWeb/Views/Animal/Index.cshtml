@@ -33,7 +33,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @item.ArrivalDate.Date.ToLongDateString()
+                @item.ArrivalDate.Date.ToShortDateString()
             </td>
             <td>
                 @item.Name
