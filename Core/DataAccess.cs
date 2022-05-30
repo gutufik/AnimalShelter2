@@ -103,7 +103,8 @@ namespace Core
         }
         public static void SaveMedicine(Medicine medicine)
         {
-            if (GetMedicines().FirstOrDefault(m => m.Id == medicine.Id) == null)
+            if (GetMedicines().FirstOrDefault(m => m.Id == medicine.Id) == null
+                && GetMedicines().Count(m => m.Name == medicine.Name) == 0)
                 AnimalShelterEntities.GetContext().Medicines.Add(medicine);
 
             AnimalShelterEntities.GetContext().SaveChanges();

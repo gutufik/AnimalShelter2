@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+using System.Linq;
 using System.Collections.Generic;
 using Core;
 
@@ -28,8 +28,13 @@ namespace AnimalShelterTests
         }
         [TestMethod]
         public void TryAddEqualMedicines()
-        { 
-            
+        {
+            Medicine medicine = new Medicine("Натрия хлорид");
+            DataAccess.SaveMedicine(medicine);
+            DataAccess.SaveMedicine(medicine);
+            List<Medicine> medicines = DataAccess.GetMedicines()
+                    .Where(m => m.Name == medicine.Name).ToList();
+            Assert.AreEqual(1, medicines.Count);
         }
     }
 }
