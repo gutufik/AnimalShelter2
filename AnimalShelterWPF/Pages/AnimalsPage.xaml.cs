@@ -89,10 +89,14 @@ namespace AnimalShelterWPF.Pages
             {
                 worksheet.Cells[1][rowIndex] = employees[i].LastName;
                 worksheet.Cells[2][rowIndex] = employees[i].FirstName;
-                for (int j = 0; j < employees[i].Animals.Count; j++)
+                rowIndex++;
+                foreach (var animal in employees[i].Animals)
                 {
-                    worksheet.Cells[3][rowIndex] = employees[i].Animals.ToList()[j].Name;
-                    rowIndex++;
+                    if (!animal.IsDeleted)
+                    {
+                        worksheet.Cells[3][rowIndex] = animal.Name;
+                        rowIndex++;
+                    }
                 }
             }
             worksheet.Columns.AutoFit();

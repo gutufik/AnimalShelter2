@@ -48,8 +48,8 @@
                 @item.AppointmentType.Name
             </td>
             <td>
-                @Html.ActionLink("Редактировать", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Удалить", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
             </td>
         </tr>
 }

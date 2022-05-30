@@ -84,8 +84,11 @@ namespace AnimalShelterWeb.Controllers
                     worksheet.Cell(currentRow, 2).Value = employee.FirstName;
                     foreach (var animal in employee.Animals)
                     {
-                        currentRow++;
-                        worksheet.Cell(currentRow, 3).Value = animal.Name;
+                        if (!animal.IsDeleted)
+                        {
+                            currentRow++;
+                            worksheet.Cell(currentRow, 3).Value = animal.Name;
+                        }
                     }
                 }
 

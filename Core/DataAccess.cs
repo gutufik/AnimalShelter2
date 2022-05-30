@@ -193,7 +193,5 @@ namespace Core
 
             SaveAnimalAppointment(baseAppointment);
         }
-
-        
     }
 }

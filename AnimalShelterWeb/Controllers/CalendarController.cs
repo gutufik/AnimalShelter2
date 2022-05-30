@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Core;
 using ClosedXML.Excel;
 using System.IO;
+using System.Linq;
 
 namespace AnimalShelterWeb.Controllers
 {
@@ -27,7 +28,7 @@ namespace AnimalShelterWeb.Controllers
 
         public IActionResult Export()
         {
-            var appointments = DataAccess.GetAnimalAppointments();
+            var appointments = DataAccess.GetAnimalAppointments().Where(x => !x.Animal.IsDeleted).ToList();
 
             using (var workbook = new XLWorkbook())
             {

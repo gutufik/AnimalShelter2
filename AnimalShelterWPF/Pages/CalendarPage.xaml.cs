@@ -80,6 +80,8 @@ namespace AnimalShelterWPF.Pages
         }
         public void ExportAppointments(object sender, RoutedEventArgs e)
         {
+            var appointments = Appointments.Where(x => !x.Animal.IsDeleted).ToList();
+
             var application = new Excel.Application();
             Excel.Workbook workbook = application.Workbooks.Add(Type.Missing);
             Excel.Worksheet worksheet = application.Worksheets.Item[1];
@@ -91,11 +93,11 @@ namespace AnimalShelterWPF.Pages
             worksheet.Cells[2][1] = "Животное";
             worksheet.Cells[3][1] = "Тип назначения";
 
-            for (int i = 0; i < Appointments.Count; i++)
+            for (int i = 0; i < appointments.Count; i++)
             {
-                worksheet.Cells[1][rowIndex] = Appointments[i].Date.ToShortDateString();
-                worksheet.Cells[2][rowIndex] = Appointments[i].Animal.Name;
-                worksheet.Cells[3][rowIndex] = Appointments[i].AppointmentType.Name;
+                worksheet.Cells[1][rowIndex] = appointments[i].Date.ToShortDateString();
+                worksheet.Cells[2][rowIndex] = appointments[i].Animal.Name;
+                worksheet.Cells[3][rowIndex] = appointments[i].AppointmentType.Name;
                 rowIndex++;
             }
             worksheet.Columns.AutoFit();
