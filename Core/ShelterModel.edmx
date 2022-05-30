@@ -11,19 +11,18 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="TypeId" Type="int" />
+          <Property Name="TypeId" Type="int" Nullable="false" />
           <Property Name="Breed" Type="nvarchar" MaxLength="50" />
           <Property Name="ArrivalDate" Type="date" Nullable="false" />
-          <Property Name="StatusId" Type="int" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
           <Property Name="Height" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Weight" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Age" Type="int" />
-          <Property Name="GenderId" Type="int" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="GenderId" Type="int" Nullable="false" />
           <Property Name="Color" Type="nvarchar" MaxLength="50" />
-          <Property Name="Character" Type="nvarchar" MaxLength="50" />
           <Property Name="CapturePlace" Type="nvarchar" MaxLength="200" />
           <Property Name="Sign" Type="nvarchar(max)" />
-          <Property Name="CuratorId" Type="int" />
+          <Property Name="CuratorId" Type="int" Nullable="false" />
           <Property Name="Image" Type="varbinary(max)" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
@@ -142,7 +141,7 @@
           <Property Name="EmployeeId" Type="int" />
         </EntityType>
         <Association Name="FK_Animal_AnimalType">
-          <End Role="AnimalType" Type="Self.AnimalType" Multiplicity="0..1" />
+          <End Role="AnimalType" Type="Self.AnimalType" Multiplicity="1" />
           <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AnimalType">
@@ -154,7 +153,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Animal_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -166,7 +165,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Animal_Gender">
-          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
           <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Gender">
@@ -178,7 +177,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Animal_Status">
-          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
           <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Status">
@@ -403,19 +402,18 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TypeId" Type="Int32" />
+          <Property Name="TypeId" Type="Int32" Nullable="false" />
           <Property Name="Breed" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ArrivalDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="StatusId" Type="Int32" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
           <Property Name="Height" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Weight" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Age" Type="Int32" />
-          <Property Name="GenderId" Type="Int32" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="GenderId" Type="Int32" Nullable="false" />
           <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Character" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CapturePlace" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Sign" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CuratorId" Type="Int32" />
+          <Property Name="CuratorId" Type="Int32" Nullable="false" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="AnimalType" Relationship="AnimalShelterModel.FK_Animal_AnimalType" FromRole="Animal" ToRole="AnimalType" />
@@ -556,7 +554,7 @@
           <NavigationProperty Name="Employee" Relationship="AnimalShelterModel.FK_User_Employee" FromRole="User" ToRole="Employee" />
         </EntityType>
         <Association Name="FK_Animal_AnimalType">
-          <End Type="AnimalShelterModel.AnimalType" Role="AnimalType" Multiplicity="0..1" />
+          <End Type="AnimalShelterModel.AnimalType" Role="AnimalType" Multiplicity="1" />
           <End Type="AnimalShelterModel.Animal" Role="Animal" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AnimalType">
@@ -568,7 +566,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Animal_Employee">
-          <End Type="AnimalShelterModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="AnimalShelterModel.Employee" Role="Employee" Multiplicity="1" />
           <End Type="AnimalShelterModel.Animal" Role="Animal" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -580,7 +578,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Animal_Gender">
-          <End Type="AnimalShelterModel.Gender" Role="Gender" Multiplicity="0..1" />
+          <End Type="AnimalShelterModel.Gender" Role="Gender" Multiplicity="1" />
           <End Type="AnimalShelterModel.Animal" Role="Animal" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Gender">
@@ -592,7 +590,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Animal_Status">
-          <End Type="AnimalShelterModel.Status" Role="Status" Multiplicity="0..1" />
+          <End Type="AnimalShelterModel.Status" Role="Status" Multiplicity="1" />
           <End Type="AnimalShelterModel.Animal" Role="Animal" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Status">
@@ -701,7 +699,6 @@
                 <ScalarProperty Name="CuratorId" ColumnName="CuratorId" />
                 <ScalarProperty Name="Sign" ColumnName="Sign" />
                 <ScalarProperty Name="CapturePlace" ColumnName="CapturePlace" />
-                <ScalarProperty Name="Character" ColumnName="Character" />
                 <ScalarProperty Name="Color" ColumnName="Color" />
                 <ScalarProperty Name="GenderId" ColumnName="GenderId" />
                 <ScalarProperty Name="Age" ColumnName="Age" />

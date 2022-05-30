@@ -37,7 +37,6 @@ namespace Core
             Age = model.Age;
             GenderId = model.GenderId;
             Color = model.Color;
-            Character = model.Character;
             CapturePlace = model.CapturePlace;
             Sign = model.Sign;
             CuratorId = model.CuratorId;

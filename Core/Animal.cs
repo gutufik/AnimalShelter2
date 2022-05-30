@@ -15,23 +15,21 @@ namespace Core
     public partial class Animal
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public Nullable<int> TypeId { get; set; }
+        public int TypeId { get; set; }
         public string Breed { get; set; }
         public System.DateTime ArrivalDate { get; set; }
-        public Nullable<int> StatusId { get; set; }
+        public int StatusId { get; set; }
         public Nullable<decimal> Height { get; set; }
         public Nullable<decimal> Weight { get; set; }
-        public Nullable<int> Age { get; set; }
-        public Nullable<int> GenderId { get; set; }
+        public int Age { get; set; }
+        public int GenderId { get; set; }
         public string Color { get; set; }
-        public string Character { get; set; }
         public string CapturePlace { get; set; }
         public string Sign { get; set; }
-        public Nullable<int> CuratorId { get; set; }
+        public int CuratorId { get; set; }
         public byte[] Image { get; set; }
         public bool IsDeleted { get; set; }
     

@@ -174,7 +174,6 @@ namespace Core
             baseAnimal.Age = animal.Age;
             baseAnimal.GenderId = animal.GenderId;
             baseAnimal.Color = animal.Color;
-            baseAnimal.Character = animal.Character;
             baseAnimal.CapturePlace = animal.CapturePlace;
             baseAnimal.Sign = animal.Sign;
             baseAnimal.CuratorId = animal.CuratorId;
@@ -195,11 +194,6 @@ namespace Core
             SaveAnimalAppointment(baseAppointment);
         }
 
-        //public static void UpdateMedicine(Medicine medicine)
-        //{
-        //    var baseMedicine = GetMedicine(medicine.Id);
-
-
-        //}
+        
     }
 }

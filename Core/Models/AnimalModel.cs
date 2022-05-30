@@ -22,7 +22,6 @@ namespace Core.Models
             Age = 0;
             GenderId = 0;
             Color = "";
-            Character = "";
             CapturePlace = "";
             Sign = "";
             CuratorId = 0;
@@ -41,7 +40,6 @@ namespace Core.Models
             Age = animal.Age;
             GenderId = animal.GenderId;
             Color = animal.Color;
-            Character = animal.Character;
             CapturePlace = animal.CapturePlace;
             Sign = animal.Sign;
             CuratorId = animal.CuratorId;
@@ -49,18 +47,18 @@ namespace Core.Models
 
         public int Id { get; set; }
         public string Name { get; set; }
-        public Nullable<int> TypeId { get; set; }
+        public int TypeId { get; set; }
         public string Breed { get; set; }
         public System.DateTime ArrivalDate { get; set; }
-        public Nullable<int> StatusId { get; set; }
+        public int StatusId { get; set; }
         public Nullable<decimal> Height { get; set; }
         public Nullable<decimal> Weight { get; set; }
-        public Nullable<int> Age { get; set; }
-        public Nullable<int> GenderId { get; set; }
+        public int Age { get; set; }
+        public int GenderId { get; set; }
         public string Color { get; set; }
-        public string Character { get; set; }
         public string CapturePlace { get; set; }
         public string Sign { get; set; }
-        public Nullable<int> CuratorId { get; set; }
+        public int CuratorId { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }
