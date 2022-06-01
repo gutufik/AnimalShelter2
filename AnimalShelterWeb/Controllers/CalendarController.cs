@@ -15,17 +15,31 @@ namespace AnimalShelterWeb.Controllers
             var appointments = DataAccess.GetAnimalAppointments();
             return View(appointments);
         }
+
+        [Authorize]
         public IActionResult Delete(int id)
         {
             var appointment = DataAccess.GetAnimalAppointment(id);
             DataAccess.DeleteAnimalAppointment(appointment);
             return RedirectToAction("Index");
         }
+
+        [Authorize]
         public IActionResult Edit(int id)
         { 
-            return View();
+            var appointment = DataAccess.GetAnimalAppointment(id);
+            return View(appointment);
         }
 
+        [Authorize]
+        [HttpPost]
+        public IActionResult Edit(AnimalAppointment appointment)
+        { 
+            DataAccess.UpdateAppointment(appointment);
+            return RedirectToAction("Index");
+        }
+
+        [Authorize]
         public IActionResult Export()
         {
             var appointments = DataAccess.GetAnimalAppointments().Where(x => !x.Animal.IsDeleted).ToList();

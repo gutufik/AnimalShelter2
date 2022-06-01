@@ -20,7 +20,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="1.25*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -30,26 +30,26 @@
         <Frame x:Name="MainFrame" Grid.Row="1" Grid.ColumnSpan="10" NavigationUIVisibility="Hidden"/>
         
         <Button x:Name="btnMain" Content="Главная" 
-                FontSize="15"
+                FontSize="20"
                 Background="Transparent" BorderBrush="Transparent"
                 Foreground="Black" Click="TtileClick"/>
         <Button x:Name="btnAnimals" Content="Животные" 
-               FontSize="15"
+               FontSize="20"
                Background="Transparent" BorderBrush="Transparent"
                Foreground="Black"
                Grid.Column="2" Click="TtileClick" />
         <Button x:Name="btnCalendar" Content="Календарь" 
-                FontSize="15"
+                FontSize="20"
                 Background="Transparent" BorderBrush="Transparent"
                 Foreground="Black"
                 Grid.Column="3" Click="TtileClick"/>
         <Button x:Name="btnMedicines" Content="Медикаменты" 
-                FontSize="15"
+                FontSize="20"
                 Background="Transparent" BorderBrush="Transparent"
                 Foreground="Black"
                 Grid.Column="4" Click="TtileClick"/>
         <Button x:Name="btnLogin" Content="Вход" Grid.Column="5" 
-                FontSize="15"
+                FontSize="20"
                 Background="Transparent" BorderBrush="Transparent"
                 Foreground="Black"
                 Click="TtileClick"/>

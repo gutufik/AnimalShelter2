@@ -31,11 +31,11 @@
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1">
             <TextBlock  Text="Фамилия" />
-            <TextBox x:Name="tbFirstName" Text="{Binding Employee.FirstName}"/>
+            <TextBox x:Name="tbFirstName" Text="{Binding Employee.LastName}"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1">
             <TextBlock  Text="Имя" />
-            <TextBox x:Name="tbLastName" Text="{Binding Employee.LastName}"/>
+            <TextBox x:Name="tbLastName" Text="{Binding Employee.FirstName}"/>
         </StackPanel>
         <Button x:Name="btnSave" Grid.Row="4" Grid.Column="1" 
                 Click="btnSave_Click" Content="Сохранить"/>

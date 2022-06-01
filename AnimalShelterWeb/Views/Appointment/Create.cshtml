@@ -6,17 +6,15 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>AnimalAppointment</h4>
+<h2>Новое назанчение</h2>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create" class="d-flex flex-wrap justify-content-around">
+        <form asp-action="Create" >
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="AnimalId" class="control-label">Животное</label>
-                <select asp-for="AnimalId">
+                <select asp-for="AnimalId" class="form-control">
                     @foreach (var animal in DataAccess.GetAnimals())
                     {
                         <option value=@animal.Id>@animal.Name</option>
@@ -30,7 +28,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="TypeId" class="control-label">Тип</label>
-                <select asp-for="AnimalId">
+                <select asp-for="AnimalId" class="form-control">
                     @foreach (var type in DataAccess.GetAppointmentTypes())
                     {
                         <option value=@type.Id>@type.Name</option>

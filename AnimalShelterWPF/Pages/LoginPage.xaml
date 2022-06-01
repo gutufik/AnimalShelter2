@@ -15,14 +15,15 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition Height="7*"/>
+            <RowDefinition Height="6*"/>
         </Grid.RowDefinitions>
-        <Label Content="Вход" FontSize="25"
-               HorizontalAlignment="Center" Grid.Column="1"/>
+        <Label Content="Вход" FontSize="35"
+               HorizontalAlignment="Center" Grid.Column="1"
+               />
         <StackPanel Grid.Row="1" Grid.Column="1">
-            <TextBlock Text="Введите логин" FontSize="12"/>
+            <TextBlock Text="Введите логин" FontSize="15"/>
             <TextBox x:Name="tbLogin" FontSize="20"/>
-            <TextBlock Text="Введите пароль" FontSize="12"/>
+            <TextBlock Text="Введите пароль" FontSize="15"/>
             <PasswordBox x:Name="pbPassword" FontSize="20"/>
             
                 <Button x:Name="btnRegister" Content="Зарегистрироваться"
@@ -30,7 +31,7 @@
                         Background="Transparent"
                         BorderBrush="Transparent"
                         Foreground="Gray" 
-                        FontSize="12"
+                        FontSize="15"
                     Click="btnRegister_Click"/>
             <Button x:Name="btnLogin" Content="Войти" 
                     Click="btnLogin_Click" Margin="20"/>
