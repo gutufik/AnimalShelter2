@@ -17,103 +17,142 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="8*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
         </Grid.RowDefinitions>
-        <Label Content="Новое животное" FontSize="25" Grid.ColumnSpan="3"/>
-        <Button x:Name="btnCancel" Content="Назад" Grid.Column="3" 
+        <Border Background="White"
+                Grid.Column="1"
+                CornerRadius="20"
+                Padding="20">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Padding="20,0" Content="Новое животное" FontSize="35" Grid.ColumnSpan="3"/>
+                <Button x:Name="btnCancel" Content="Назад" Grid.Column="3" 
                 Foreground="Gray" Background="Azure" Click="btnCancel_Click"/>
-        <Button x:Name="btnSave" Content="Сохранить"
+                <Button x:Name="btnSave" Content="Сохранить"
                 Click="btnSave_Click" Grid.Column="4"/>
-        
-        <StackPanel Grid.Row="1">
-            <TextBlock Text="Кличка"/>
-            <TextBox x:Name="tbName" Text="{Binding Animal.Name}"/>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="1">
-            <TextBlock Text="Дата прибытия" />
-            <DatePicker x:Name="dpDate" SelectedDate="{Binding Animal.ArrivalDate}"/>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="2">
-            <TextBlock Text="Вид"/>
-            <ComboBox x:Name="cbTypes"
+
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="Кличка" FontSize="15"/>
+                    <TextBox x:Name="tbName"
+                             FontSize="20"
+                             Text="{Binding Animal.Name}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Grid.Column="1">
+                    <TextBlock Text="Дата прибытия" FontSize="15" />
+                    <DatePicker x:Name="dpDate"
+                                FontSize="20"
+                                SelectedDate="{Binding Animal.ArrivalDate}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Grid.Column="2">
+                    <TextBlock Text="Вид"
+                               FontSize="15"/>
+                    <ComboBox x:Name="cbTypes"
+                              FontSize="20"
                       ItemsSource="{Binding Types}"
                       DisplayMemberPath="Name" SelectedItem="{Binding Animal.AnimalType}"/>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="3">
-            <TextBlock Text="Порода"/>
-            <TextBox x:Name="tbBreed" Text="{Binding Animal.Breed}"/>
-        </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Grid.Column="3">
+                    <TextBlock Text="Порода" FontSize="15"/>
+                    <TextBox x:Name="tbBreed" 
+                             FontSize="20"
+                             Text="{Binding Animal.Breed}"/>
+                </StackPanel>
 
-        <StackPanel Grid.Row="2" Grid.Column="0">
-            <TextBlock Text="Рост"/>
-            <TextBox x:Name="tbHeight" Text="{Binding Animal.Height}"/>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="1">
-            <TextBlock Text="Вес"/>
-            <TextBox x:Name="tbWeight" Text="{Binding Animal.Weight}"/>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="2">
-            <TextBlock Text="Окрас"/>
-            <TextBox x:Name="tbColor" Text="{Binding Animal.Color}"/>
-        </StackPanel>
+                <StackPanel Grid.Row="2" Grid.Column="0">
+                    <TextBlock Text="Рост" FontSize="15"/>
+                    <TextBox x:Name="tbHeight" 
+                             FontSize="20"
+                             Text="{Binding Animal.Height}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Grid.Column="1">
+                    <TextBlock Text="Вес" FontSize="15"/>
+                    <TextBox x:Name="tbWeight" 
+                             FontSize="20"
+                             Text="{Binding Animal.Weight}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Grid.Column="2">
+                    <TextBlock Text="Окрас" FontSize="15"/>
+                    <TextBox x:Name="tbColor" 
+                             FontSize="20"
+                             Text="{Binding Animal.Color}"/>
+                </StackPanel>
 
-        <StackPanel Grid.Row="3" Grid.Column="0">
-            <TextBlock Text="Возраст"/>
-            <TextBox x:Name="tbAge" Text="{Binding Animal.Age}"/>
-        </StackPanel>
-        <StackPanel Grid.Row="3" Grid.Column="1">
-            <TextBlock Text="Пол"/>
-            <ComboBox x:Name="cbGenders" 
+                <StackPanel Grid.Row="3" Grid.Column="0">
+                    <TextBlock Text="Возраст" FontSize="15"/>
+                    <TextBox x:Name="tbAge"
+                             FontSize="20"
+                             Text="{Binding Animal.Age}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="3" Grid.Column="1">
+                    <TextBlock Text="Пол" FontSize="15"/>
+                    <ComboBox x:Name="cbGenders" 
+                              FontSize="20"
                       ItemsSource="{Binding Genders}"
                       DisplayMemberPath="Name" SelectedItem="{Binding Animal.Gender}"/>
-        </StackPanel>
-        <StackPanel Grid.Row="3" Grid.Column="2">
-            <TextBlock Text="Статус"/>
-            <ComboBox x:Name="cbStatus" 
+                </StackPanel>
+                <StackPanel Grid.Row="3" Grid.Column="2">
+                    <TextBlock Text="Статус" FontSize="15"/>
+                    <ComboBox x:Name="cbStatus"
+                              FontSize="20"
                       ItemsSource="{Binding Statuses}"
                       DisplayMemberPath="Name" SelectedItem="{Binding Animal.Status}"/>
-        </StackPanel>
+                </StackPanel>
 
-        <StackPanel Grid.Row="4" Grid.Column="0">
-            <TextBlock Text="Место отлова"/>
-            <TextBox x:Name="tbCapturePlace" Text="{Binding Animal.CapturePlace}"/>
-        </StackPanel>
-        <StackPanel Grid.Row="4" Grid.Column="1">
-            <TextBlock Text="Признаки"/>
-            <TextBox x:Name="tbSign" Text="{Binding Animal.Sign}"/>
-        </StackPanel>
-        <StackPanel Grid.Row="4" Grid.Column="3">
-            <TextBlock Text="Куратор"/>
-            <ComboBox x:Name="cbCurator"
+                <StackPanel Grid.Row="4" Grid.Column="0">
+                    <TextBlock Text="Место отлова" FontSize="15"/>
+                    <TextBox x:Name="tbCapturePlace"
+                             FontSize="20"
+                             Text="{Binding Animal.CapturePlace}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="4" Grid.Column="1">
+                    <TextBlock Text="Признаки" FontSize="15"/>
+                    <TextBox x:Name="tbSign"
+                             FontSize="20"
+                             Text="{Binding Animal.Sign}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="4" Grid.Column="3">
+                    <TextBlock Text="Куратор" FontSize="15"/>
+                    <ComboBox x:Name="cbCurator"
+                              FontSize="20"
                       ItemsSource="{Binding Curators}"
                       SelectedItem="{Binding Animal.Employee}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding LastName}" Margin="5,0"/>
-                            <TextBlock Text="{Binding FirstName}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-        </StackPanel>
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding LastName}" Margin="5,0"/>
+                                    <TextBlock Text="{Binding FirstName}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
 
-        <Button x:Name="btnAddImage" Content="Выбрать фото" Grid.Row="3" Grid.Column="4"
+                <Button x:Name="btnAddImage" Content="Выбрать фото" Grid.Row="3" Grid.Column="4"
                 Click="btnAddImage_Click"/>
 
-        <Image x:Name="animalImage" 
+                <Image x:Name="animalImage" 
                Grid.Row="1"
                Grid.RowSpan="2"
                Grid.Column="4" Source="{Binding Animal.Image}" />
+            </Grid>
+        </Border>
+        
     </Grid>
 </Page>

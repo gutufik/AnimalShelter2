@@ -15,26 +15,37 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition Height="6*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <Label Content="Вход" FontSize="35"
+        <Border Grid.Row="1" Grid.Column="1"
+                VerticalAlignment="Center"
+                Background="White"
+                CornerRadius="15"
+                Padding="20">
+
+            <ScrollViewer>
+                <StackPanel Grid.Row="1" Grid.Column="1"
+                            VerticalAlignment="Center">
+                    <Label Content="Вход" FontSize="35"
                HorizontalAlignment="Center" Grid.Column="1"
                />
-        <StackPanel Grid.Row="1" Grid.Column="1">
-            <TextBlock Text="Введите логин" FontSize="15"/>
-            <TextBox x:Name="tbLogin" FontSize="20"/>
-            <TextBlock Text="Введите пароль" FontSize="15"/>
-            <PasswordBox x:Name="pbPassword" FontSize="20"/>
-            
-                <Button x:Name="btnRegister" Content="Зарегистрироваться"
+                    <TextBlock Text="Введите логин" FontSize="15"/>
+                    <TextBox x:Name="tbLogin" FontSize="20"/>
+                    <TextBlock Text="Введите пароль" FontSize="15"/>
+                    <PasswordBox x:Name="pbPassword" FontSize="20"/>
+
+                    <Button x:Name="btnRegister" Content="Зарегистрироваться"
                         HorizontalAlignment="Right"
                         Background="Transparent"
                         BorderBrush="Transparent"
                         Foreground="Gray" 
                         FontSize="15"
                     Click="btnRegister_Click"/>
-            <Button x:Name="btnLogin" Content="Войти" 
+                    <Button x:Name="btnLogin" Content="Войти" 
                     Click="btnLogin_Click" Margin="20"/>
-        </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
     </Grid>
 </Page>

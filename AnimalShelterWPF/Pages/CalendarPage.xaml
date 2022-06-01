@@ -75,19 +75,24 @@
         </Viewbox>
 
         <ListView x:Name="lvAppointments" 
+                  TextElement.FontSize="16"
                   Grid.Column="1" Grid.Row="1"
                   SelectionChanged="lvAppointments_SelectionChanged"
-                  ItemsSource="{Binding Appointments}">
+                  ItemsSource="{Binding Appointments}"
+                  >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn
                     DisplayMemberBinding="{Binding Date, StringFormat=d, ConverterCulture=ru-RU}"
-                    Header="Дата" />
+                    Header="Дата"
+                            Width="100"/>
                         <GridViewColumn
                     DisplayMemberBinding="{Binding Animal.Name}"
+                            Width="170"
                     Header="Животное" />
                         <GridViewColumn
                     DisplayMemberBinding="{Binding AppointmentType.Name}"
+                            Width="200"
                     Header="Тип назначения" />
                     </GridView>
                 </ListView.View>

@@ -27,6 +27,7 @@
                     Content="Экспорт"/>
         </StackPanel>
         <ListView
+            TextElement.FontSize="16"
             Margin="73,0"
             x:Name="lvAnimals"
             Grid.Row="1"

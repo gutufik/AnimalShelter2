@@ -12,62 +12,93 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
+            <ColumnDefinition Width="6*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
             <RowDefinition/>
-            <RowDefinition Height="3*"/>
-            <RowDefinition  Height="3*"/>
-            <RowDefinition  Height="3*"/>
         </Grid.RowDefinitions>
-        <Label Content="Новое назначение" FontSize="25" Margin="30,0"/>
-        <StackPanel Grid.Row="1" Margin="30,0">
-            <TextBlock Text="Животное"/>
-            <ComboBox x:Name="cbAnimal" ItemsSource="{Binding Animals}" DisplayMemberPath="Name"
+        <Border Background="White"
+                CornerRadius="20"
+                Grid.Column="1"
+                Padding="20">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition  Height="3*"/>
+                    <RowDefinition  Height="3*"/>
+                </Grid.RowDefinitions>
+                <Label Content="Новое назначение" FontSize="33" Margin="30,0"/>
+                <StackPanel Grid.Row="1" Margin="30,0">
+                    <TextBlock Text="Животное" FontSize="15"/>
+                    <ComboBox x:Name="cbAnimal"
+                              FontSize="20"
+                              HorizontalAlignment="Left"
+                              MinWidth="100"
+                              ItemsSource="{Binding Animals}" DisplayMemberPath="Name"
                       SelectedItem="{Binding Appointment.Animal}" />
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="1" Margin="30,0">
-            <TextBlock Text="Дата"/>
-            <DatePicker x:Name="dpDate" SelectedDate="{Binding Appointment.Date}" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="1">
-            <Button x:Name="btnGoBack" Content="Назад" Background="AliceBlue" 
+                </StackPanel>
+                <StackPanel Grid.Row="1" Grid.Column="1" Margin="30,0">
+                    <TextBlock Text="Дата" FontSize="15"/>
+                    <DatePicker x:Name="dpDate" 
+                                HorizontalAlignment="Left"
+                                MinWidth="100"
+                                FontSize="20"
+                                SelectedDate="{Binding Appointment.Date}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="1">
+                    <Button x:Name="btnGoBack" Content="Назад" Background="AliceBlue" 
                     Click="btnGoBack_Click" Margin="20,0"/>
-            <Button x:Name="btnSave" Content="Сохранить" Click="btnSave_Click" Margin="20,0"/>
-            
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="1"
+                    <Button x:Name="btnSave" Content="Сохранить" Click="btnSave_Click" Margin="20,0"/>
+
+                </StackPanel>
+                <StackPanel Grid.Row="2" Grid.Column="1"
                     Orientation="Horizontal"
                     Margin="30,0">
-            <StackPanel Margin="20,0">
-                <TextBlock Text="Лекарства"/>
-                <ListView x:Name="lvMedicines"
+                    <StackPanel Margin="20,0">
+                        <TextBlock Text="Лекарства" FontSize="15"/>
+                        <ListView x:Name="lvMedicines"
                           ItemsSource="{Binding Appointment.AppointmentMedicines}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Medicine.Name}"/>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock FontSize="20" Text="{Binding Medicine.Name}"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
 
-            </StackPanel>
-            <StackPanel Margin="20,0">
-                <TextBlock Text="Выберите лекарства"/>
-                <ComboBox x:Name="cbMedicines" ItemsSource="{Binding Medicines}"
+                    </StackPanel>
+                    <StackPanel Margin="20,0">
+                        <TextBlock Text="Выберите лекарства" FontSize="15"/>
+                        <ComboBox x:Name="cbMedicines" ItemsSource="{Binding Medicines}"
                           DisplayMemberPath="Name"
+                                  FontSize="20"
                           SelectionChanged="cbMedicines_SelectionChanged"/>
-            </StackPanel>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Margin="30,0">
-            <TextBlock Text="Тип назначения" />
-            <ComboBox x:Name="cbAppointmentType"
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Margin="30,0">
+                    <TextBlock Text="Тип назначения" FontSize="15"/>
+                    <ComboBox x:Name="cbAppointmentType"
                       DisplayMemberPath="Name"
+                              FontSize="20"
+                              HorizontalAlignment="Left"
+                              MinWidth="100"
                       SelectedItem="{Binding Appointment.AppointmentType}"
                       ItemsSource="{Binding Types}"/>
-        </StackPanel>
-        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Margin="30,0">
-            <TextBlock Text="Комментарий"/>
-            <TextBox VerticalScrollBarVisibility="Auto"/>
-        </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Margin="30,0">
+                    <TextBlock Text="Комментарий" FontSize="15"/>
+                    <TextBox VerticalScrollBarVisibility="Auto" FontSize="20"/>
+                </StackPanel>
+
+            </Grid>
+        </Border>
+        
     </Grid>
 </Page>

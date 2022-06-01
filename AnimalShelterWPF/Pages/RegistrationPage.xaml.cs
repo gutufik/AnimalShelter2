@@ -33,6 +33,11 @@ namespace AnimalShelterWPF.Pages
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
+            if (pbPassword.Password != pbConfirmPassword.Password)
+            {
+                MessageBox.Show("Пароли не совпадают");
+                return;
+            }
             User.Password = pbPassword.Password.ToString();
             DataAccess.SaveUser(User);
             App.User = DataAccess.GetUser(User.Login, User.Password);

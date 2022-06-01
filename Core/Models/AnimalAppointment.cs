@@ -9,9 +9,9 @@ namespace Core
 {
     public partial class AnimalAppointment
     {
-        public AnimalAppointment(DateTime date) : base()
+        public AnimalAppointment(DateTime date)
         {
-            //this.AppointmentMedicines = new HashSet<AppointmentMedicine>();
+            this.AppointmentMedicines = new HashSet<AppointmentMedicine>();
             Date = date;
             Time = date.TimeOfDay;
         }
