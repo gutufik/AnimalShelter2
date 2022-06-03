@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Core;
 using Core.Models;
 using System.Linq;
+using Core.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,11 +13,19 @@ namespace AnimalShelterAPI.Controllers
     [ApiController]
     public class AppointmentsController : ControllerBase
     {
+        private AppointmentService _appointmentService;
+
+        public AppointmentsController()
+        { 
+            _appointmentService = new AppointmentService();
+        }
+
         // GET: api/<AppointmentsController>
         [HttpGet]
         public ActionResult<IEnumerable<AppointmentModel>> Get()
         {
-            var appointments = DataAccess.GetAnimalAppointments().Select(aa => new AppointmentModel(aa));
+            var appointments = _appointmentService.GetAnimalAppointments()
+                                .Select(aa => new AppointmentModel(aa));
             if (appointments == null)
                 return NoContent();
 
@@ -27,7 +36,8 @@ namespace AnimalShelterAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<AppointmentModel> Get(int id)
         {
-            var appointment = new AppointmentModel(DataAccess.GetAnimalAppointment(id));
+            var appointment = new AppointmentModel(
+                            _appointmentService.GetAnimalAppointment(id));
             if (appointment == null)
                 return NotFound();
 
@@ -38,7 +48,8 @@ namespace AnimalShelterAPI.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] AppointmentModel model)
         {
-            DataAccess.SaveAnimalAppointment(new AnimalAppointment(model));
+            _appointmentService
+               .SaveAnimalAppointment(new AnimalAppointment(model));
             return Ok();
         }
 
@@ -48,22 +59,23 @@ namespace AnimalShelterAPI.Controllers
         {
             model.Id = id;
 
-            if (DataAccess.GetAnimalAppointment(id) == null)
+            if (_appointmentService.GetAnimalAppointment(id) == null)
                 return BadRequest();
 
-            DataAccess.UpdateAppointment(new AnimalAppointment(model));
-            return Ok(new AppointmentModel(DataAccess.GetAnimalAppointment(id)));
+            _appointmentService.UpdateAppointment(new AnimalAppointment(model));
+            return Ok(new AppointmentModel(
+                _appointmentService.GetAnimalAppointment(id)));
         }
 
         // DELETE api/<AppointmentsController>/5
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            var appointment = DataAccess.GetAnimalAppointment(id);
+            var appointment = _appointmentService.GetAnimalAppointment(id);
             if (appointment == null)
                 return BadRequest();
 
-            DataAccess.DeleteAnimalAppointment(appointment);
+            _appointmentService.DeleteAnimalAppointment(appointment);
             return Ok();
         }
     }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using Core.Services;
 using Core;
 using Core.Models;
 using System.Linq;
@@ -12,11 +13,17 @@ namespace AnimalShelterAPI.Controllers
     [ApiController]
     public class MedicinesController : ControllerBase
     {
+        private MedicineService _medicineService;
+        public MedicinesController()
+        { 
+            _medicineService =  new MedicineService();
+        }
+
         // GET: api/<MedicinesController>
         [HttpGet]
         public ActionResult<IEnumerable<Medicine>> Get()
         {
-            var medicines = DataAccess.GetMedicines().Select(m => new MedicineModel(m));
+            var medicines = _medicineService.GetMedicines().Select(m => new MedicineModel(m));
             if (medicines == null)
                 return NoContent();
 
@@ -27,7 +34,7 @@ namespace AnimalShelterAPI.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] MedicineModel model)
         {
-            DataAccess.SaveMedicine(new Medicine(model));
+            _medicineService.SaveMedicine(new Medicine(model));
             return Ok();
         }
     }

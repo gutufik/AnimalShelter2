@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Core;
+using Core.Services;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace AnimalShelterWPF.Pages
@@ -23,15 +24,19 @@ namespace AnimalShelterWPF.Pages
     public partial class AnimalsPage : Page
     {
         public List<Animal> Animals { get; set; }
-        private List<Employee> employees;
+        private List<Employee> _employees;
+        private UserService _userService;
+        private AnimalService _animalService;
         public AnimalsPage()
         {
             InitializeComponent();
+            _userService = new UserService();
+            _animalService = new AnimalService();
 
             DataAccess.RefreshListsEvent += RefreshList;
 
-            Animals = DataAccess.GetAnimals();
-            employees = DataAccess.GetEmployees();
+            Animals = _animalService.GetAnimals();
+            _employees = _userService.GetEmployees();
             DataContext = this;
         }
 
@@ -50,8 +55,8 @@ namespace AnimalShelterWPF.Pages
             var senderButton = sender as Button;
             var animal = senderButton.DataContext as Animal;
 
-            DataAccess.DeleteAnimal(animal);
-            Animals = DataAccess.GetAnimals();
+            _animalService.DeleteAnimal(animal);
+            Animals = _animalService.GetAnimals();
             lvAnimals.ItemsSource = Animals;
 
             lvAnimals.Items.Refresh();
@@ -59,7 +64,7 @@ namespace AnimalShelterWPF.Pages
         }
         private void RefreshList()
         {
-            Animals = DataAccess.GetAnimals();
+            Animals = _animalService.GetAnimals();
             lvAnimals.ItemsSource = Animals;
 
             lvAnimals.Items.Refresh();
@@ -85,12 +90,12 @@ namespace AnimalShelterWPF.Pages
             worksheet.Cells[2][1] = "Имя";
             worksheet.Cells[3][1] = "Животные";
 
-            for (int i = 0; i < employees.Count; i++)
+            for (int i = 0; i < _employees.Count; i++)
             {
-                worksheet.Cells[1][rowIndex] = employees[i].LastName;
-                worksheet.Cells[2][rowIndex] = employees[i].FirstName;
+                worksheet.Cells[1][rowIndex] = _employees[i].LastName;
+                worksheet.Cells[2][rowIndex] = _employees[i].FirstName;
                 rowIndex++;
-                foreach (var animal in employees[i].Animals)
+                foreach (var animal in _employees[i].Animals)
                 {
                     if (!animal.IsDeleted)
                     {

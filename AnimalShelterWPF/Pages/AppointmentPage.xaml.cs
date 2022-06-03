@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Core;
+using Core.Services;
 
 namespace AnimalShelterWPF.Pages
 {
@@ -25,18 +26,27 @@ namespace AnimalShelterWPF.Pages
         public AnimalAppointment Appointment { get; set; }
         public List<AppointmentType> Types { get; set; }
         public List<Medicine> Medicines { get; set; }
+
+        private MedicineService _medicineService;
+        private AppointmentService _appointmentService;
+        private AnimalService _animalService;
+
         public AppointmentPage()
         {
             InitializeComponent();
+
+            _medicineService = new MedicineService();
+            _appointmentService = new AppointmentService();
+            _animalService = new AnimalService();
 
             Appointment = new AnimalAppointment()
             {
                 Date = DateTime.Now,
                 Time = DateTime.Now.TimeOfDay
             };
-            Animals = DataAccess.GetAnimals();
-            Types = DataAccess.GetAppointmentTypes();
-            Medicines = DataAccess.GetMedicines();
+            Animals = _animalService.GetAnimals();
+            Types = _appointmentService.GetAppointmentTypes();
+            Medicines = _medicineService.GetMedicines();
 
             dpDate.DisplayDateStart = DateTime.Now - TimeSpan.FromDays(30);
             dpDate.DisplayDateEnd = DateTime.Now + TimeSpan.FromDays(30);
@@ -47,10 +57,14 @@ namespace AnimalShelterWPF.Pages
         {
             InitializeComponent();
 
+            _medicineService = new MedicineService();
+            _appointmentService= new AppointmentService();
+            _animalService = new AnimalService();
+
             Appointment = appointment;
-            Animals = DataAccess.GetAnimals();
-            Types = DataAccess.GetAppointmentTypes();
-            Medicines = DataAccess.GetMedicines();
+            Animals = _animalService.GetAnimals();
+            Types = _appointmentService.GetAppointmentTypes();
+            Medicines = _medicineService.GetMedicines();
 
             dpDate.DisplayDateStart = DateTime.Now - TimeSpan.FromDays(30);
             dpDate.DisplayDateEnd = DateTime.Now + TimeSpan.FromDays(30);
@@ -64,7 +78,7 @@ namespace AnimalShelterWPF.Pages
             {
                 if (Appointment.Date > DateTime.Now)
                     throw new Exception();
-                DataAccess.SaveAnimalAppointment(Appointment);
+                _appointmentService.SaveAnimalAppointment(Appointment);
                 NavigationService.GoBack();
             }
             catch (Exception ex)

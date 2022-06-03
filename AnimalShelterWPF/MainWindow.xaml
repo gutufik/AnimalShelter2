@@ -33,26 +33,26 @@
         <Button x:Name="btnMain" Content="Главная" 
                 FontSize="20"
                 Background="Transparent" BorderBrush="Transparent"
-                Foreground="Black" Click="TtileClick"/>
+                Foreground="Black" Click="TitleClick"/>
         <Button x:Name="btnAnimals" Content="Животные" 
                FontSize="20"
                Background="Transparent" BorderBrush="Transparent"
                Foreground="Black"
-               Grid.Column="2" Click="TtileClick" />
+               Grid.Column="2" Click="TitleClick" />
         <Button x:Name="btnCalendar" Content="Календарь" 
                 FontSize="20"
                 Background="Transparent" BorderBrush="Transparent"
                 Foreground="Black"
-                Grid.Column="3" Click="TtileClick"/>
+                Grid.Column="3" Click="TitleClick"/>
         <Button x:Name="btnMedicines" Content="Медикаменты" 
                 FontSize="20"
                 Background="Transparent" BorderBrush="Transparent"
                 Foreground="Black"
-                Grid.Column="4" Click="TtileClick"/>
+                Grid.Column="4" Click="TitleClick"/>
         <Button x:Name="btnLogin" Content="Вход" Grid.Column="5" 
                 FontSize="20"
                 Background="Transparent" BorderBrush="Transparent"
                 Foreground="Black"
-                Click="TtileClick"/>
+                Click="TitleClick"/>
     </Grid>
 </Window>

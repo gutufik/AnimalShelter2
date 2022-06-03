@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Core;
+using Core.Services;
 
 namespace AnimalShelterWPF.Pages
 {
@@ -22,11 +23,14 @@ namespace AnimalShelterWPF.Pages
     public partial class RegistrationPage : Page
     {
         public User User { get; set; }
+        private UserService _userService;
 
         public RegistrationPage()
         {
             InitializeComponent();
-            User = new User() { Employee = new Employee() };
+            _userService = new UserService();
+
+            User = new User();
 
             DataContext = User;
         }
@@ -39,8 +43,9 @@ namespace AnimalShelterWPF.Pages
                 return;
             }
             User.Password = pbPassword.Password.ToString();
-            DataAccess.SaveUser(User);
-            App.User = DataAccess.GetUser(User.Login, User.Password);
+            _userService.SaveUser(User);
+            App.User = 
+                _userService.GetUser(User.Login, User.Password);
             NavigationService.Navigate(new Pages.IndexPage());
         }
 

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Core;
+using Core.Services;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace AnimalShelterWPF.Pages
@@ -24,25 +25,24 @@ namespace AnimalShelterWPF.Pages
     {
 
         public List<AnimalAppointment> Appointments { get; set; }
+        private AppointmentService _appointmentService;
+
         public CalendarPage()
         {
             InitializeComponent();
-            foreach (var appointment in DataAccess.GetAnimalAppointments())
-            {
-                appointmentCalendar.SelectedDates.Add(appointment.Date);
-            }
+            _appointmentService = new AppointmentService();
+
+            SetDates();
             DataAccess.RefreshListsEvent += RefreshList;
             DataContext = this;
         }
 
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
-            Appointments = DataAccess.GetAnimalAppointments(((DateTime)appointmentCalendar.SelectedDate).Date);
+            Appointments = _appointmentService.GetAnimalAppointments(
+                ((DateTime)appointmentCalendar.SelectedDate).Date);
 
-            foreach (var appintment in DataAccess.GetAnimalAppointments())
-            {
-                appointmentCalendar.SelectedDates.Add(appintment.Date);
-            }
+            SetDates();
             if (Appointments.Count != 0)
             {
                 lvAppointments.ItemsSource = Appointments;
@@ -74,7 +74,8 @@ namespace AnimalShelterWPF.Pages
         }
         public void RefreshList()
         {
-            Appointments = DataAccess.GetAnimalAppointments(((DateTime)appointmentCalendar.SelectedDate).Date);
+            Appointments = _appointmentService.GetAnimalAppointments(
+                ((DateTime)appointmentCalendar.SelectedDate).Date);
             lvAppointments.ItemsSource = Appointments;
             lvAppointments.Items.Refresh();
         }
@@ -105,6 +106,13 @@ namespace AnimalShelterWPF.Pages
 
             application.Visible = true;
 
+        }
+        private void SetDates()
+        {
+            foreach (var appointment in _appointmentService.GetAnimalAppointments())
+            {
+                appointmentCalendar.SelectedDates.Add(appointment.Date);
+            }
         }
     }
 }

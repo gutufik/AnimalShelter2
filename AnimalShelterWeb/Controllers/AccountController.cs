@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -14,13 +15,20 @@ namespace AnimalShelterWeb.Controllers
     public class AccountController : Controller
     {
         public User User { get; set; }
+        private UserService _userService;
+
+        public AccountController()
+        {
+            _userService = new UserService();
+        }
+
         [Authorize]
         public IActionResult Index()
         {
             if (Request.Cookies["Id"] != null)
             {
                 var userId = int.Parse(Request.Cookies["Id"]);
-                User = DataAccess.GetUser(userId);
+                User = _userService.GetUser(userId);
             }
             return View(User);
         }
@@ -35,7 +43,7 @@ namespace AnimalShelterWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = DataAccess.GetUser(model.Email, model.Password);
+                User user = _userService.GetUser(model.Email, model.Password);
                 if (user == null)
                 {
                     // добавляем пользователя в бд
@@ -44,7 +52,7 @@ namespace AnimalShelterWeb.Controllers
                         Login = model.Email,
                         Password = model.Password 
                     };
-                    DataAccess.SaveUser(user);
+                    _userService.SaveUser(user);
 
                     User = user;
 
@@ -68,11 +76,11 @@ namespace AnimalShelterWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = DataAccess.GetUser(model.Email, model.Password);
+                User user = _userService.GetUser(model.Email, model.Password);
 
                 if (user != null)
                 {
-                    await Authenticate(user); // аутентификация
+                    await Authenticate(user);
                     User = user;
                     return RedirectToAction("Index", "Home");
                 }
@@ -101,7 +109,7 @@ namespace AnimalShelterWeb.Controllers
         [HttpPost]
         public IActionResult SaveUser(User user)
         {
-            DataAccess.SaveUser(user);
+            _userService.SaveUser(user);
             return Redirect("~/");
         }
     }

@@ -3,31 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ClosedXML.Excel;
 
 namespace Core
 {
     public class DataAccess
     {
+        #region Events
         public delegate void RefreshTitleDelegate();
         public static event RefreshTitleDelegate RefreshTitleEvent;
 
         public delegate void RefreshListsDelegate();
-
         public static event RefreshListsDelegate RefreshListsEvent;
+        #endregion
 
         #region Animal
 
-        public static List<Animal> GetAnimals()
+        public List<Animal> GetAnimals()
         {
             return AnimalShelterEntities.GetContext().Animals.Where(a => !a.IsDeleted).ToList();
         }
-
-        public static Animal GetAnimal(int id)
+        public Animal GetAnimal(int id)
         {
             return GetAnimals().FirstOrDefault(a => a.Id == id);
         }
-
-        public static void SaveAnimal(Animal animal)
+        public void SaveAnimal(Animal animal)
         {
             if (GetAnimals().FirstOrDefault(a => a.Id == animal.Id) == null)
                 AnimalShelterEntities.GetContext().Animals.Add(animal);
@@ -35,133 +35,26 @@ namespace Core
             AnimalShelterEntities.GetContext().SaveChanges();
             RefreshListsEvent?.Invoke();
         }
-
-        public static void DeleteAnimal(Animal animal)
+        public void DeleteAnimal(Animal animal)
         {
             animal.IsDeleted = true;
 
             AnimalShelterEntities.GetContext().SaveChanges();
             RefreshListsEvent?.Invoke();
         }
-        public static List<AnimalType> GetAnimalTypes()
+        public List<AnimalType> GetAnimalTypes()
         { 
             return AnimalShelterEntities.GetContext().AnimalTypes.ToList();
         }
-        #endregion 
-
-        public static List<AnimalAppointment> GetAnimalAppointments()
-        {
-            return AnimalShelterEntities.GetContext().AnimalAppointments.Where(a => !a.IsDeleted).ToList();
-        }
-        public static List<AnimalAppointment> GetAnimalAppointments(Animal animal)
-        {
-            return GetAnimalAppointments().Where(aa => aa.AnimalId == animal.Id).ToList();
-        }
-
-        public static List<AnimalAppointment> GetAnimalAppointments(DateTime date)
-        {
-            return GetAnimalAppointments().Where(aa => aa.Date == date.Date).ToList();
-        }
-        public static AnimalAppointment GetAnimalAppointment(int id)
-        {
-            return GetAnimalAppointments().FirstOrDefault(aa => aa.Id == id);
-        }
-
-
-        public static List<Status> GetAnimalStatuses()
+        public List<Status> GetAnimalStatuses()
         {
             return AnimalShelterEntities.GetContext().Status.ToList();
         }
-
-        public static User GetUser(string login, string password)
-        {
-            var user = GetUsers().FirstOrDefault(u => u.Login == login && u.Password == password);
-            if (user != null)
-                RefreshTitleEvent?.Invoke();
-            return user;
-        }
-        public static User GetUser(int id)
-        {
-            return GetUsers().FirstOrDefault(u => u.Id == id);
-        }
-
-        public static List<Employee> GetEmployees()
-        {
-            return AnimalShelterEntities.GetContext().Employees.ToList();
-        }
-        public static void SaveAnimalAppointment(AnimalAppointment appointment)
-        {
-            if (GetAnimalAppointments().FirstOrDefault(a => a.Id == appointment.Id) == null)
-                AnimalShelterEntities.GetContext().AnimalAppointments.Add(appointment);
-
-            AnimalShelterEntities.GetContext().SaveChanges();
-            RefreshListsEvent?.Invoke();
-        }
-        public static List<Medicine> GetMedicines()
-        {
-            return AnimalShelterEntities.GetContext().Medicines.Where(m => !m.IsDeleted).ToList();
-        }
-        public static void SaveMedicine(Medicine medicine)
-        {
-            if (GetMedicines().FirstOrDefault(m => m.Id == medicine.Id) == null
-                && GetMedicines().Count(m => m.Name == medicine.Name) == 0)
-                AnimalShelterEntities.GetContext().Medicines.Add(medicine);
-
-            AnimalShelterEntities.GetContext().SaveChanges();
-            RefreshListsEvent?.Invoke();
-        }
-        public static void DeleteMedicine(Medicine medicine)
-        {
-            medicine.IsDeleted = true;
-            SaveMedicine(medicine);
-            RefreshListsEvent?.Invoke();
-        }
-
-        public static void SaveUser(User user)
-        {
-            if (GetUsers().FirstOrDefault(u => u.Id == user.Id) == null)
-                AnimalShelterEntities.GetContext().Users.Add(user);
-            else
-            {
-                AnimalShelterEntities.GetContext().Users.FirstOrDefault(u => u.Id == user.Id).Login = user.Login;
-                AnimalShelterEntities.GetContext().Users.FirstOrDefault(u => u.Id == user.Id).Password = user.Password;
-                SaveEmployee(user.Employee);
-            }
-
-            AnimalShelterEntities.GetContext().SaveChanges();
-        }
-        public static void SaveEmployee(Employee employee)
-        {
-            if (GetEmployees().FirstOrDefault(e => e.Id == employee.Id) == null)
-                AnimalShelterEntities.GetContext().Employees.Add(employee);
-            else
-            {
-                AnimalShelterEntities.GetContext().Employees.FirstOrDefault(e => e.Id == employee.Id).LastName = employee.LastName;
-                AnimalShelterEntities.GetContext().Employees.FirstOrDefault(e => e.Id == employee.Id).FirstName = employee.FirstName;
-            }
-            AnimalShelterEntities.GetContext().SaveChanges();
-        }
-
-        public static List<User> GetUsers()
-        {
-            return AnimalShelterEntities.GetContext().Users.ToList();
-        }
-        public static List<Gender> GetGenders()
+        public List<Gender> GetGenders()
         {
             return AnimalShelterEntities.GetContext().Genders.ToList();
         }
-        public static List<AppointmentType> GetAppointmentTypes()
-        { 
-            return AnimalShelterEntities.GetContext().AppointmentTypes.ToList();
-        }
-        public static void DeleteAnimalAppointment(AnimalAppointment appointment)
-        {
-            appointment.IsDeleted = true;
-            appointment.Animal.IsDeleted = true;
-            AnimalShelterEntities.GetContext().SaveChanges();
-            RefreshListsEvent?.Invoke();
-        }
-        public static void UpdateAnimal(Animal animal)
+        public void UpdateAnimal(Animal animal)
         {
             var baseAnimal = GetAnimal(animal.Id);
 
@@ -182,7 +75,46 @@ namespace Core
             SaveAnimal(baseAnimal);
         }
 
-        public static void UpdateAppointment(AnimalAppointment appointment)
+        #endregion
+
+        #region Appointment
+
+        public List<AnimalAppointment> GetAnimalAppointments()
+        {
+            return AnimalShelterEntities.GetContext().AnimalAppointments.Where(a => !a.IsDeleted).ToList();
+        }
+        public List<AnimalAppointment> GetAnimalAppointments(Animal animal)
+        {
+            return GetAnimalAppointments().Where(aa => aa.AnimalId == animal.Id).ToList();
+        }
+        public List<AnimalAppointment> GetAnimalAppointments(DateTime date)
+        {
+            return GetAnimalAppointments().Where(aa => aa.Date == date.Date).ToList();
+        }
+        public AnimalAppointment GetAnimalAppointment(int id)
+        {
+            return GetAnimalAppointments().FirstOrDefault(aa => aa.Id == id);
+        }
+        public void SaveAnimalAppointment(AnimalAppointment appointment)
+        {
+            if (GetAnimalAppointments().FirstOrDefault(a => a.Id == appointment.Id) == null)
+                AnimalShelterEntities.GetContext().AnimalAppointments.Add(appointment);
+
+            AnimalShelterEntities.GetContext().SaveChanges();
+            RefreshListsEvent?.Invoke();
+        }
+        public List<AppointmentType> GetAppointmentTypes()
+        {
+            return AnimalShelterEntities.GetContext().AppointmentTypes.ToList();
+        }
+        public void DeleteAnimalAppointment(AnimalAppointment appointment)
+        {
+            appointment.IsDeleted = true;
+            appointment.Animal.IsDeleted = true;
+            AnimalShelterEntities.GetContext().SaveChanges();
+            RefreshListsEvent?.Invoke();
+        }
+        public void UpdateAppointment(AnimalAppointment appointment)
         {
             var baseAppointment = GetAnimalAppointment(appointment.Id);
 
@@ -194,5 +126,79 @@ namespace Core
 
             SaveAnimalAppointment(baseAppointment);
         }
+
+        #endregion
+
+        #region User
+
+        public User GetUser(string login, string password)
+        {
+            var user = GetUsers().FirstOrDefault(u => u.Login == login && u.Password == password);
+            if (user != null)
+                RefreshTitleEvent?.Invoke();
+            return user;
+        }
+        public User GetUser(int id)
+        {
+            return GetUsers().FirstOrDefault(u => u.Id == id);
+        }
+        public List<Employee> GetEmployees()
+        {
+            return AnimalShelterEntities.GetContext().Employees.ToList();
+        }
+        public void SaveUser(User user)
+        {
+            if (GetUsers().FirstOrDefault(u => u.Id == user.Id) == null)
+                AnimalShelterEntities.GetContext().Users.Add(user);
+            else
+            {
+                AnimalShelterEntities.GetContext().Users.FirstOrDefault(u => u.Id == user.Id).Login = user.Login;
+                AnimalShelterEntities.GetContext().Users.FirstOrDefault(u => u.Id == user.Id).Password = user.Password;
+                SaveEmployee(user.Employee);
+            }
+
+            AnimalShelterEntities.GetContext().SaveChanges();
+        }
+        public void SaveEmployee(Employee employee)
+        {
+            if (GetEmployees().FirstOrDefault(e => e.Id == employee.Id) == null)
+                AnimalShelterEntities.GetContext().Employees.Add(employee);
+            else
+            {
+                AnimalShelterEntities.GetContext().Employees.FirstOrDefault(e => e.Id == employee.Id).LastName = employee.LastName;
+                AnimalShelterEntities.GetContext().Employees.FirstOrDefault(e => e.Id == employee.Id).FirstName = employee.FirstName;
+            }
+            AnimalShelterEntities.GetContext().SaveChanges();
+        }
+        public List<User> GetUsers()
+        {
+            return AnimalShelterEntities.GetContext().Users.ToList();
+        }
+
+        #endregion
+
+        #region Medicine
+
+        public List<Medicine> GetMedicines()
+        {
+            return AnimalShelterEntities.GetContext().Medicines.Where(m => !m.IsDeleted).ToList();
+        }
+        public void SaveMedicine(Medicine medicine)
+        {
+            if (GetMedicines().FirstOrDefault(m => m.Id == medicine.Id) == null
+                && GetMedicines().Count(m => m.Name == medicine.Name) == 0)
+                AnimalShelterEntities.GetContext().Medicines.Add(medicine);
+
+            AnimalShelterEntities.GetContext().SaveChanges();
+            RefreshListsEvent?.Invoke();
+        }
+        public void DeleteMedicine(Medicine medicine)
+        {
+            medicine.IsDeleted = true;
+            SaveMedicine(medicine);
+            RefreshListsEvent?.Invoke();
+        }
+
+        #endregion
     }
 }

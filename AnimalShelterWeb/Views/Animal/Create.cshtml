@@ -1,8 +1,11 @@
 ﻿@using Core;
+@using Core.Services;
 @model Core.Animal
 
 @{
     ViewData["Title"] = "Create";
+    UserService userService = new UserService();
+    AnimalService animalService = new AnimalService();
 }
 
 <h2>Новое животное</h2>
@@ -30,7 +33,7 @@
                         <div class="form-group">
                             <label asp-for="TypeId" class="control-label">Вид</label>
                             <select asp-for="TypeId" class="form-control">
-                                @foreach (var type in DataAccess.GetAnimalTypes())
+                                @foreach (var type in animalService.GetAnimalTypes())
                                 {
                                     <option value=@type.Id>@type.Name</option>
                                 }
@@ -72,7 +75,7 @@
                         <div class="form-group">
                             <label asp-for="GenderId" class="control-label">Пол</label>
                             <select asp-for="GenderId" class="form-control">
-                                @foreach (var gender in DataAccess.GetGenders())
+                                @foreach (var gender in animalService.GetGenders())
                                 {
                                     <option value=@gender.Id>@gender.Name</option>
                                 }
@@ -106,7 +109,7 @@
                         <div class="form-group">
                             <label asp-for="CuratorId" class="control-label">Куратор</label>
                             <select asp-for="CuratorId" class="form-control" >
-                                @foreach (Employee employee in DataAccess.GetEmployees())
+                                @foreach (Employee employee in userService.GetEmployees())
                                 {
                                     <option value=@employee.Id>
                                         <p>
@@ -124,7 +127,7 @@
                         <div class="form-group">
                             <label asp-for="StatusId" class="control-label">Статус</label>
                             <select asp-for="StatusId" class="form-control">
-                                @foreach (var status in DataAccess.GetAnimalStatuses())
+                                @foreach (var status in animalService.GetAnimalStatuses())
                                 {
                                     <option value=@status.Id>@status.Name</option>
                                 }

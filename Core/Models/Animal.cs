@@ -9,7 +9,7 @@ namespace Core
 {
     public partial class Animal
     {
-        public Animal(string name, DateTime arrivalDate, string color, int age) : base()
+        public Animal(string name, DateTime arrivalDate, string color, int age)
         {
             Name = name;
             ArrivalDate = arrivalDate;

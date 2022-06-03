@@ -9,7 +9,7 @@ namespace Core
 {
     public partial class Medicine
     {
-        public Medicine(string name) : base()
+        public Medicine(string name)
         {
             Name = name;
         }

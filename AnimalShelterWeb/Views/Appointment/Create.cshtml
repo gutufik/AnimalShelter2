@@ -1,10 +1,15 @@
 ﻿@using Core
+@using Core.Services
 @model Core.AnimalAppointment
 
 
 @{
     ViewData["Title"] = "Create";
+    AppointmentService appointmentService = 
+                            new AppointmentService();
+    AnimalService animalService = new AnimalService();
 }
+
 
 <h2>Новое назанчение</h2>
 <hr />
@@ -15,7 +20,7 @@
             <div class="form-group">
                 <label asp-for="AnimalId" class="control-label">Животное</label>
                 <select asp-for="AnimalId" class="form-control">
-                    @foreach (var animal in DataAccess.GetAnimals())
+                    @foreach (var animal in animalService.GetAnimals())
                     {
                         <option value=@animal.Id>@animal.Name</option>
                     }
@@ -29,7 +34,7 @@
             <div class="form-group">
                 <label asp-for="TypeId" class="control-label">Тип</label>
                 <select asp-for="AnimalId" class="form-control">
-                    @foreach (var type in DataAccess.GetAppointmentTypes())
+                    @foreach (var type in appointmentService.GetAppointmentTypes())
                     {
                         <option value=@type.Id>@type.Name</option>
                     }

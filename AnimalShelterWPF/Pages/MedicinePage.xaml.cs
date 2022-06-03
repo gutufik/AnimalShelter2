@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Core;
+using Core.Services;
 
 namespace AnimalShelterWPF.Pages
 {
@@ -22,17 +23,19 @@ namespace AnimalShelterWPF.Pages
     public partial class MedicinePage : Page
     {
         public Medicine Medicine { get; set; }
+        private MedicineService _medicineService;
         public MedicinePage()
         {
             InitializeComponent();
             Medicine = new Medicine();
+            _medicineService = new MedicineService();
 
             DataContext = Medicine;
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            DataAccess.SaveMedicine(Medicine);
+            _medicineService.SaveMedicine(Medicine);
             NavigationService.GoBack();
         }
 

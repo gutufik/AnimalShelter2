@@ -10,7 +10,7 @@ namespace Core
     {
         public User()
         { 
-            //Employee = new Employee();
+            Employee = new Employee();
         }
     }
 }

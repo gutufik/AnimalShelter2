@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Core;
+using Core.Services;
 using Microsoft.Win32;
 
 namespace AnimalShelterWPF.Pages
@@ -28,15 +29,20 @@ namespace AnimalShelterWPF.Pages
         public List<Gender> Genders { get; set; }
         public List<Status> Statuses { get; set; }
         public List<Employee> Curators { get; set; }
+        private UserService _userService;
+        private AnimalService _animalService;
 
         public AnimalPage()
         {
             InitializeComponent();
+            _userService = new UserService();
+            _animalService = new AnimalService();
+
             Animal = new Animal();
-            Statuses = DataAccess.GetAnimalStatuses();
-            Types = DataAccess.GetAnimalTypes();
-            Genders = DataAccess.GetGenders();
-            Curators = DataAccess.GetEmployees();
+            Statuses = _animalService.GetAnimalStatuses();
+            Types = _animalService.GetAnimalTypes();
+            Genders = _animalService.GetGenders();
+            Curators = _userService.GetEmployees();
 
             dpDate.DisplayDateStart = DateTime.Now - TimeSpan.FromDays(30);
             dpDate.DisplayDateEnd = DateTime.Now;
@@ -46,11 +52,14 @@ namespace AnimalShelterWPF.Pages
         public AnimalPage(Animal animal)
         {
             InitializeComponent();
+            _userService = new UserService();
+            _animalService = new AnimalService();
+
             Animal = animal;
-            Statuses = DataAccess.GetAnimalStatuses();
-            Types = DataAccess.GetAnimalTypes();
-            Genders = DataAccess.GetGenders();
-            Curators = DataAccess.GetEmployees();
+            Statuses = _animalService.GetAnimalStatuses();
+            Types = _animalService.GetAnimalTypes();
+            Genders = _animalService.GetGenders();
+            Curators = _userService.GetEmployees();
 
             dpDate.DisplayDateStart = DateTime.Now - TimeSpan.FromDays(30);
             dpDate.DisplayDateEnd = DateTime.Now;
@@ -60,13 +69,11 @@ namespace AnimalShelterWPF.Pages
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-
-            //Нужна нормальная валидация
             try
             {
                 if (Animal.ArrivalDate > DateTime.Now)
                     throw new Exception();
-                DataAccess.SaveAnimal(Animal);
+                _animalService.SaveAnimal(Animal);
                 NavigationService.GoBack();
 
             }

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Core;
+using Core.Services;
 
 namespace AnimalShelterWPF.Pages
 {
@@ -21,9 +22,11 @@ namespace AnimalShelterWPF.Pages
     /// </summary>
     public partial class LoginPage : Page
     {
+        private UserService _userService;
         public LoginPage()
         {
             InitializeComponent();
+            _userService = new UserService();
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
@@ -31,7 +34,7 @@ namespace AnimalShelterWPF.Pages
             var login = tbLogin.Text;
             var password = pbPassword.Password.ToString();
 
-            App.User = DataAccess.GetUser(login, password);
+            App.User = _userService.GetUser(login, password);
 
             if (App.User != null)
             {

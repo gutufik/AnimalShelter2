@@ -15,7 +15,7 @@ namespace Core
             Date = date;
             Time = date.TimeOfDay;
         }
-        public AnimalAppointment(DateTime date, Animal animal) : base()
+        public AnimalAppointment(DateTime date, Animal animal)
         {
             Date = date;
             Animal = animal;

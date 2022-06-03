@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Core;
+using Core.Services;
 using System.Collections.Generic;
 using System.Linq;
 using Core.Models;
@@ -11,10 +12,18 @@ namespace AnimalShelterAPI.Controllers
     [ApiController]
     public class AnimalsController : ControllerBase
     {
+        private AnimalService _animalService;
+
+        public AnimalsController()
+        {
+            _animalService = new AnimalService();
+        }
+
         [HttpGet]
         public ActionResult<IEnumerable<AnimalModel>> Get()
         {
-            var animals = DataAccess.GetAnimals().Select(x => new AnimalModel(x)); 
+            var animals = _animalService.GetAnimals()
+                            .Select(a => new AnimalModel(a)); 
 
             if (animals == null)
                 return NoContent();
@@ -25,7 +34,7 @@ namespace AnimalShelterAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<AnimalModel> Get(int id)
         {
-            var animal = new AnimalModel(DataAccess.GetAnimal(id));
+            var animal = new AnimalModel(_animalService.GetAnimal(id));
 
             if (animal == null)
                 return NotFound();
@@ -38,7 +47,7 @@ namespace AnimalShelterAPI.Controllers
         {
             try
             {
-                DataAccess.SaveAnimal(new Animal(model));
+                _animalService.SaveAnimal(new Animal(model));
                 return Ok();
             }
             catch
@@ -52,12 +61,12 @@ namespace AnimalShelterAPI.Controllers
         public ActionResult<Animal> Put(int id, [FromBody] AnimalModel model)
         {
             model.Id = id;
-            if (DataAccess.GetAnimal(id) == null)
+            if (_animalService.GetAnimal(id) == null)
                 return BadRequest();
             try
             {
-                DataAccess.UpdateAnimal(new Animal(model));
-                return Ok(new AnimalModel(DataAccess.GetAnimal(id)));
+                _animalService.UpdateAnimal(new Animal(model));
+                return Ok(new AnimalModel(_animalService.GetAnimal(id)));
             }
             catch
             {
@@ -69,10 +78,10 @@ namespace AnimalShelterAPI.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            var animal = DataAccess.GetAnimal(id);
+            var animal = _animalService.GetAnimal(id);
             if (animal == null)
                 return BadRequest();
-            DataAccess.DeleteAnimal(animal);
+            _animalService.DeleteAnimal(animal);
             return Ok();
         }
 

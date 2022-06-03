@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Core;
+using Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using System.IO;
 using System;
@@ -11,23 +12,32 @@ namespace AnimalShelterWeb.Controllers
 {
     public class AnimalController : Controller
     {
+        private UserService _userService;
+        private AnimalService _animalService;
+
+        public AnimalController()
+        {
+            _userService = new UserService();
+            _animalService = new AnimalService();
+        }
+
         [Authorize]
         public IActionResult Index()
         {
-            var animals = DataAccess.GetAnimals();
+            var animals = _animalService.GetAnimals();
             return View(animals);
         }
         [Authorize]
         public IActionResult Edit(int id)
         {
-            var animal = DataAccess.GetAnimal(id);
+            var animal = _animalService.GetAnimal(id);
             return View(animal);
         }
         [HttpPost]
         [Authorize]
         public IActionResult Edit(Animal animal)
         {
-            DataAccess.UpdateAnimal(animal);
+            _animalService.UpdateAnimal(animal);
             return View();
         }
         [Authorize]
@@ -38,21 +48,21 @@ namespace AnimalShelterWeb.Controllers
 
         [HttpPost]
         public IActionResult Create(Animal animal)
-        { 
-            DataAccess.SaveAnimal(animal);
+        {
+            _animalService.SaveAnimal(animal);
             return RedirectToAction("Index");
         }
         public IActionResult Delete(int id)
         {
-            var animal = DataAccess.GetAnimal(id);
-            DataAccess.DeleteAnimal(animal);
+            var animal = _animalService.GetAnimal(id);
+            _animalService.DeleteAnimal(animal);
 
             return Redirect("~/animal/");
         }
         public IActionResult Export()
         {
-            var animals = DataAccess.GetAnimals();
-            var employees = DataAccess.GetEmployees();
+            var animals = _animalService.GetAnimals();
+            var employees = _userService.GetEmployees();
 
             using (var workbook = new XLWorkbook())
             {

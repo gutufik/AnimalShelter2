@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Core;
+using Core.Services;
 
 namespace AnimalShelterWPF.Pages
 {
@@ -22,10 +23,12 @@ namespace AnimalShelterWPF.Pages
     public partial class MedicinesPage : Page
     { 
         public List<Medicine> Medicines { get; set; }
+        private MedicineService _medicineService;
         public MedicinesPage()
         {
             InitializeComponent();
-            Medicines = DataAccess.GetMedicines();
+            _medicineService = new MedicineService();
+            Medicines = _medicineService.GetMedicines();
             if (Medicines.Count == 0)
                 lblEmpty.Visibility = Visibility.Visible;
 
@@ -43,12 +46,12 @@ namespace AnimalShelterWPF.Pages
             var senderButton = sender as Button;
             var medicine = senderButton.DataContext as Medicine;
 
-            DataAccess.DeleteMedicine(medicine);
+            _medicineService.DeleteMedicine(medicine);
             
         }
         private void RefreshList()
         {
-            Medicines = DataAccess.GetMedicines();
+            Medicines = _medicineService.GetMedicines();
             lvMedicines.ItemsSource = Medicines;
 
             lvMedicines.Items.Refresh();

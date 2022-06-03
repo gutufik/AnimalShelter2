@@ -1,11 +1,18 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Core;
+using Core.Services;
 
 namespace AnimalShelterWeb.Controllers
 {
     public class AppointmentController : Controller
     {
+        private AppointmentService _appointmentService;
+        public AppointmentController()
+        {
+            _appointmentService = new AppointmentService();
+        }
+
         [Authorize]
         public IActionResult Index()
         {
@@ -19,7 +26,7 @@ namespace AnimalShelterWeb.Controllers
         [HttpPost]
         public IActionResult Create(AnimalAppointment appointment)
         {
-            DataAccess.SaveAnimalAppointment(appointment);
+            _appointmentService.SaveAnimalAppointment(appointment);
             return RedirectToAction("Index");
         }
     }

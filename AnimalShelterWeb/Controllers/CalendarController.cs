@@ -4,45 +4,54 @@ using Core;
 using ClosedXML.Excel;
 using System.IO;
 using System.Linq;
+using Core.Services;
 
 namespace AnimalShelterWeb.Controllers
 {
     public class CalendarController : Controller
     {
+        private AppointmentService _appointmentService;
+        public CalendarController()
+        {
+            _appointmentService = new AppointmentService();
+        }
+
         [Authorize]
         public IActionResult Index()
         {
-            var appointments = DataAccess.GetAnimalAppointments();
+            var appointments = _appointmentService.GetAnimalAppointments();
             return View(appointments);
         }
 
         [Authorize]
         public IActionResult Delete(int id)
         {
-            var appointment = DataAccess.GetAnimalAppointment(id);
-            DataAccess.DeleteAnimalAppointment(appointment);
+            var appointment = _appointmentService.GetAnimalAppointment(id);
+            _appointmentService.DeleteAnimalAppointment(appointment);
             return RedirectToAction("Index");
         }
 
         [Authorize]
         public IActionResult Edit(int id)
         { 
-            var appointment = DataAccess.GetAnimalAppointment(id);
+            var appointment = _appointmentService.GetAnimalAppointment(id);
             return View(appointment);
         }
 
         [Authorize]
         [HttpPost]
         public IActionResult Edit(AnimalAppointment appointment)
-        { 
-            DataAccess.UpdateAppointment(appointment);
+        {
+            _appointmentService.UpdateAppointment(appointment);
             return RedirectToAction("Index");
         }
 
         [Authorize]
         public IActionResult Export()
         {
-            var appointments = DataAccess.GetAnimalAppointments().Where(x => !x.Animal.IsDeleted).ToList();
+            var appointments = _appointmentService
+                                .GetAnimalAppointments()
+                                .Where(x => !x.Animal.IsDeleted).ToList();
 
             using (var workbook = new XLWorkbook())
             {

@@ -42,7 +42,7 @@ namespace AnimalShelterWPF
             MainFrame.NavigationService.Navigate(new Pages.LoginPage());
         }
 
-        private void TtileClick(object sender, RoutedEventArgs e)
+        private void TitleClick(object sender, RoutedEventArgs e)
         {
             var page = (sender as Button).Content.ToString();
             if (App.User != null)

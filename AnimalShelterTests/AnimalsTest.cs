@@ -2,12 +2,20 @@
 using System;
 using System.Collections.Generic;
 using Core;
+using Core.Services;
 
 namespace AnimalShelterTests
 {
     [TestClass]
     public class AnimalsTest
     {
+        private AnimalService _animalService;
+
+        public AnimalsTest()
+        {
+            _animalService = new AnimalService();
+        }
+
         [TestMethod]
         public void CorrectSavingAndDeleting()
         { 
@@ -15,14 +23,14 @@ namespace AnimalShelterTests
             Assert.IsNotNull(animal);
             
             {
-                DataAccess.SaveAnimal(animal);
-                List<Animal> animals = DataAccess.GetAnimals();
+                _animalService.SaveAnimal(animal);
+                List<Animal> animals = _animalService.GetAnimals();
                 Assert.IsTrue(animals.Contains(animal));
             }
 
             {
-                DataAccess.DeleteAnimal(animal);
-                List<Animal> animals = DataAccess.GetAnimals();
+                _animalService.DeleteAnimal(animal);
+                List<Animal> animals = _animalService.GetAnimals();
                 Assert.IsFalse(animals.Contains(animal));
             }
         }
@@ -31,9 +39,9 @@ namespace AnimalShelterTests
         public void GetByIdRetursValue()
         {
             Animal animal = new Animal("Васька", DateTime.Now, "Рыжий", 5);
-            DataAccess.SaveAnimal(animal);
+            _animalService.SaveAnimal(animal);
 
-            Animal returnedAnimal = DataAccess.GetAnimal(animal.Id);
+            Animal returnedAnimal = _animalService.GetAnimal(animal.Id);
 
             Assert.AreEqual(animal, returnedAnimal);
         }
@@ -43,7 +51,7 @@ namespace AnimalShelterTests
         {
             int id = -1;
 
-            Animal returnedAnimal = DataAccess.GetAnimal(id);
+            Animal returnedAnimal = _animalService.GetAnimal(id);
 
             Assert.IsNull(returnedAnimal);
         }
