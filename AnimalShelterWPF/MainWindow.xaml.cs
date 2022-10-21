@@ -23,6 +23,7 @@ namespace AnimalShelterWPF
     public partial class MainWindow : Window
     {
         private Dictionary<string, Type> pages;
+        public DataAccess DataAccess { get; set; }
 
         public MainWindow()
         {
@@ -39,7 +40,14 @@ namespace AnimalShelterWPF
             InitializeComponent();
 
             DataAccess.RefreshTitleEvent += RefreshUserPageTitle;
+            DataAccess = new DataAccess();
+
             MainFrame.NavigationService.Navigate(new Pages.LoginPage());
+            if (Properties.Settings.Default.Login != "")
+            {
+                App.User = DataAccess.GetUser(Properties.Settings.Default.Login, Properties.Settings.Default.Password);
+                MainFrame.NavigationService.Navigate(new IndexPage());
+            }
         }
 
         private void TitleClick(object sender, RoutedEventArgs e)

@@ -128,6 +128,11 @@ namespace AnimalShelterWPF.Pages
             worksheet.Rows.AutoFit();
             application.Visible = true;
         }
+
+        private void btnFood_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new FoodPage());
+        }
     }
 }
 

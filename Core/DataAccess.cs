@@ -200,5 +200,13 @@ namespace Core
         }
 
         #endregion
+
+        #region Food
+
+        public List<Food> GetFoods() => AnimalShelterEntities.GetContext().Foods.ToList();
+
+
+
+        #endregion
     }
 }

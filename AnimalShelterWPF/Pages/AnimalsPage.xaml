@@ -25,6 +25,9 @@
             <Button x:Name="btnExport" Click="Export"
                     Margin="20,0"
                     Content="Экспорт"/>
+            <Button x:Name="btnFood" Click="btnFood_Click"
+                    Margin="20,0"
+                    Content="Питание"/>
         </StackPanel>
         <ListView
             TextElement.FontSize="16"

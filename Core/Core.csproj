@@ -82,7 +82,13 @@
     <Compile Include="AnimalAppointment.cs">
       <DependentUpon>ShelterModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="AnimalCategory.cs">
+      <DependentUpon>ShelterModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="AnimalComment.cs">
+      <DependentUpon>ShelterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AnimalFood.cs">
       <DependentUpon>ShelterModel.tt</DependentUpon>
     </Compile>
     <Compile Include="AnimalShelterEntities.cs" />
@@ -99,7 +105,13 @@
       <DependentUpon>ShelterModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccess.cs" />
+    <Compile Include="DietPlan.cs">
+      <DependentUpon>ShelterModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Employee.cs">
+      <DependentUpon>ShelterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Food.cs">
       <DependentUpon>ShelterModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Gender.cs">

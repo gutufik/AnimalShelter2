@@ -41,6 +41,8 @@ namespace AnimalShelterWPF.Pages
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             App.User = null;
+            Properties.Settings.Default.Reset();
+
             NavigationService.Navigate(new LoginPage());
         }
     }

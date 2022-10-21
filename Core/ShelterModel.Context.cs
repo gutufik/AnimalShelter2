@@ -27,12 +27,16 @@ namespace Core
     
         public virtual DbSet<Animal> Animals { get; set; }
         public virtual DbSet<AnimalAppointment> AnimalAppointments { get; set; }
+        public virtual DbSet<AnimalCategory> AnimalCategories { get; set; }
         public virtual DbSet<AnimalComment> AnimalComments { get; set; }
+        public virtual DbSet<AnimalFood> AnimalFoods { get; set; }
         public virtual DbSet<AnimalType> AnimalTypes { get; set; }
         public virtual DbSet<AppointmentMedicine> AppointmentMedicines { get; set; }
         public virtual DbSet<AppointmentType> AppointmentTypes { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<DietPlan> DietPlans { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<Food> Foods { get; set; }
         public virtual DbSet<Gender> Genders { get; set; }
         public virtual DbSet<Medicine> Medicines { get; set; }
         public virtual DbSet<Role> Roles { get; set; }

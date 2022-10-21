@@ -15,6 +15,12 @@ namespace Core
     public partial class Animal
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Animal()
+        {
+            this.AnimalAppointments = new HashSet<AnimalAppointment>();
+            this.AnimalComments = new HashSet<AnimalComment>();
+            this.AnimalFoods = new HashSet<AnimalFood>();
+        }
     
         public int Id { get; set; }
         public string Name { get; set; }
@@ -41,5 +47,7 @@ namespace Core
         public virtual ICollection<AnimalAppointment> AnimalAppointments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AnimalComment> AnimalComments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AnimalFood> AnimalFoods { get; set; }
     }
 }
