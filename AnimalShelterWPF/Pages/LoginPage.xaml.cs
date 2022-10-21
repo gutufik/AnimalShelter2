@@ -23,26 +23,10 @@ namespace AnimalShelterWPF.Pages
     public partial class LoginPage : Page
     {
         private UserService _userService;
-        private static NavigationService NavigationService { get; } = (Application.Current.MainWindow as MainWindow).MainFrame.NavigationService;
         public LoginPage()
         {
             InitializeComponent();
             _userService = new UserService();
-            //LoginBySavedData();
-        }
-        public void LoginBySavedData()
-        {
-            if (Properties.Settings.Default.Login != "")
-            {
-                var login = Properties.Settings.Default.Login;
-                var password = Properties.Settings.Default.Password;
-                App.User = _userService.GetUser(login, password);
-
-                if (App.User != null)
-                {
-                    NavigationService.Navigate(new Pages.IndexPage());
-                }
-            }
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
