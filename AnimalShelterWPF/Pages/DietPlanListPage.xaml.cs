@@ -75,5 +75,10 @@ namespace AnimalShelterWPF.Pages
         {
             NavigationService.Navigate(new DietPlanPage(new DietPlan()));
         }
+
+        private void btnGoBack_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

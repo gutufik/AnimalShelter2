@@ -150,12 +150,6 @@ namespace Core
         {
             if (GetUsers().FirstOrDefault(u => u.Id == user.Id) == null)
                 AnimalShelterEntities.GetContext().Users.Add(user);
-            else
-            {
-                AnimalShelterEntities.GetContext().Users.FirstOrDefault(u => u.Id == user.Id).Login = user.Login;
-                AnimalShelterEntities.GetContext().Users.FirstOrDefault(u => u.Id == user.Id).Password = user.Password;
-                SaveEmployee(user.Employee);
-            }
 
             AnimalShelterEntities.GetContext().SaveChanges();
         }
@@ -163,11 +157,7 @@ namespace Core
         {
             if (GetEmployees().FirstOrDefault(e => e.Id == employee.Id) == null)
                 AnimalShelterEntities.GetContext().Employees.Add(employee);
-            else
-            {
-                AnimalShelterEntities.GetContext().Employees.FirstOrDefault(e => e.Id == employee.Id).LastName = employee.LastName;
-                AnimalShelterEntities.GetContext().Employees.FirstOrDefault(e => e.Id == employee.Id).FirstName = employee.FirstName;
-            }
+
             AnimalShelterEntities.GetContext().SaveChanges();
         }
         public List<User> GetUsers()

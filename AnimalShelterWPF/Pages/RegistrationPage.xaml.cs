@@ -30,7 +30,7 @@ namespace AnimalShelterWPF.Pages
             InitializeComponent();
             _userService = new UserService();
 
-            User = new User();
+            User = new User { };
 
             DataContext = User;
         }

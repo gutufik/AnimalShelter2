@@ -133,7 +133,6 @@
     <Compile Include="Models\DietPlan.cs" />
     <Compile Include="Models\Medicine.cs" />
     <Compile Include="Models\MedicineModel.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs">
       <DependentUpon>ShelterModel.tt</DependentUpon>

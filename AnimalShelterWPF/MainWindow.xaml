@@ -29,7 +29,11 @@
             <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
         <Frame x:Name="MainFrame" Grid.Row="1" Grid.ColumnSpan="10" NavigationUIVisibility="Hidden"/>
-        
+        <Separator VerticalAlignment="Bottom" Grid.ColumnSpan="10" Background="Black" >
+            <Separator.RenderTransform>
+                <ScaleTransform ScaleY="2" />
+            </Separator.RenderTransform>
+        </Separator>
         <Button x:Name="btnMain" Content="Главная" 
                 FontSize="20"
                 Background="Transparent" BorderBrush="Transparent"
