@@ -1,0 +1,68 @@
+﻿<Page x:Class="AnimalShelterWPF.Pages.DietPlanListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AnimalShelterWPF.Pages"
+      mc:Ignorable="d" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="DietPlanListPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Рационы питания"
+                       HorizontalAlignment="Center"
+                       FontSize="30"/>
+        <Grid Grid.Row="1">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <Viewbox Grid.Row="1" HorizontalAlignment="Left">
+                <Calendar x:Name="DietPlanCalendar" 
+                      SelectionMode="MultipleRange"
+                      SelectedDatesChanged="DietPlanCalendar_SelectedDatesChanged" />
+            </Viewbox>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <Button x:Name="btnFoods"  Content="Список кормов" Click="btnFoods_Click"/>
+                <Button x:Name="btnAddDiet" Content="Добавить" Click="btnAddDiet_Click"/>
+            </StackPanel>
+            <ListView x:Name="lvDietPlans" ItemsSource="{Binding DietPlans}" Grid.Row="1" Grid.Column="1">
+                <ListView.View>
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn DisplayMemberBinding="{Binding Time}"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding AnimalFood.Animal.Name}"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding AnimalFood.Food.Name}"/>
+                            <GridViewColumn>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="btnEdit" Content="Подробнее" Click="btnEdit_Click"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="btnDelete" Content="Удалить" Click="btnDelete_Click"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </Grid>
+</Page>

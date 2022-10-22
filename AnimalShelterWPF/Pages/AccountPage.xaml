@@ -24,7 +24,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBlock Text="Аккаунт" Grid.Column="1" Grid.ColumnSpan="2"
-                   FontSize="25" HorizontalAlignment="Center"/>
+                   FontSize="30" HorizontalAlignment="Center"/>
         <StackPanel Grid.Row="1" Grid.Column="1">
             <TextBlock  Text="Логин" FontSize="15" />
             <TextBox x:Name="tbLogin" FontSize="20" Text="{Binding Login}"/>

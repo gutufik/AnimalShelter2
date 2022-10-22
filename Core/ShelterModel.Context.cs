@@ -37,7 +37,9 @@ namespace Core
         public virtual DbSet<DietPlan> DietPlans { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Food> Foods { get; set; }
+        public virtual DbSet<FoodType> FoodTypes { get; set; }
         public virtual DbSet<Gender> Genders { get; set; }
+        public virtual DbSet<Manufacturer> Manufacturers { get; set; }
         public virtual DbSet<Medicine> Medicines { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Status> Status { get; set; }

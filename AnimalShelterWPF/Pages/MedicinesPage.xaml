@@ -25,7 +25,7 @@
                 Margin="30,0"
                 Click="btnAddMedicine_Click"/>
         <Label  Content="Медикаменты" 
-            Margin="30,0" FontSize="25"/>
+            Margin="30,0" FontSize="30"/>
         <ListView Grid.Row="1" 
                   TextElement.FontSize="16"
                   ItemsSource="{Binding}"

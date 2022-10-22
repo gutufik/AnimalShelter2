@@ -131,7 +131,7 @@ namespace AnimalShelterWPF.Pages
 
         private void btnFood_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new FoodPage());
+            NavigationService.Navigate(new DietPlanListPage());
         }
     }
 }

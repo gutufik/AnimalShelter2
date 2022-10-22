@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:AnimalShelterWPF"
         mc:Ignorable="d"
         Background="#d9f7d5"
-        Title="AnimalShelter" MinHeight="600" MinWidth="1000"
+        Title="Приют" MinHeight="600" MinWidth="1000"
                             Width="800" Height="450">
     <Window.Resources>
         <Style TargetType="Label">
@@ -34,7 +34,7 @@
                 FontSize="20"
                 Background="Transparent" BorderBrush="Transparent"
                 Foreground="Black" Click="TitleClick"/>
-        <Button x:Name="btnAnimals" Content="Животные" 
+        <Button x:Name="btnAnimals" Content="Питомцы" 
                FontSize="20"
                Background="Transparent" BorderBrush="Transparent"
                Foreground="Black"

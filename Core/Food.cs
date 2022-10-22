@@ -24,9 +24,14 @@ namespace Core
         public string Name { get; set; }
         public Nullable<int> AnimalCategoryId { get; set; }
         public Nullable<int> Remaind { get; set; }
+        public Nullable<int> FoodTypeId { get; set; }
+        public Nullable<int> ManufacturerId { get; set; }
+        public byte[] Image { get; set; }
     
         public virtual AnimalCategory AnimalCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AnimalFood> AnimalFoods { get; set; }
+        public virtual FoodType FoodType { get; set; }
+        public virtual Manufacturer Manufacturer { get; set; }
     }
 }

@@ -205,6 +205,26 @@ namespace Core
 
         public List<Food> GetFoods() => AnimalShelterEntities.GetContext().Foods.ToList();
 
+        public List<AnimalFood> GetAnimalFoods() => AnimalShelterEntities.GetContext().AnimalFoods.ToList();
+
+        public List<DietPlan> GetDietPlans() => AnimalShelterEntities.GetContext().DietPlans.ToList();
+
+        public List<AnimalCategory> GetAnimalCategories() => AnimalShelterEntities.GetContext().AnimalCategories.ToList();
+
+        public List<FoodType> GetFoodTypes() => AnimalShelterEntities.GetContext().FoodTypes.ToList();
+
+        public List<Manufacturer> GetManufacturers() => AnimalShelterEntities.GetContext().Manufacturers.ToList();
+
+
+        public void SaveFood(Food food)
+        {
+            if (!GetFoods().Contains(food))
+                AnimalShelterEntities.GetContext().Foods.Add(food);
+
+            AnimalShelterEntities.GetContext().SaveChanges();
+            RefreshListsEvent?.Invoke();
+        }
+
 
 
         #endregion

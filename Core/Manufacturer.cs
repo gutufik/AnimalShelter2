@@ -12,22 +12,18 @@ namespace Core
     using System;
     using System.Collections.Generic;
     
-    public partial class AnimalType
+    public partial class Manufacturer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AnimalType()
+        public Manufacturer()
         {
-            this.Animals = new HashSet<Animal>();
-            this.AnimalCategories = new HashSet<AnimalCategory>();
+            this.Foods = new HashSet<Food>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public bool IsDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Animal> Animals { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AnimalCategory> AnimalCategories { get; set; }
+        public virtual ICollection<Food> Foods { get; set; }
     }
 }

@@ -43,6 +43,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="30" />
+          <Property Name="AnimalTypeId" Type="int" />
         </EntityType>
         <EntityType Name="AnimalComment">
           <Key>
@@ -120,6 +121,16 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="AnimalCategoryId" Type="int" />
           <Property Name="Remaind" Type="int" />
+          <Property Name="FoodTypeId" Type="int" />
+          <Property Name="ManufacturerId" Type="int" />
+          <Property Name="Image" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="FoodType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
@@ -128,6 +139,13 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Manufacturer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Medicine">
           <Key>
@@ -245,6 +263,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_AnimalCategory_AnimalType">
+          <End Role="AnimalType" Type="Self.AnimalType" Multiplicity="0..1" />
+          <End Role="AnimalCategory" Type="Self.AnimalCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnimalType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnimalCategory">
+              <PropertyRef Name="AnimalTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AnimalComment_Animal">
           <End Role="Animal" Type="Self.Animal" Multiplicity="0..1" />
           <End Role="AnimalComment" Type="Self.AnimalComment" Multiplicity="*" />
@@ -341,6 +371,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Food_FoodType">
+          <End Role="FoodType" Type="Self.FoodType" Multiplicity="0..1" />
+          <End Role="Food" Type="Self.Food" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FoodType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Food">
+              <PropertyRef Name="FoodTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Manufacturer">
+          <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="0..1" />
+          <End Role="Food" Type="Self.Food" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacturer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Food">
+              <PropertyRef Name="ManufacturerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -366,7 +420,9 @@
           <EntitySet Name="DietPlan" EntityType="Self.DietPlan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Food" EntityType="Self.Food" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FoodType" EntityType="Self.FoodType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Medicine" EntityType="Self.Medicine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
@@ -395,6 +451,10 @@
           <AssociationSet Name="FK_AnimalAppointment_AppointmentType" Association="Self.FK_AnimalAppointment_AppointmentType">
             <End Role="AppointmentType" EntitySet="AppointmentType" />
             <End Role="AnimalAppointment" EntitySet="AnimalAppointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnimalCategory_AnimalType" Association="Self.FK_AnimalCategory_AnimalType">
+            <End Role="AnimalType" EntitySet="AnimalType" />
+            <End Role="AnimalCategory" EntitySet="AnimalCategory" />
           </AssociationSet>
           <AssociationSet Name="FK_AnimalComment_Animal" Association="Self.FK_AnimalComment_Animal">
             <End Role="Animal" EntitySet="Animal" />
@@ -428,6 +488,14 @@
             <End Role="AnimalCategory" EntitySet="AnimalCategory" />
             <End Role="Food" EntitySet="Food" />
           </AssociationSet>
+          <AssociationSet Name="FK_Food_FoodType" Association="Self.FK_Food_FoodType">
+            <End Role="FoodType" EntitySet="FoodType" />
+            <End Role="Food" EntitySet="Food" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Manufacturer" Association="Self.FK_Food_Manufacturer">
+            <End Role="Manufacturer" EntitySet="Manufacturer" />
+            <End Role="Food" EntitySet="Food" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_Employee" Association="Self.FK_User_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="User" EntitySet="User" />
@@ -450,7 +518,9 @@
           <EntitySet Name="DietPlans" EntityType="AnimalShelterModel.DietPlan" />
           <EntitySet Name="Employees" EntityType="AnimalShelterModel.Employee" />
           <EntitySet Name="Foods" EntityType="AnimalShelterModel.Food" />
+          <EntitySet Name="FoodTypes" EntityType="AnimalShelterModel.FoodType" />
           <EntitySet Name="Genders" EntityType="AnimalShelterModel.Gender" />
+          <EntitySet Name="Manufacturers" EntityType="AnimalShelterModel.Manufacturer" />
           <EntitySet Name="Medicines" EntityType="AnimalShelterModel.Medicine" />
           <EntitySet Name="Roles" EntityType="AnimalShelterModel.Role" />
           <EntitySet Name="Status" EntityType="AnimalShelterModel.Status" />
@@ -492,6 +562,10 @@
             <End Role="AnimalAppointment" EntitySet="AnimalAppointments" />
             <End Role="AppointmentMedicine" EntitySet="AppointmentMedicines" />
           </AssociationSet>
+          <AssociationSet Name="FK_AnimalCategory_AnimalType" Association="AnimalShelterModel.FK_AnimalCategory_AnimalType">
+            <End Role="AnimalType" EntitySet="AnimalTypes" />
+            <End Role="AnimalCategory" EntitySet="AnimalCategories" />
+          </AssociationSet>
           <AssociationSet Name="FK_Food_AnimalCategory" Association="AnimalShelterModel.FK_Food_AnimalCategory">
             <End Role="AnimalCategory" EntitySet="AnimalCategories" />
             <End Role="Food" EntitySet="Foods" />
@@ -515,6 +589,14 @@
           <AssociationSet Name="FK_User_Employee" Association="AnimalShelterModel.FK_User_Employee">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_FoodType" Association="AnimalShelterModel.FK_Food_FoodType">
+            <End Role="FoodType" EntitySet="FoodTypes" />
+            <End Role="Food" EntitySet="Foods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Manufacturer" Association="AnimalShelterModel.FK_Food_Manufacturer">
+            <End Role="Manufacturer" EntitySet="Manufacturers" />
+            <End Role="Food" EntitySet="Foods" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Animal">
@@ -565,6 +647,8 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="AnimalTypeId" Type="Int32" />
+          <NavigationProperty Name="AnimalType" Relationship="AnimalShelterModel.FK_AnimalCategory_AnimalType" FromRole="AnimalCategory" ToRole="AnimalType" />
           <NavigationProperty Name="Foods" Relationship="AnimalShelterModel.FK_Food_AnimalCategory" FromRole="AnimalCategory" ToRole="Food" />
         </EntityType>
         <EntityType Name="AnimalComment">
@@ -597,6 +681,7 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Animals" Relationship="AnimalShelterModel.FK_Animal_AnimalType" FromRole="AnimalType" ToRole="Animal" />
+          <NavigationProperty Name="AnimalCategories" Relationship="AnimalShelterModel.FK_AnimalCategory_AnimalType" FromRole="AnimalType" ToRole="AnimalCategory" />
         </EntityType>
         <EntityType Name="AppointmentMedicine">
           <Key>
@@ -656,8 +741,21 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AnimalCategoryId" Type="Int32" />
           <Property Name="Remaind" Type="Int32" />
+          <Property Name="FoodTypeId" Type="Int32" />
+          <Property Name="ManufacturerId" Type="Int32" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="AnimalCategory" Relationship="AnimalShelterModel.FK_Food_AnimalCategory" FromRole="Food" ToRole="AnimalCategory" />
           <NavigationProperty Name="AnimalFoods" Relationship="AnimalShelterModel.FK_AnimalFood_Food" FromRole="Food" ToRole="AnimalFood" />
+          <NavigationProperty Name="FoodType" Relationship="AnimalShelterModel.FK_Food_FoodType" FromRole="Food" ToRole="FoodType" />
+          <NavigationProperty Name="Manufacturer" Relationship="AnimalShelterModel.FK_Food_Manufacturer" FromRole="Food" ToRole="Manufacturer" />
+        </EntityType>
+        <EntityType Name="FoodType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Foods" Relationship="AnimalShelterModel.FK_Food_FoodType" FromRole="FoodType" ToRole="Food" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
@@ -667,6 +765,14 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Animals" Relationship="AnimalShelterModel.FK_Animal_Gender" FromRole="Gender" ToRole="Animal" />
+        </EntityType>
+        <EntityType Name="Manufacturer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Foods" Relationship="AnimalShelterModel.FK_Food_Manufacturer" FromRole="Manufacturer" ToRole="Food" />
         </EntityType>
         <EntityType Name="Medicine">
           <Key>
@@ -823,6 +929,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_AnimalCategory_AnimalType">
+          <End Type="AnimalShelterModel.AnimalType" Role="AnimalType" Multiplicity="0..1" />
+          <End Type="AnimalShelterModel.AnimalCategory" Role="AnimalCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnimalType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnimalCategory">
+              <PropertyRef Name="AnimalTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Food_AnimalCategory">
           <End Type="AnimalShelterModel.AnimalCategory" Role="AnimalCategory" Multiplicity="0..1" />
           <End Type="AnimalShelterModel.Food" Role="Food" Multiplicity="*" />
@@ -895,6 +1013,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Food_FoodType">
+          <End Type="AnimalShelterModel.FoodType" Role="FoodType" Multiplicity="0..1" />
+          <End Type="AnimalShelterModel.Food" Role="Food" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FoodType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Food">
+              <PropertyRef Name="FoodTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Manufacturer">
+          <End Type="AnimalShelterModel.Manufacturer" Role="Manufacturer" Multiplicity="0..1" />
+          <End Type="AnimalShelterModel.Food" Role="Food" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacturer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Food">
+              <PropertyRef Name="ManufacturerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -938,6 +1080,7 @@
           <EntitySetMapping Name="AnimalCategories">
             <EntityTypeMapping TypeName="AnimalShelterModel.AnimalCategory">
               <MappingFragment StoreEntitySet="AnimalCategory">
+                <ScalarProperty Name="AnimalTypeId" ColumnName="AnimalTypeId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -1022,8 +1165,19 @@
           <EntitySetMapping Name="Foods">
             <EntityTypeMapping TypeName="AnimalShelterModel.Food">
               <MappingFragment StoreEntitySet="Food">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
+                <ScalarProperty Name="FoodTypeId" ColumnName="FoodTypeId" />
                 <ScalarProperty Name="Remaind" ColumnName="Remaind" />
                 <ScalarProperty Name="AnimalCategoryId" ColumnName="AnimalCategoryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FoodTypes">
+            <EntityTypeMapping TypeName="AnimalShelterModel.FoodType">
+              <MappingFragment StoreEntitySet="FoodType">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -1033,6 +1187,14 @@
             <EntityTypeMapping TypeName="AnimalShelterModel.Gender">
               <MappingFragment StoreEntitySet="Gender">
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Manufacturers">
+            <EntityTypeMapping TypeName="AnimalShelterModel.Manufacturer">
+              <MappingFragment StoreEntitySet="Manufacturer">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

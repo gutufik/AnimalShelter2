@@ -9,15 +9,66 @@
       Title="FoodPage">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
-        
-        
+        <Button x:Name="btnGoBack" Content="Назад" Click="btnGoBack_Click" HorizontalAlignment="Left"/>
+        <Button x:Name="btnSave" Content="Сохранить" Click="btnSave_Click" HorizontalAlignment="Right"/>
+        <TextBlock Text="Корм" FontSize="30" HorizontalAlignment="Center"/>
+
+        <Grid Grid.Row="1">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Производитель"/>
+            <TextBlock Grid.Row="1" Text="Для кого?"/>
+            <TextBlock Grid.Row="2" Text="Название"/>
+            <TextBlock Grid.Row="3" Text="Вид"/>
+            <TextBlock Grid.Row="4" Text="Изображение"/>
+
+            <ComboBox x:Name="cbManufacturer" ItemsSource="{Binding Manufacturers}"
+                      Grid.Column="1"
+                      DisplayMemberPath="Name"
+                      SelectedItem="{Binding Food.Manufacturer}"/>
+            
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                <ComboBox Name="cbAnimalType" ItemsSource="{Binding AnimalTypes}"
+                          DisplayMemberPath="Name"/>
+
+                <ComboBox x:Name="cbAnimalCategory" ItemsSource="{Binding AnimalCategories}"
+                          DisplayMemberPath="Name"
+                          SelectedItem="{Binding Food.AnimalCategory}"/>
+            </StackPanel>
+            <TextBox x:Name="tbName" Grid.Row="2" Grid.Column="1" Text="{Binding Food.Name}"/>
+
+            <ComboBox x:Name="cbFoodType" Grid.Row="3" Grid.Column="1" ItemsSource="{Binding FoodTypes}"
+                      DisplayMemberPath="Name"
+                      SelectedItem="{Binding Food.FoodType}"/>
+
+            <StackPanel Grid.Row="4" Grid.Column="1">
+                <Image x:Name="FoodImage"
+                    Source="{Binding Food.Image}"
+                    Height="100"/>
+                <Button x:Name="SelectImageButton"
+                    Content="Выбрать изображение"
+                    Click="SelectImageButton_Click"/>
+            </StackPanel>
+
+
+
+
+        </Grid>
     </Grid>
 </Page>

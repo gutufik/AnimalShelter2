@@ -114,7 +114,13 @@
     <Compile Include="Food.cs">
       <DependentUpon>ShelterModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="FoodType.cs">
+      <DependentUpon>ShelterModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Gender.cs">
+      <DependentUpon>ShelterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Manufacturer.cs">
       <DependentUpon>ShelterModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Medicine.cs">
@@ -124,6 +130,7 @@
     <Compile Include="Models\AnimalAppointment.cs" />
     <Compile Include="Models\AnimalModel.cs" />
     <Compile Include="Models\AppointmentModel.cs" />
+    <Compile Include="Models\DietPlan.cs" />
     <Compile Include="Models\Medicine.cs" />
     <Compile Include="Models\MedicineModel.cs" />
     <Compile Include="Models\User.cs" />

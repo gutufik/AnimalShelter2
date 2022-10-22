@@ -109,6 +109,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\AnimalFoodPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\AnimalPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -124,6 +128,18 @@
     <Page Include="Pages\CalendarPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\DietPlanListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DietPlanPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\FoodListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\FoodPage.xaml">
       <SubType>Designer</SubType>
@@ -154,6 +170,9 @@
     <Compile Include="Pages\AccountPage.xaml.cs">
       <DependentUpon>AccountPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AnimalFoodPage.xaml.cs">
+      <DependentUpon>AnimalFoodPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AnimalPage.xaml.cs">
       <DependentUpon>AnimalPage.xaml</DependentUpon>
     </Compile>
@@ -165,6 +184,15 @@
     </Compile>
     <Compile Include="Pages\CalendarPage.xaml.cs">
       <DependentUpon>CalendarPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DietPlanListPage.xaml.cs">
+      <DependentUpon>DietPlanListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DietPlanPage.xaml.cs">
+      <DependentUpon>DietPlanPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\FoodListPage.xaml.cs">
+      <DependentUpon>FoodListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\FoodPage.xaml.cs">
       <DependentUpon>FoodPage.xaml</DependentUpon>

@@ -17,7 +17,7 @@
             <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" >
-            <TextBlock Text="Животные" FontSize="30" VerticalAlignment="Center" Margin="20,0"/>
+            <TextBlock Text="Питомцы" FontSize="30" VerticalAlignment="Center" Margin="20,0"/>
             <Button x:Name="btnAddAnimal" Content="Добавить животное"
                     VerticalAlignment="Center" Margin="20,0" Click="btnAddAnimal_Click"/>
             <Button x:Name="btnAddAppintment" Content="Добавить назначение" 
@@ -27,6 +27,7 @@
                     Content="Экспорт"/>
             <Button x:Name="btnFood" Click="btnFood_Click"
                     Margin="20,0"
+                    Background="AliceBlue"
                     Content="Питание"/>
         </StackPanel>
         <ListView

@@ -30,7 +30,7 @@ namespace AnimalShelterWPF
             pages = new Dictionary<string, Type> 
             {
                 {"Главная", typeof(IndexPage)},
-                {"Животные", typeof(AnimalsPage)},
+                {"Питомцы", typeof(AnimalsPage)},
                 {"Календарь", typeof(CalendarPage)},
                 {"Медикаменты", typeof(MedicinesPage)},
                 {"Вход", typeof(LoginPage)},
