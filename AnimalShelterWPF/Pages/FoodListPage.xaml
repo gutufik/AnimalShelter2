@@ -15,6 +15,7 @@
         </Grid.RowDefinitions>
         <TextBlock Text="Корма" FontSize="30" HorizontalAlignment="Center"/>
         <Button x:Name="btnGoBack" Content="Назад" Click="btnGoBack_Click" HorizontalAlignment="Left"/>
+        <Button x:Name="btnAdd" Content="Добавить" Click="btnAdd_Click" HorizontalAlignment="Right"/>
         <ListView x:Name="lvFoods" ItemsSource="{Binding Foods}" Grid.Row="1">
             <ListView.View>
                 <GridView>

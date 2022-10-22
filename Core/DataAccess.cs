@@ -225,6 +225,15 @@ namespace Core
             RefreshListsEvent?.Invoke();
         }
 
+        public void SaveDietPlan(DietPlan plan)
+        {
+            if (!GetDietPlans().Contains(plan))
+                AnimalShelterEntities.GetContext().DietPlans.Add(plan);
+
+            AnimalShelterEntities.GetContext().SaveChanges();
+            RefreshListsEvent?.Invoke();
+        }
+
 
 
         #endregion

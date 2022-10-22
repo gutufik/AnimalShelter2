@@ -31,11 +31,33 @@ namespace AnimalShelterWPF.Pages
         {
             InitializeComponent();
             DietPlan = dietPlan;
+            if (DietPlan.AnimalFood == null)
+                DietPlan.AnimalFood = new AnimalFood();
+
             dataAccess = new DataAccess();
             Animals = dataAccess.GetAnimals();
             Foods = dataAccess.GetFoods();
 
+            dpDate.SelectedDate = dietPlan.Time == null ? DateTime.Today.Date: ((DateTime)dietPlan.Time).Date;
+            tpTime.SelectedTime = dietPlan.Time == null ? DateTime.Now : ((DateTime)dietPlan.Time);
+
             DataContext = this;
+        }
+
+        private void btnGoBack_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            dataAccess.SaveDietPlan(DietPlan);
+            NavigationService.GoBack();
+        }
+
+        private void cbAnimal_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var t =  cbAnimal.SelectedItem as Animal;
         }
     }
 }

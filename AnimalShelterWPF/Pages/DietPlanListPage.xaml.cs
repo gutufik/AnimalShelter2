@@ -30,6 +30,8 @@ namespace AnimalShelterWPF.Pages
             InitializeComponent();
             dataAccess = new DataAccess();
             DietPlans = dataAccess.GetDietPlans();
+            DataAccess.RefreshListsEvent += RefreshList;
+
             DataContext = this;
         }
 
@@ -49,6 +51,14 @@ namespace AnimalShelterWPF.Pages
             //lvAnimals.ItemsSource = Animals;
 
             //lvAnimals.Items.Refresh();
+        }
+
+        private void RefreshList()
+        {
+            DietPlans = dataAccess.GetDietPlans();
+            lvDietPlans.ItemsSource = DietPlans;
+
+            lvDietPlans.Items.Refresh();
         }
 
         private void btnFoods_Click(object sender, RoutedEventArgs e)

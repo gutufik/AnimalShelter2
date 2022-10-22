@@ -51,7 +51,12 @@ namespace AnimalShelterWPF.Pages
 
         private void btnGoBack_Click(object sender, RoutedEventArgs e)
         {
+            NavigationService.GoBack();
+        }
 
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new FoodPage(new Food()));
         }
     }
 }

@@ -42,14 +42,21 @@
                       Grid.Column="1"
                       DisplayMemberPath="Name"
                       SelectedItem="{Binding Food.Manufacturer}"/>
-            
-            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-                <ComboBox Name="cbAnimalType" ItemsSource="{Binding AnimalTypes}"
-                          DisplayMemberPath="Name"/>
 
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
                 <ComboBox x:Name="cbAnimalCategory" ItemsSource="{Binding AnimalCategories}"
-                          DisplayMemberPath="Name"
-                          SelectedItem="{Binding Food.AnimalCategory}"/>
+                          MinWidth="100"
+                          SelectedItem="{Binding Food.AnimalCategory}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <Run Text="{Binding AnimalType.Name}"/>
+                                <Run Text="-"/>
+                                <Run Text="{Binding Name}"/>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
             </StackPanel>
             <TextBox x:Name="tbName" Grid.Row="2" Grid.Column="1" Text="{Binding Food.Name}"/>
 

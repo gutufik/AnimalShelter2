@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:AnimalShelterWPF.Pages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="DietPlanPage">
@@ -15,13 +16,35 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
+        <TextBlock Text="Рацион"  FontSize="30" HorizontalAlignment="Center"/>
+        <Button x:Name="btnGoBack" Content="Назад" HorizontalAlignment="Left" Click="btnGoBack_Click"/>
+        <Button x:Name="btnSave" Content="Сохранить" HorizontalAlignment="Right" Click="btnSave_Click"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            
+            <DatePicker
+                x:Name="dpDate"
+                Width="140"
+                materialDesign:HintAssist.Hint="Дата"
+                Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+            
+            <materialDesign:TimePicker
+                x:Name="tpTime"
+                Is24Hours="True"
+                Width="140"
+                materialDesign:HintAssist.Hint="Время"
+                Style="{StaticResource MaterialDesignOutlinedTimePicker}" />
+
+        </StackPanel>
         <ComboBox x:Name="cbAnimal"
+                  Grid.Row="1"
                   ItemsSource="{Binding Animals}"
                   DisplayMemberPath="Name"
-                  SelectedItem="{Binding DietPlan.AnimalFood.Animal}"/>
+                  SelectedItem="{Binding DietPlan.AnimalFood.Animal, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                  SelectionChanged="cbAnimal_SelectionChanged"/>
         <ComboBox x:Name="cbFood"
-                  Grid.Row="1"
+                  Grid.Row="2"
                   ItemsSource="{Binding Foods}"
                   SelectedItem="{Binding DietPlan.AnimalFood.Food}">
             <ComboBox.ItemTemplate>
