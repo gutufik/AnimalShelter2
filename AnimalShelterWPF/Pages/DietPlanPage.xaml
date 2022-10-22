@@ -27,12 +27,14 @@
                 x:Name="dpDate"
                 Width="140"
                 materialDesign:HintAssist.Hint="Дата"
+                SelectedDateChanged="dpDate_SelectedDateChanged"
                 Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
             
             <materialDesign:TimePicker
                 x:Name="tpTime"
                 Is24Hours="True"
                 Width="140"
+                SelectedTimeChanged="tpTime_SelectedTimeChanged"
                 materialDesign:HintAssist.Hint="Время"
                 Style="{StaticResource MaterialDesignOutlinedTimePicker}" />
 
@@ -41,8 +43,7 @@
                   Grid.Row="1"
                   ItemsSource="{Binding Animals}"
                   DisplayMemberPath="Name"
-                  SelectedItem="{Binding DietPlan.AnimalFood.Animal, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                  SelectionChanged="cbAnimal_SelectionChanged"/>
+                  SelectedItem="{Binding DietPlan.AnimalFood.Animal, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         <ComboBox x:Name="cbFood"
                   Grid.Row="2"
                   ItemsSource="{Binding Foods}"

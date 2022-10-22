@@ -51,7 +51,7 @@
                 <ListView.View>
                     <GridView>
                         <GridView.Columns>
-                            <GridViewColumn DisplayMemberBinding="{Binding Time}"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Time, StringFormat='dd.MM.yyyy hh:mm', ConverterCulture='ru-RU' }"/>
                             <GridViewColumn DisplayMemberBinding="{Binding AnimalFood.Animal.Name}"/>
                             <GridViewColumn DisplayMemberBinding="{Binding AnimalFood.Food.Name}"/>
                             <GridViewColumn>

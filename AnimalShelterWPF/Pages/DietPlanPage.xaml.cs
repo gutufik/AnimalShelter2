@@ -38,8 +38,11 @@ namespace AnimalShelterWPF.Pages
             Animals = dataAccess.GetAnimals();
             Foods = dataAccess.GetFoods();
 
-            dpDate.SelectedDate = dietPlan.Time == null ? DateTime.Today.Date: ((DateTime)dietPlan.Time).Date;
-            tpTime.SelectedTime = dietPlan.Time == null ? DateTime.Now : ((DateTime)dietPlan.Time);
+            dietPlan.Time = dietPlan.Time == null ? DateTime.Now : ((DateTime)dietPlan.Time);
+            tpTime.SelectedTime = dietPlan.Time;
+            dietPlan.Time = dietPlan.Time == null ? DateTime.Today.Date: ((DateTime)dietPlan.Time).Date;
+
+            dpDate.SelectedDate = dietPlan.Time;
 
             DataContext = this;
         }
@@ -55,9 +58,22 @@ namespace AnimalShelterWPF.Pages
             NavigationService.GoBack();
         }
 
-        private void cbAnimal_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void dpDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            var t =  cbAnimal.SelectedItem as Animal;
+            if (DietPlan.Time != null)
+            {
+                var time = DietPlan.Time.Value.TimeOfDay;
+                DietPlan.Time = dpDate.SelectedDate.Value.Date + time;
+            }
+        }
+
+        private void tpTime_SelectedTimeChanged(object sender, RoutedPropertyChangedEventArgs<DateTime?> e)
+        {
+            if (DietPlan.Time != null)
+            {
+                var time = DietPlan.Time.Value.TimeOfDay;
+                DietPlan.Time += tpTime.SelectedTime.Value.TimeOfDay - time;
+            }
         }
     }
 }
