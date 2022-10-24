@@ -35,7 +35,9 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-
+            <Button x:Name="btnResetDates"
+                    Content="Сбросить"
+                    Click="btnResetDates_Click"/>
             <Viewbox Grid.Row="1" HorizontalAlignment="Left">
                 <Calendar x:Name="DietPlanCalendar" 
                       SelectionMode="MultipleRange"
@@ -49,7 +51,7 @@
             </StackPanel>
             <ListView x:Name="lvDietPlans" ItemsSource="{Binding DietPlans}" Grid.Row="1" Grid.Column="1">
                 <ListView.View>
-                    <GridView>
+                    <GridView AllowsColumnReorder="False">
                         <GridView.Columns>
                             <GridViewColumn DisplayMemberBinding="{Binding Time, StringFormat='dd.MM.yyyy hh:mm', ConverterCulture='ru-RU' }"/>
                             <GridViewColumn DisplayMemberBinding="{Binding AnimalFood.Animal.Name}"/>

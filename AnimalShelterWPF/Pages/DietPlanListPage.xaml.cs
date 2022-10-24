@@ -70,7 +70,20 @@ namespace AnimalShelterWPF.Pages
 
         private void DietPlanCalendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
+            var dates = DietPlanCalendar.SelectedDates.ToList();
 
+            if (dates.Count != 0)
+            {
+                var firtDate = dates.First();
+                var lastDate = dates.Last();
+
+                lvDietPlans.ItemsSource = DietPlans.FindAll(x => firtDate <= x.Time.Value.Date && x.Time.Value.Date <= lastDate);
+            }
+            else
+            {
+                lvDietPlans.ItemsSource = DietPlans;
+            }
+            lvDietPlans.Items.Refresh();
         }
 
         private void btnAddDiet_Click(object sender, RoutedEventArgs e)
@@ -81,6 +94,12 @@ namespace AnimalShelterWPF.Pages
         private void btnGoBack_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void btnResetDates_Click(object sender, RoutedEventArgs e)
+        {
+            DietPlanCalendar.SelectedDates.Clear();
+
         }
     }
 }
