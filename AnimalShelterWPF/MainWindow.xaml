@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:AnimalShelterWPF"
         mc:Ignorable="d"
         Background="#d9f7d5"
-        Title="Приют" MinHeight="600" MinWidth="1000"
-                            Width="800" Height="450">
+        Title="Приют" MinHeight="600" MinWidth="1100"
+                            Width="1100" Height="450">
     <Window.Resources>
         <Style TargetType="Label">
             <Setter Property="HorizontalAlignment" Value="Center"/>

@@ -18,7 +18,7 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" >
             <TextBlock Text="Питомцы" FontSize="30" VerticalAlignment="Center" Margin="20,0"/>
-            <Button x:Name="btnAddAnimal" Content="Добавить животное"
+            <Button x:Name="btnAddAnimal" Content="Добавить питомца"
                     VerticalAlignment="Center" Margin="20,0" Click="btnAddAnimal_Click"/>
             <Button x:Name="btnAddAppintment" Content="Добавить назначение" 
                     Background="AliceBlue" Click="btnAddAppintment_Click"/>

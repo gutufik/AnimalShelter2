@@ -41,7 +41,7 @@
             <Viewbox Grid.Row="1" HorizontalAlignment="Left">
                 <Calendar x:Name="DietPlanCalendar" 
                       SelectionMode="MultipleRange"
-                      SelectedDatesChanged="DietPlanCalendar_SelectedDatesChanged" />
+                      SelectedDatesChanged="FiltersSelectionChanged" />
             </Viewbox>
 
             <StackPanel Grid.Column="1" Orientation="Horizontal">
@@ -54,7 +54,19 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <ComboBox x:Name="cbAnimal" ItemsSource="{Binding Animals}" DisplayMemberPath="Name"/>
+                
+                <ComboBox x:Name="cbAnimal" 
+                          ItemsSource="{Binding Animals}" 
+                          DisplayMemberPath="Name" SelectedIndex="0" 
+                          FontSize="20"
+                          SelectionChanged="FiltersSelectionChanged"/>
+
+                <TextBlock x:Name="tbEmptyList" Text="Ничего не найдено"
+                        Grid.Row="1"
+                        FontSize="30"
+                        HorizontalAlignment="Center"
+                        Visibility="Hidden"/>
+
                 <ListView x:Name="lvDietPlans" ItemsSource="{Binding DietPlans}" Grid.Row="1">
                     <ListView.View>
                         <GridView AllowsColumnReorder="False">

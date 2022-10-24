@@ -23,6 +23,8 @@ namespace AnimalShelterWPF.Pages
     {
         public List<Food> Foods { get; set; }
         public List<Manufacturer> Manufacturers { get; set; }
+        public List<FoodType> FoodTypes { get; set; }
+        public List<AnimalCategory> AnimalCategories { get; set; }
 
         private DataAccess dataAccess;
 
@@ -30,8 +32,16 @@ namespace AnimalShelterWPF.Pages
         {
             InitializeComponent();
             dataAccess = new DataAccess();
+
             Foods = dataAccess.GetFoods();
+            FoodTypes = dataAccess.GetFoodTypes();
             Manufacturers = dataAccess.GetManufacturers();
+            AnimalCategories = dataAccess.GetAnimalCategories();
+
+            FoodTypes.Insert(0, new FoodType { Name = "Все" });
+            Manufacturers.Insert(0, new Manufacturer { Name = "Все" });
+            AnimalCategories.Insert(0, new AnimalCategory { Name = "Все" });
+
 
             DataAccess.RefreshListsEvent += RefreshList;
 
@@ -74,6 +84,36 @@ namespace AnimalShelterWPF.Pages
 
                 lvFoods.Items.Refresh();
             }
+        }
+
+        private void FiltersSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var manufacturer = cbManufacturer.SelectedItem as Manufacturer;
+            var foodType = cbFoodType.SelectedItem as FoodType;
+            var animalCategory = cbAnimalCategory.SelectedItem as AnimalCategory;
+
+            var filteredFoods = Foods;
+
+            if (manufacturer != null && manufacturer.Name != "Все")
+                filteredFoods = filteredFoods.Where(x => x.Manufacturer == manufacturer).ToList();
+            if(foodType != null && foodType.Name != "Все")
+                filteredFoods = filteredFoods.Where(x => x.FoodType == foodType).ToList();
+            if (animalCategory != null && animalCategory.Name != "Все")
+                filteredFoods = filteredFoods.Where(x => x.AnimalCategory == animalCategory).ToList();
+
+            if (!filteredFoods.Any())
+            {
+                tbEmptyList.Visibility = Visibility.Visible;
+                lvFoods.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                tbEmptyList.Visibility = Visibility.Hidden;
+                lvFoods.Visibility = Visibility.Visible;
+            }
+
+            lvFoods.ItemsSource = filteredFoods;
+            lvFoods.Items.Refresh();
         }
     }
 }

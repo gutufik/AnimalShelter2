@@ -32,6 +32,7 @@ namespace AnimalShelterWPF.Pages
             dataAccess = new DataAccess();
             DietPlans = dataAccess.GetDietPlans();
             Animals = dataAccess.GetAnimals();
+            Animals.Insert(0, new Animal { Name = "Все" });
             DataAccess.RefreshListsEvent += RefreshList;
 
             DataContext = this;
@@ -72,20 +73,8 @@ namespace AnimalShelterWPF.Pages
 
         private void DietPlanCalendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
-            var dates = DietPlanCalendar.SelectedDates.ToList();
-
-            if (dates.Count != 0)
-            {
-                var firtDate = dates.First();
-                var lastDate = dates.Last();
-
-                lvDietPlans.ItemsSource = DietPlans.FindAll(x => firtDate <= x.Time.Value.Date && x.Time.Value.Date <= lastDate);
-            }
-            else
-            {
-                lvDietPlans.ItemsSource = DietPlans;
-            }
-            lvDietPlans.Items.Refresh();
+            
+            HideList();
         }
 
         private void btnAddDiet_Click(object sender, RoutedEventArgs e)
@@ -102,6 +91,42 @@ namespace AnimalShelterWPF.Pages
         {
             DietPlanCalendar.SelectedDates.Clear();
 
+        }
+
+        private void FiltersSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var dates = DietPlanCalendar.SelectedDates.ToList();
+            var filteredDietPlans = DietPlans;
+
+            if (dates.Count != 0)
+            {
+                var firtDate = dates.First();
+                var lastDate = dates.Last();
+
+                filteredDietPlans = filteredDietPlans.FindAll(x => firtDate <= x.Time.Value.Date && x.Time.Value.Date <= lastDate);
+            }
+
+            var animal = cbAnimal.SelectedItem as Animal;
+            if (animal != null && animal.Name != "Все")
+                filteredDietPlans = filteredDietPlans.FindAll(x => x.AnimalFood.Animal == animal);
+
+            lvDietPlans.ItemsSource = filteredDietPlans;
+            lvDietPlans.Items.Refresh();
+            HideList();
+        }
+
+        public void HideList()
+        {
+            if (lvDietPlans.Items.Count > 0)
+            {
+                lvDietPlans.Visibility = Visibility.Visible;
+                tbEmptyList.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                lvDietPlans.Visibility = Visibility.Hidden;
+                tbEmptyList.Visibility = Visibility.Visible;
+            }
         }
     }
 }
