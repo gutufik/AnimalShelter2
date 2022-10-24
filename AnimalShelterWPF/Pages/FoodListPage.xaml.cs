@@ -22,6 +22,8 @@ namespace AnimalShelterWPF.Pages
     public partial class FoodListPage : Page
     {
         public List<Food> Foods { get; set; }
+        public List<Manufacturer> Manufacturers { get; set; }
+
         private DataAccess dataAccess;
 
         public FoodListPage()
@@ -29,6 +31,7 @@ namespace AnimalShelterWPF.Pages
             InitializeComponent();
             dataAccess = new DataAccess();
             Foods = dataAccess.GetFoods();
+            Manufacturers = dataAccess.GetManufacturers();
 
             DataAccess.RefreshListsEvent += RefreshList;
 

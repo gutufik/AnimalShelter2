@@ -49,31 +49,38 @@
                 <Button x:Name="btnFoods"  Content="Список кормов" Click="btnFoods_Click" Background="AliceBlue"/>
                 <Button x:Name="btnAddDiet" Content="Добавить" Click="btnAddDiet_Click"/>
             </StackPanel>
-            <ListView x:Name="lvDietPlans" ItemsSource="{Binding DietPlans}" Grid.Row="1" Grid.Column="1">
-                <ListView.View>
-                    <GridView AllowsColumnReorder="False">
-                        <GridView.Columns>
-                            <GridViewColumn DisplayMemberBinding="{Binding Time, StringFormat='dd.MM.yyyy hh:mm', ConverterCulture='ru-RU' }"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding AnimalFood.Animal.Name}"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding AnimalFood.Food.Name}"/>
-                            <GridViewColumn>
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button x:Name="btnEdit" Content="Подробнее" Click="btnEdit_Click"/>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn>
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button x:Name="btnDelete" Content="Удалить" Click="btnDelete_Click"/>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView.Columns>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <ComboBox x:Name="cbAnimal" ItemsSource="{Binding Animals}" DisplayMemberPath="Name"/>
+                <ListView x:Name="lvDietPlans" ItemsSource="{Binding DietPlans}" Grid.Row="1">
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="False">
+                            <GridView.Columns>
+                                <GridViewColumn DisplayMemberBinding="{Binding Time, StringFormat='dd.MM.yyyy hh:mm', ConverterCulture='ru-RU' }"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding AnimalFood.Animal.Name}"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding AnimalFood.Food.Name}"/>
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button x:Name="btnEdit" Content="Подробнее" Click="btnEdit_Click"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button x:Name="btnDelete" Content="Удалить" Click="btnDelete_Click"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView.Columns>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
         </Grid>
     </Grid>
 </Page>

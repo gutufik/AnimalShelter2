@@ -22,6 +22,7 @@ namespace AnimalShelterWPF.Pages
     public partial class DietPlanListPage : Page
     {
         public List<DietPlan> DietPlans { get; set; }
+        public List<Animal> Animals { get; set; }
 
         private DataAccess dataAccess;
 
@@ -30,6 +31,7 @@ namespace AnimalShelterWPF.Pages
             InitializeComponent();
             dataAccess = new DataAccess();
             DietPlans = dataAccess.GetDietPlans();
+            Animals = dataAccess.GetAnimals();
             DataAccess.RefreshListsEvent += RefreshList;
 
             DataContext = this;
