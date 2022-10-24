@@ -45,12 +45,14 @@ namespace AnimalShelterWPF.Pages
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             var dietPlan = (sender as Button).DataContext as DietPlan;
+            if (MessageBox.Show("Выбранный рацион будет безвозватно удален.", "Предупреждение", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
+            {
+                dataAccess.DeleteDietPlan(dietPlan);
+                DietPlans = dataAccess.GetDietPlans();
+                lvDietPlans.ItemsSource = DietPlans;
 
-            //_animalService.DeleteAnimal(animal);
-            //Animals = _animalService.GetAnimals();
-            //lvAnimals.ItemsSource = Animals;
-
-            //lvAnimals.Items.Refresh();
+                lvDietPlans.Items.Refresh();
+            }
         }
 
         private void RefreshList()
@@ -78,7 +80,7 @@ namespace AnimalShelterWPF.Pages
 
         private void btnGoBack_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.GoBack();
         }
     }
 }

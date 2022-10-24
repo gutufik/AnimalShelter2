@@ -58,5 +58,19 @@ namespace AnimalShelterWPF.Pages
         {
             NavigationService.Navigate(new FoodPage(new Food()));
         }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            var food = (sender as Button).DataContext as Food;
+
+            if (MessageBox.Show("Выбранный корм будет безвозватно удален.", "Предупреждение", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
+            {
+                dataAccess.DeleteFood(food);
+                Foods = dataAccess.GetFoods();
+                lvFoods.ItemsSource = Foods;
+
+                lvFoods.Items.Refresh();
+            }
+        }
     }
 }

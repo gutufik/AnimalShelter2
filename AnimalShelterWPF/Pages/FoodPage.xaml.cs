@@ -71,7 +71,7 @@ namespace AnimalShelterWPF.Pages
 
         private void btnGoBack_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.GoBack();
         }
     }
 }

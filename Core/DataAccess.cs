@@ -224,6 +224,20 @@ namespace Core
             RefreshListsEvent?.Invoke();
         }
 
+        public void DeleteDietPlan(DietPlan diet)
+        {
+            AnimalShelterEntities.GetContext().DietPlans.Remove(diet);
+            AnimalShelterEntities.GetContext().SaveChanges();
+            RefreshListsEvent?.Invoke();
+        }
+
+        public void DeleteFood(Food food)
+        {
+            AnimalShelterEntities.GetContext().Foods.Remove(food);
+            AnimalShelterEntities.GetContext().SaveChanges();
+            RefreshListsEvent?.Invoke();
+        }
+
 
 
         #endregion
