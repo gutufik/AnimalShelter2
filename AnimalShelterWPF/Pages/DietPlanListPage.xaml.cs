@@ -40,14 +40,14 @@ namespace AnimalShelterWPF.Pages
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            var dietPlan = (sender as Button).DataContext as DietPlan;
+            var dietPlan = (sender as MenuItem).DataContext as DietPlan;
 
             NavigationService.Navigate(new DietPlanPage(dietPlan));
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            var dietPlan = (sender as Button).DataContext as DietPlan;
+            var dietPlan = (sender as MenuItem).DataContext as DietPlan;
             if (MessageBox.Show("Выбранный рацион будет безвозватно удален.", "Предупреждение", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
             {
                 dataAccess.DeleteDietPlan(dietPlan);

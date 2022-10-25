@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:AnimalShelterWPF.Pages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="FoodListPage">
@@ -71,14 +72,17 @@
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button x:Name="btnEdit" Content="Редактировать" Click="btnEdit_Click"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button x:Name="btnDelete" Content="Удалить" Click="btnDelete_Click"/>
+                                    <Menu>
+                                        <MenuItem>
+                                            <MenuItem.Header>
+                                                <materialDesign:PackIcon Kind="Menu" />
+                                            </MenuItem.Header>
+                                            <MenuItem Header="Подробнее" Foreground="Blue"
+                                                              Click="btnEdit_Click"/>
+                                            <MenuItem Header="Удалить" Foreground="Red" 
+                                                      Click="btnDelete_Click"/>
+                                        </MenuItem>
+                                    </Menu>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

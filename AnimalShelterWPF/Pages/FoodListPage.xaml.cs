@@ -58,7 +58,7 @@ namespace AnimalShelterWPF.Pages
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            var food = (sender as Button).DataContext as Food;
+            var food = (sender as MenuItem).DataContext as Food;
             NavigationService.Navigate(new FoodPage(food));
         }
 
@@ -74,7 +74,7 @@ namespace AnimalShelterWPF.Pages
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            var food = (sender as Button).DataContext as Food;
+            var food = (sender as MenuItem).DataContext as Food;
 
             if (MessageBox.Show("Выбранный корм будет безвозватно удален.", "Предупреждение", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
             {
