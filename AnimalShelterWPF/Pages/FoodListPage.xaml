@@ -20,6 +20,8 @@
         <Button x:Name="btnAdd" Content="Добавить" Click="btnAdd_Click" HorizontalAlignment="Right"/>
         <StackPanel Orientation="Horizontal" Grid.Row="1">
             <ComboBox x:Name="cbManufacturer" ItemsSource="{Binding Manufacturers}"
+                      materialDesign:HintAssist.HelperText="Производитель"
+                      materialDesign:HintAssist.HelperTextFontSize="13"
                       FontSize="20"
                       Margin="10 0"
                       MinWidth="150"
@@ -27,6 +29,8 @@
                       DisplayMemberPath="Name" 
                       SelectedIndex="0"/>
             <ComboBox x:Name="cbFoodType" ItemsSource="{Binding FoodTypes}"
+                      materialDesign:HintAssist.HelperText="Вид корма"
+                      materialDesign:HintAssist.HelperTextFontSize="13"
                       FontSize="20"
                       Margin="10 0"
                       MinWidth="150"
@@ -35,6 +39,8 @@
                       SelectedIndex="0"/>
             <ComboBox x:Name="cbAnimalCategory" ItemsSource="{Binding AnimalCategories}"
                       FontSize="20"
+                      materialDesign:HintAssist.HelperText="Тип животного"
+                      materialDesign:HintAssist.HelperTextFontSize="13"
                       Margin="10 0"
                       MinWidth="150"
                       SelectionChanged="FiltersSelectionChanged"
@@ -56,7 +62,7 @@
                    HorizontalAlignment="Center"
                    Visibility="Hidden"/>
 
-        <ListView x:Name="lvFoods" ItemsSource="{Binding Foods}" Grid.Row="2">
+        <ListView x:Name="lvFoods" ItemsSource="{Binding Foods}" Grid.Row="2" Margin="0 20 0 0">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>

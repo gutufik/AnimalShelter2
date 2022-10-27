@@ -56,6 +56,8 @@
                 </Grid.RowDefinitions>
                 
                 <ComboBox x:Name="cbAnimal" 
+                          materialDesign:HintAssist.HelperText="Выбор питомца"
+                          materialDesign:HintAssist.HelperTextFontSize="13"
                           ItemsSource="{Binding Animals}" 
                           DisplayMemberPath="Name" SelectedIndex="0" 
                           FontSize="20"

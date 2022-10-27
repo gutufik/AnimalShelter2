@@ -8,6 +8,17 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="DietPlanPage">
+    <Page.Resources>
+        <ResourceDictionary>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="Margin" Value="20 0"/>
+            </Style>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignComboBox}">
+                <Setter Property="Margin" Value="20"/>
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -22,30 +33,40 @@
         <Button x:Name="btnGoBack" Content="Назад" HorizontalAlignment="Left" Click="btnGoBack_Click"/>
         <Button x:Name="btnSave" Content="Сохранить" HorizontalAlignment="Right" Click="btnSave_Click"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            
+
             <DatePicker
                 x:Name="dpDate"
                 Width="140"
-                materialDesign:HintAssist.Hint="Дата"
+                materialDesign:HintAssist.HelperText="Дата"
+                materialDesign:HintAssist.HelperTextFontSize="13"
                 SelectedDateChanged="dpDate_SelectedDateChanged"
                 Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
-            
+
             <materialDesign:TimePicker
                 x:Name="tpTime"
                 Is24Hours="True"
                 Width="140"
                 SelectedTimeChanged="tpTime_SelectedTimeChanged"
-                materialDesign:HintAssist.Hint="Время"
+                materialDesign:HintAssist.HelperText="Время"
+                materialDesign:HintAssist.HelperTextFontSize="13"
                 Style="{StaticResource MaterialDesignOutlinedTimePicker}" />
 
         </StackPanel>
+        <TextBlock 
+            Grid.Row="1"
+            Text="Кого кормить"/>
         <ComboBox x:Name="cbAnimal"
                   Grid.Row="1"
                   ItemsSource="{Binding Animals}"
                   DisplayMemberPath="Name"
+                  FontSize="18"
                   SelectedItem="{Binding DietPlan.AnimalFood.Animal, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+        <TextBlock 
+            Grid.Row="2"
+            Text="Чем кормить"/>
         <ComboBox x:Name="cbFood"
                   Grid.Row="2"
+                  FontSize="18"
                   ItemsSource="{Binding Foods}"
                   SelectedItem="{Binding DietPlan.AnimalFood.Food}">
             <ComboBox.ItemTemplate>
