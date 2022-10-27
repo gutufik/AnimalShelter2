@@ -59,10 +59,11 @@
         <TextBlock x:Name="tbEmptyList" Text="Ничего не найдено"
                    Grid.Row="2"
                    FontSize="30"
+                   Margin="20"
                    HorizontalAlignment="Center"
                    Visibility="Hidden"/>
 
-        <ListView x:Name="lvFoods" ItemsSource="{Binding Foods}" Grid.Row="2" Margin="0 20 0 0">
+        <ListView x:Name="lvFoods" ItemsSource="{Binding Foods}" Grid.Row="2" Margin="0 20 0 0" FontSize="16">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>

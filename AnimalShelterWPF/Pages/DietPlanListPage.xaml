@@ -69,7 +69,7 @@
                         HorizontalAlignment="Center"
                         Visibility="Hidden"/>
 
-                <ListView x:Name="lvDietPlans" ItemsSource="{Binding DietPlans}" Grid.Row="1">
+                <ListView x:Name="lvDietPlans" ItemsSource="{Binding DietPlans}" Grid.Row="1" FontSize="16">
                     <ListView.View>
                         <GridView AllowsColumnReorder="False">
                             <GridView.Columns>

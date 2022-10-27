@@ -109,10 +109,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\AnimalFoodPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\AnimalPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -169,9 +165,6 @@
   <ItemGroup>
     <Compile Include="Pages\AccountPage.xaml.cs">
       <DependentUpon>AccountPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\AnimalFoodPage.xaml.cs">
-      <DependentUpon>AnimalFoodPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\AnimalPage.xaml.cs">
       <DependentUpon>AnimalPage.xaml</DependentUpon>

@@ -73,13 +73,16 @@ namespace AnimalShelterWPF.Pages
 
         private void DietPlanCalendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
-            
             HideList();
         }
 
         private void btnAddDiet_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new DietPlanPage(new DietPlan()));
+            var plan = new DietPlan();
+            var animal = cbAnimal.SelectedItem as Animal;
+            if (animal.Name != "Все")
+                plan.AnimalFood = new AnimalFood { Animal = animal };
+            NavigationService.Navigate(new DietPlanPage(plan));
         }
 
         private void btnGoBack_Click(object sender, RoutedEventArgs e)
@@ -90,7 +93,6 @@ namespace AnimalShelterWPF.Pages
         private void btnResetDates_Click(object sender, RoutedEventArgs e)
         {
             DietPlanCalendar.SelectedDates.Clear();
-
         }
 
         private void FiltersSelectionChanged(object sender, SelectionChangedEventArgs e)

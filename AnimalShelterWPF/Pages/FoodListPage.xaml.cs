@@ -69,7 +69,20 @@ namespace AnimalShelterWPF.Pages
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new FoodPage(new Food()));
+            var food = new Food();
+
+            var manufacturer = cbManufacturer.SelectedItem as Manufacturer;
+            var foodType = cbFoodType.SelectedItem as FoodType;
+            var animalCategory = cbAnimalCategory.SelectedItem as AnimalCategory;
+
+            if (manufacturer.Name != "Все")
+                food.Manufacturer = manufacturer;
+            if (foodType.Name != "Все")
+                food.FoodType = foodType;
+            if (animalCategory.Name != "Все")
+                food.AnimalCategory = animalCategory;
+
+            NavigationService.Navigate(new FoodPage(food));
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
