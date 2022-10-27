@@ -63,7 +63,15 @@
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Image Source="{Binding Image}" Height="100" HorizontalAlignment="Center"/>
+                                    <Image Height="100" HorizontalAlignment="Center">
+                                        <Image.Source>
+                                            <Binding Path="Image">
+                                                <Binding.TargetNullValue>
+                                                    <ImageSource>/Resources/default_image.jpg</ImageSource>
+                                                </Binding.TargetNullValue>
+                                            </Binding>
+                                        </Image.Source>
+                                    </Image>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
