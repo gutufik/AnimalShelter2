@@ -76,7 +76,7 @@
             <StackPanel Grid.Row="4" Grid.Column="1">
                 <Image x:Name="FoodImage"
                     Source="{Binding Food.Image}"
-                    Height="100"/>
+                    Height="200"/>
                 <Button x:Name="SelectImageButton"
                     Content="Выбрать изображение"
                     Click="SelectImageButton_Click"/>
