@@ -6,7 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\Images\account.png" />
+    <Content Remove="wwwroot\Images\defaultImage.jpg" />
+    <Content Remove="wwwroot\Images\logo.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\account.png" />
+    <None Include="wwwroot\Images\defaultImage.jpg" />
     <None Include="wwwroot\Images\IndexImage.png" />
+    <None Include="wwwroot\Images\logo.jpg" />
   </ItemGroup>
 
   <ItemGroup>

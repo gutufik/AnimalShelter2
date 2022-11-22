@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimalShelterAPI", "AnimalS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalShelterTests", "AnimalShelterTests\AnimalShelterTests.csproj", "{80EB3418-6CD4-45F7-89A1-BD587FE18C2E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarcodeGenerator", "BarcodeGenerator\BarcodeGenerator.csproj", "{710E6219-FA3D-43D1-A335-1F04A78EECE4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{80EB3418-6CD4-45F7-89A1-BD587FE18C2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80EB3418-6CD4-45F7-89A1-BD587FE18C2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80EB3418-6CD4-45F7-89A1-BD587FE18C2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{710E6219-FA3D-43D1-A335-1F04A78EECE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{710E6219-FA3D-43D1-A335-1F04A78EECE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{710E6219-FA3D-43D1-A335-1F04A78EECE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{710E6219-FA3D-43D1-A335-1F04A78EECE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
