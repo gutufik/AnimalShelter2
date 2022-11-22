@@ -1,6 +1,6 @@
 ﻿@using Core;
 @using Core.Services;
-@model Core.Animal
+@model Core.Models.AnimalModel
 
 @{
     ViewData["Title"] = "Create";
@@ -11,7 +11,14 @@
 <h2>Новое животное</h2>
 <div class="row card">
     <div class="card-body">
-        <form asp-action="Create" method="post">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <input id="imageSource" asp-for="ImageFile" class="form-control" />
+            <img id="imageView" width=300px/>
+            @if(Model != null && Model.Image != null)
+                {
+                    @Html.Raw("<img height='100' class='center' src=\"data:image/jpeg;base64,"
+                    + Convert.ToBase64String(Model.Image) + "\" />");
+                }
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <table class="table">
                 <tr>
@@ -146,6 +153,15 @@
 <div>
     <a asp-action="Index">Назад</a>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){})
+    $("#imageSource").change(function(event){
+        alert("sefew");
+        var files = event.target.files;
+        $("#ImageView").attr("src", window.URL.createObjectURL(files[0]));
+    })
+</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

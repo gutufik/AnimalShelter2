@@ -29,7 +29,7 @@ namespace Core
         }
         public void SaveAnimal(Animal animal)
         {
-            if (GetAnimals().FirstOrDefault(a => a.Id == animal.Id) == null)
+            if (animal.Id == 0)
                 AnimalShelterEntities.GetContext().Animals.Add(animal);
 
             AnimalShelterEntities.GetContext().SaveChanges();

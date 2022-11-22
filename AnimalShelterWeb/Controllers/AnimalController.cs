@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using Fingers10.ExcelExport.ActionResults;
 using ClosedXML.Excel;
+using Core.Models;
 
 namespace AnimalShelterWeb.Controllers
 {
@@ -27,6 +28,13 @@ namespace AnimalShelterWeb.Controllers
             var animals = _animalService.GetAnimals();
             return View(animals);
         }
+
+        public IActionResult GuestIndex()
+        {
+            var animals = _animalService.GetAnimals();
+            return View(animals);
+        }
+
         [Authorize]
         public IActionResult Edit(int id)
         {
@@ -47,9 +55,9 @@ namespace AnimalShelterWeb.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Animal animal)
+        public IActionResult Create(AnimalModel animalModel)
         {
-            _animalService.SaveAnimal(animal);
+            _animalService.SaveAnimal(new Animal(animalModel));
             return RedirectToAction("Index");
         }
         public IActionResult Delete(int id)

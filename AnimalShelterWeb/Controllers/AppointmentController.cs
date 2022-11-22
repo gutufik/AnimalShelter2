@@ -16,7 +16,7 @@ namespace AnimalShelterWeb.Controllers
         [Authorize]
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Calendar");
         }
         [Authorize]
         public IActionResult Create()

@@ -2,3 +2,12 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
+
+$(document).ready(function(){ })
+$("#imageSource").change(function (event) {
+    alert("Success")
+    var files = event.target.files;
+    $("#imageView").attr("src", window.URL.createObjectURL(files[0]));
+
+})

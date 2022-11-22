@@ -37,9 +37,17 @@
                         <input type="text" asp-for="Employee.LastName" value="@Model.Employee.LastName" />
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <label>Роль</label>
+                    </td>
+                    <td>
+                        <input type="text" asp-for="Employee.LastName" value="@Model.Employee.LastName" />
+                    </td>
+                </tr>
             </table>
-            <button type="submit" class="btn-primary" asp-controller="Account" asp-action="SaveUser">Сохранить</button>
-            <button asp-controller="Account" class="btn-danger" asp-action="Logout">Выйти</button>
+            <button type="submit" class="btn btn-primary" asp-controller="Account" asp-action="SaveUser">Сохранить</button>
+            <button asp-controller="Account" class="btn btn-danger" asp-action="Logout">Выйти</button>
         </form>
     </div>
 

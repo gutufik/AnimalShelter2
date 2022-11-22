@@ -26,7 +26,38 @@
     margin-right: auto;
     width: 100px;
 }
+.card-container {
+    display: flex;
+    flex-wrap: wrap
+}
 
+.card-container div {
+    flex: 0 0 33.333333%;
+}
+
+.card-style {
+    border-radius: 15px;
+    width: 350px;
+    height: 150px;
+    margin: 10px
+}
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #4A88F0;
+    border-color: #4A88F0;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
 
 #calendar {
     -webkit-transform: translate3d(0, 0, 0);

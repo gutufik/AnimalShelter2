@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +19,7 @@ namespace Core
             Age = age;
         }
 
-        public Animal(AnimalModel model) : base()
+        public Animal(AnimalModel model)
         {
             Id = model.Id;
             Name = model.Name;
@@ -33,6 +35,12 @@ namespace Core
             CapturePlace = model.CapturePlace;
             Sign = model.Sign;
             CuratorId = model.CuratorId;
+
+            using (var memoryStream = new MemoryStream())
+            {
+                model.ImageFile.CopyTo(memoryStream);
+                Image = memoryStream.ToArray();
+            }
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core;
+using Microsoft.AspNetCore.Http;
 
 namespace Core.Models
 {
@@ -24,6 +26,7 @@ namespace Core.Models
             Color = "";
             CapturePlace = "";
             Sign = "";
+            ImageFile = null;
             CuratorId = 0;
         }
 
@@ -59,6 +62,12 @@ namespace Core.Models
         public string CapturePlace { get; set; }
         public string Sign { get; set; }
         public int CuratorId { get; set; }
+        public byte[] Image { get; set; }
+        public IFormFile ImageFile 
+        {
+            get;
+            set;
+        } 
         public bool IsDeleted { get; set; }
     }
 }
