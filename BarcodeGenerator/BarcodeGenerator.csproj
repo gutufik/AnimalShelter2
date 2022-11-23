@@ -6,13 +6,6 @@
 
   <ItemGroup>
     <PackageReference Include="BarCode" Version="2022.10.9871" />
-    <PackageReference Include="QRCoder" Version="1.4.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="PresentationCore">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\PresentationCore.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>

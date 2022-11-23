@@ -21,7 +21,7 @@
             <img height="200"  src='~/images/defaultImage.jpg' />
         }
         @Html.Raw("<img height='200' src=\"data:image/jpeg;base64,"
-            + Convert.ToBase64String(Generator.GenereteQR($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}", $"wwwroot/Images/QR_{Model.Id}.png")) + "\" />");
+            + Convert.ToBase64String(Generator.GenereteQR($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}", $"wwwroot/Images/QR_{Model.Id}.png")) + "\" />")
 
     <dl class="row">
         

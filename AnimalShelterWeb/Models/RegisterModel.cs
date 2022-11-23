@@ -4,7 +4,7 @@ namespace AnimalShelterWeb.Models
 {
     public class RegisterModel
     {
-        [Required(ErrorMessage = "Не указан Email")]
+        [Required(ErrorMessage = "Не указан Логин")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Не указан пароль")]
