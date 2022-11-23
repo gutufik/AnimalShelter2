@@ -46,10 +46,14 @@ namespace Core
         { 
             return AnimalShelterEntities.GetContext().AnimalTypes.ToList();
         }
+        public AnimalType GetAnimalType(int id) => GetAnimalTypes().FirstOrDefault(a => a.Id == id);
+
         public List<Status> GetAnimalStatuses()
         {
             return AnimalShelterEntities.GetContext().Status.ToList();
         }
+
+        public Status GetStatus(int id) => GetAnimalStatuses().FirstOrDefault(a => a.Id == id);
         public List<Gender> GetGenders()
         {
             return AnimalShelterEntities.GetContext().Genders.ToList();

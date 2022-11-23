@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BarcodeGenerator\BarcodeGenerator.csproj" />
     <ProjectReference Include="..\Core\Core.csproj" />
   </ItemGroup>
 

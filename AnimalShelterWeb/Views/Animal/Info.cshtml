@@ -1,0 +1,110 @@
+﻿@model Core.Animal
+@using Core;
+@using BarcodeGenerator;
+
+@{
+    var dataAccess = new DataAccess();
+    ViewData["Title"] = "Подробнее";
+}
+
+
+<div>
+    <h4>@Model.Name</h4>
+    <hr />
+     @if(Model.Image != null)
+        {
+            @Html.Raw("<img height='200' src=\"data:image/jpeg;base64,"
+            + Convert.ToBase64String(Model.Image) + "\" />");
+        }
+        else
+        {
+            <img height="200"  src='~/images/defaultImage.jpg' />
+        }
+        @Html.Raw("<img height='200' src=\"data:image/jpeg;base64,"
+            + Convert.ToBase64String(Generator.GenereteQR($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}", $"wwwroot/Images/QR_{Model.Id}.png")) + "\" />");
+
+    <dl class="row">
+        
+        <dt class = "col-sm-2">
+            Тип
+        </dt>
+        <dd class = "col-sm-10">
+            @dataAccess.GetAnimalType(Model.TypeId).Name
+        </dd>
+        <dt class = "col-sm-2">
+            Порода
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Breed)
+        </dd>
+        <dt class = "col-sm-2">
+            Дата прибытия
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.ArrivalDate.ToShortDateString()
+        </dd>
+        <dt class = "col-sm-2">
+            Статус
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Status.Name
+        </dd>
+        <dt class = "col-sm-2">
+            Рост
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Height см
+        </dd>
+        <dt class = "col-sm-2">
+            Вес
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Weight) кг
+        </dd>
+        <dt class = "col-sm-2">
+            Возраст
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Age) лет
+        </dd>
+        <dt class = "col-sm-2">
+            Пол
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Gender.Name
+        </dd>
+        <dt class = "col-sm-2">
+            Окрас
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+        <dt class = "col-sm-2">
+            Место отлова
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CapturePlace)
+        </dd>
+        <dt class = "col-sm-2">
+            Признаки
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Sign)
+        </dd>
+        <dt class = "col-sm-2">
+            Куратор
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Employee.LastName
+            @Model.Employee.FirstName
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Забрать", "Take", new { id = Model.Id }) 
+</div>
+
+
+ @section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

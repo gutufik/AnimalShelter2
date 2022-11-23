@@ -62,7 +62,7 @@ namespace AnimalShelterWeb.Controllers
                     _userService.SaveUser(user);
 
                     User = user;
-
+                    UserService.User = user;
                     await Authenticate(user); // аутентификация
 
                     return RedirectToAction("Index", "Home");
@@ -89,6 +89,7 @@ namespace AnimalShelterWeb.Controllers
                 {
                     await Authenticate(user);
                     User = user;
+                    UserService.User = user;
                     return RedirectToAction("Index", "Home");
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");

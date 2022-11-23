@@ -67,6 +67,20 @@ namespace AnimalShelterWeb.Controllers
 
             return Redirect("~/animal/");
         }
+
+        [Authorize]
+        public IActionResult Take(int id)
+        {
+            var animal = _animalService.GetAnimal(id);
+            _animalService.DeleteAnimal(animal);
+            return RedirectToAction("GuestIndex");
+        }
+
+        public IActionResult Info(int animalId)
+        {
+            var animal = _animalService.GetAnimal(animalId);
+            return View(animal);
+        }
         public IActionResult Export()
         {
             var animals = _animalService.GetAnimals();

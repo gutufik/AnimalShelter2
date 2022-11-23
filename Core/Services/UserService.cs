@@ -10,6 +10,7 @@ namespace Core.Services
     public class UserService
     {
         private DataAccess _dataAccess;
+        public static User User { get; set; }
         public UserService()
         {
             _dataAccess = new DataAccess();
