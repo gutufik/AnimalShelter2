@@ -1,24 +1,50 @@
 ﻿@model AnimalShelterWeb.Models.LoginModel
  
-<h2>Вход на сайт</h2>
+<h2 class='text-center'>Вход на сайт</h2>
  
-<a asp-action="Register" asp-controller="Account">Регистрация</a>
- 
-<form asp-action="Login" asp-controller="Account" asp-anti-forgery="true">
-    <div class="validation" asp-validation-summary="ModelOnly"></div>
-    <div>
+
+<div class='text-center'>
+    <form asp-action="Login" asp-controller="Account" asp-anti-forgery="true">
+        <div class="validation" asp-validation-summary="ModelOnly"></div>
+        <table class="center-table">
+            <tr>
+                <td class="text-left">
+                    <div style="width:120px">
+                        <label asp-for="Email">Логин</label>
+                    </div>
+                </td>
+                <td width=80px></td>
+                <td>
+                    <input style="width:120px" type="text" asp-for="Email" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan=3>
+                    <span asp-validation-for="Email" class='text-danger'/>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-left">
+                    <label asp-for="Password">Пароль</label>
+                </td>
+                <td></td>
+                <td>
+                    <input style="width:120px" asp-for="Password" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan=3>
+                    <span asp-validation-for="Password" class='text-danger'/>
+                </td>
+            </tr>
+        </table>
         <div class="form-group">
-            <label asp-for="Email">Введите Email</label>
-            <input type="text" asp-for="Email" />
-            <span asp-validation-for="Email" />
-        </div>
-        <div class="form-group">
-            <label asp-for="Password">Введите пароль</label>
-            <input asp-for="Password" />
-            <span asp-validation-for="Password" />
-        </div>
-        <div class="form-group">
+            <a asp-action="Register" asp-controller="Account">Регистрация</a>
             <input type="submit" value="Войти" class="btn btn-primary" />
         </div>
-    </div>
-</form>
+    </form>
+</div>
+
+ @section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

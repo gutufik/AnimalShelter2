@@ -150,6 +150,7 @@ namespace Core
         {
             if (GetUsers().FirstOrDefault(u => u.Id == user.Id) == null)
                 AnimalShelterEntities.GetContext().Users.Add(user);
+            SaveEmployee(user.Employee);
 
             AnimalShelterEntities.GetContext().SaveChanges();
         }
@@ -241,5 +242,10 @@ namespace Core
 
 
         #endregion
+
+        public static List<Role> GetRoles() => AnimalShelterEntities.GetContext().Roles.ToList();
+
+        public static Role GetRole(int id) => GetRoles().FirstOrDefault(x => x.Id == id);
+        
     }
 }

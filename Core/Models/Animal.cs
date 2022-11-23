@@ -36,10 +36,13 @@ namespace Core
             Sign = model.Sign;
             CuratorId = model.CuratorId;
 
-            using (var memoryStream = new MemoryStream())
+            if(model.ImageFile != null)
             {
-                model.ImageFile.CopyTo(memoryStream);
-                Image = memoryStream.ToArray();
+                using (var memoryStream = new MemoryStream())
+                {
+                    model.ImageFile.CopyTo(memoryStream);
+                    Image = memoryStream.ToArray();
+                }
             }
         }
     }

@@ -47,7 +47,10 @@
                 @item.Animal.Name
             </td>
             <td>
-                @item.AppointmentType.Name
+                @if (item.AppointmentType != null)
+                {
+                    @item.AppointmentType.Name
+                }
             </td>
             <td>
                 @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |

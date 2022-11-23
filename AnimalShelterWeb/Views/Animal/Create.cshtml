@@ -14,11 +14,6 @@
         <form asp-action="Create" method="post" enctype="multipart/form-data">
             <input id="imageSource" asp-for="ImageFile" class="form-control" />
             <img id="imageView" width=300px/>
-            @if(Model != null && Model.Image != null)
-                {
-                    @Html.Raw("<img height='100' class='center' src=\"data:image/jpeg;base64,"
-                    + Convert.ToBase64String(Model.Image) + "\" />");
-                }
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <table class="table">
                 <tr>

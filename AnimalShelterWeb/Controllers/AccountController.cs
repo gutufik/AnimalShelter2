@@ -47,10 +47,17 @@ namespace AnimalShelterWeb.Controllers
                 if (user == null)
                 {
                     // добавляем пользователя в бд
-                    user = new User 
+                    user = new User
                     {
                         Login = model.Email,
-                        Password = model.Password 
+                        Password = model.Password,
+                        Employee = new Employee
+                        {
+                            RoleId = 2,
+                            Role = DataAccess.GetRole(2),
+                            LastName = model.LastName, 
+                            FirstName = model.FirstName,
+                        }
                     };
                     _userService.SaveUser(user);
 

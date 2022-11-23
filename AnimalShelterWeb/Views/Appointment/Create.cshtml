@@ -33,7 +33,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="TypeId" class="control-label">Тип</label>
-                <select asp-for="AnimalId" class="form-control">
+                <select asp-for="TypeId" class="form-control">
                     @foreach (var type in appointmentService.GetAppointmentTypes())
                     {
                         <option value=@type.Id>@type.Name</option>

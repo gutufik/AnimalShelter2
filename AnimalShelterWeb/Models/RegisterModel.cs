@@ -12,7 +12,13 @@ namespace AnimalShelterWeb.Models
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Пароль введен неверно")]
+        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
         public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage="Минимальная длина имени - 3 символа"), MinLength(3)]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "Минимальная длина фамилии - 3 символа"), MinLength(3)]
+        public string LastName { get; set; }
     }
 }

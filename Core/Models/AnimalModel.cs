@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -49,16 +50,20 @@ namespace Core.Models
         }
 
         public int Id { get; set; }
+        [Required(ErrorMessage="У животного должна быть кличка"), MinLength(3)]
         public string Name { get; set; }
         public int TypeId { get; set; }
         public string Breed { get; set; }
+        [Required(ErrorMessage = "Это поле обязательно"), MinLength(1)]
         public System.DateTime ArrivalDate { get; set; }
         public int StatusId { get; set; }
         public Nullable<decimal> Height { get; set; }
         public Nullable<decimal> Weight { get; set; }
+        [Required(ErrorMessage ="Это поле обязательно"), MinLength(1)]
         public int Age { get; set; }
         public int GenderId { get; set; }
         public string Color { get; set; }
+        [Required(ErrorMessage = "Это поле обязательно"), MinLength(1)]
         public string CapturePlace { get; set; }
         public string Sign { get; set; }
         public int CuratorId { get; set; }
