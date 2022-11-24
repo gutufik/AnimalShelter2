@@ -30,6 +30,8 @@ namespace AnimalShelterWPF.Pages
             InitializeComponent();
             _userService = new UserService();
             User = App.User;
+            if (User.Employee.Role.Name != "Админ")
+                btnAdmin.Visibility = Visibility.Collapsed;
             DataContext = User;
         }
 
@@ -44,6 +46,11 @@ namespace AnimalShelterWPF.Pages
             Properties.Settings.Default.Reset();
 
             NavigationService.Navigate(new LoginPage());
+        }
+
+        private void btnAdmin_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AdminPage());
         }
     }
 }

@@ -48,6 +48,7 @@
                 <StackPanel Grid.Row="1" Grid.Column="1" Margin="30,0">
                     <TextBlock Text="Дата" FontSize="15"/>
                     <DatePicker x:Name="dpDate" 
+                                Language="ru"
                                 HorizontalAlignment="Left"
                                 MinWidth="100"
                                 FontSize="20"
@@ -94,7 +95,7 @@
                 </StackPanel>
                 <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Margin="30,0">
                     <TextBlock Text="Комментарий" FontSize="15"/>
-                    <TextBox VerticalScrollBarVisibility="Auto" FontSize="20"/>
+                    <TextBox Text="{Binding Appointment.Comment}" VerticalScrollBarVisibility="Auto" FontSize="20"/>
                 </StackPanel>
 
             </Grid>

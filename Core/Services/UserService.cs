@@ -9,7 +9,7 @@ namespace Core.Services
 {
     public class UserService
     {
-        private DataAccess _dataAccess;
+        public DataAccess _dataAccess;
         public UserService()
         {
             _dataAccess = new DataAccess();
@@ -37,6 +37,14 @@ namespace Core.Services
         public List<User> GetUsers()
         {
             return _dataAccess.GetUsers();
+        }
+        public List<Role> GetRoles()
+        {
+            return _dataAccess.GetRoles();
+        }
+        public void DeleteUser(User user) 
+        {
+
         }
     }
 }

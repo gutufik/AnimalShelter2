@@ -37,6 +37,7 @@
             <DatePicker
                 x:Name="dpDate"
                 Width="140"
+                FontSize="16"
                 materialDesign:HintAssist.HelperText="Дата"
                 materialDesign:HintAssist.HelperTextFontSize="13"
                 SelectedDateChanged="dpDate_SelectedDateChanged"
@@ -46,6 +47,7 @@
                 x:Name="tpTime"
                 Is24Hours="True"
                 Width="140"
+                FontSize="16"
                 SelectedTimeChanged="tpTime_SelectedTimeChanged"
                 materialDesign:HintAssist.HelperText="Время"
                 materialDesign:HintAssist.HelperTextFontSize="13"
@@ -54,6 +56,7 @@
         </StackPanel>
         <TextBlock 
             Grid.Row="1"
+            FontSize="20"
             Text="Кого кормить"/>
         <ComboBox x:Name="cbAnimal"
                   Grid.Row="1"
@@ -63,6 +66,7 @@
                   SelectedItem="{Binding DietPlan.AnimalFood.Animal, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         <TextBlock 
             Grid.Row="2"
+            FontSize="20"
             Text="Чем кормить"/>
         <ComboBox x:Name="cbFood"
                   Grid.Row="2"

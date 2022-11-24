@@ -37,6 +37,7 @@
             <TextBlock  Text="Имя" FontSize="15" />
             <TextBox x:Name="tbLastName" FontSize="20" Text="{Binding Employee.FirstName}"/>
         </StackPanel>
+        <Button x:Name="btnAdmin" Content="Админка" Click="btnAdmin_Click"/>
         <Button x:Name="btnSave" Grid.Row="4" Grid.Column="1" 
                 Click="btnSave_Click" Content="Сохранить"/>
         <Button x:Name="btnExit" Grid.Row="4" Grid.Column="2" 

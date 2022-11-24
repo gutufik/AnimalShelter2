@@ -40,6 +40,7 @@
                     Click="btnResetDates_Click"/>
             <Viewbox Grid.Row="1" HorizontalAlignment="Left">
                 <Calendar x:Name="DietPlanCalendar" 
+                          Language="ru"
                       SelectionMode="MultipleRange"
                       SelectedDatesChanged="FiltersSelectionChanged" />
             </Viewbox>

@@ -38,7 +38,7 @@ namespace AnimalShelterWPF.Pages
             _userService = new UserService();
             _animalService = new AnimalService();
 
-            Animal = new Animal();
+            Animal = new Animal() { ArrivalDate = DateTime.Today };
             Statuses = _animalService.GetAnimalStatuses();
             Types = _animalService.GetAnimalTypes();
             Genders = _animalService.GetGenders();

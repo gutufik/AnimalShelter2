@@ -57,6 +57,7 @@
                 <StackPanel Grid.Row="1" Grid.Column="1">
                     <TextBlock Text="Дата прибытия" FontSize="15" />
                     <DatePicker x:Name="dpDate"
+                                Language="ru"
                                 FontSize="20"
                                 SelectedDate="{Binding Animal.ArrivalDate}"/>
                 </StackPanel>

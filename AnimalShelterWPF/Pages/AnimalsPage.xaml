@@ -26,6 +26,7 @@
                     Margin="20,0"
                     Content="Экспорт"/>
             <Button x:Name="btnFood" Click="btnFood_Click"
+                    Visibility="Collapsed"
                     Margin="20,0"
                     Background="AliceBlue"
                     Content="Питание"/>

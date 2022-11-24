@@ -70,13 +70,14 @@
         </StackPanel>
         <Viewbox Grid.Row="1" HorizontalAlignment="Left">
             <Calendar x:Name="appointmentCalendar" 
+                      Language="ru"
                       SelectionMode="MultipleRange"
                       SelectedDatesChanged="Calendar_SelectedDatesChanged"
                 materialDesign:CalendarAssist.Orientation="Horizontal" />
         </Viewbox>
 
         <ListView x:Name="lvAppointments" 
-                  TextElement.FontSize="16"
+                  TextElement.FontSize="18"
                   Grid.Column="1" Grid.Row="1"
                   SelectionChanged="lvAppointments_SelectionChanged"
                   ItemsSource="{Binding Appointments}"

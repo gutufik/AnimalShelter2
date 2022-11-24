@@ -238,6 +238,16 @@ namespace Core
             RefreshListsEvent?.Invoke();
         }
 
+        public List<Role> GetRoles()
+        {
+            return AnimalShelterEntities.GetContext().Roles.ToList();
+        }
+
+        public void DeleteUser(User user)
+        {
+            AnimalShelterEntities.GetContext().Users.Remove(user);
+            RefreshListsEvent?.Invoke();
+        }
 
 
         #endregion

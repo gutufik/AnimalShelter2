@@ -35,6 +35,11 @@ namespace AnimalShelterWPF.Pages
 
             DataAccess.RefreshListsEvent += RefreshList;
 
+            if (App.User.Employee.Role.Name == "Админ" || App.User.Employee.Role.Name == "Диетолог")
+            {
+                btnFood.Visibility= Visibility.Visible;
+            }
+
             Animals = _animalService.GetAnimals();
             _employees = _userService.GetEmployees();
             DataContext = this;
@@ -54,12 +59,14 @@ namespace AnimalShelterWPF.Pages
         {
             var senderButton = sender as Button;
             var animal = senderButton.DataContext as Animal;
+            if (MessageBox.Show("Выбранное животное будет удалено. Продолжить?", "Предупреждение", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
+            {
+                _animalService.DeleteAnimal(animal);
+                Animals = _animalService.GetAnimals();
+                lvAnimals.ItemsSource = Animals;
 
-            _animalService.DeleteAnimal(animal);
-            Animals = _animalService.GetAnimals();
-            lvAnimals.ItemsSource = Animals;
-
-            lvAnimals.Items.Refresh();
+                lvAnimals.Items.Refresh();
+            }
 
         }
         private void RefreshList()

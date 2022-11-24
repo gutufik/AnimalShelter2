@@ -48,7 +48,7 @@ namespace AnimalShelterWPF.Pages
             Types = _appointmentService.GetAppointmentTypes();
             Medicines = _medicineService.GetMedicines();
 
-            dpDate.DisplayDateStart = DateTime.Now - TimeSpan.FromDays(30);
+            dpDate.DisplayDateStart = DateTime.Now;
             dpDate.DisplayDateEnd = DateTime.Now + TimeSpan.FromDays(30);
 
             DataContext = this;
@@ -74,16 +74,21 @@ namespace AnimalShelterWPF.Pages
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            var stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine("Поля заполнены некорректно");
             try
             {
-                if (Appointment.Date > DateTime.Now)
+                if (Appointment.Date < DateTime.Now)
+                {
+                    stringBuilder.AppendLine("Нельзя изменять прошедшие назначения");
                     throw new Exception();
+                }
                 _appointmentService.SaveAnimalAppointment(Appointment);
                 NavigationService.GoBack();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Не все поля заполнены");
+                MessageBox.Show(stringBuilder.ToString());
             }
 
         }
