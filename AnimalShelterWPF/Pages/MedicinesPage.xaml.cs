@@ -38,15 +38,17 @@ namespace AnimalShelterWPF.Pages
 
         private void btnAddMedicine_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new MedicinePage());
+            (new Windows.MedicineWindow(new Medicine())).ShowDialog();
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             var senderButton = sender as Button;
             var medicine = senderButton.DataContext as Medicine;
-
-            _medicineService.DeleteMedicine(medicine);
+            if (MessageBox.Show($"Вы точно хотите удалить {medicine.Name}?", "Предупреждение", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
+            {
+                _medicineService.DeleteMedicine(medicine);
+            }
             
         }
         private void RefreshList()

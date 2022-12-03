@@ -122,13 +122,13 @@
                              FontSize="20"
                              Text="{Binding Animal.CapturePlace}"/>
                 </StackPanel>
-                <StackPanel Grid.Row="4" Grid.Column="1">
+                <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2">
                     <TextBlock Text="Признаки" FontSize="15"/>
                     <TextBox x:Name="tbSign"
                              FontSize="20"
                              Text="{Binding Animal.Sign}"/>
                 </StackPanel>
-                <StackPanel Grid.Row="4" Grid.Column="3">
+                <StackPanel Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="3">
                     <TextBlock Text="Куратор" FontSize="15"/>
                     <ComboBox x:Name="cbCurator"
                               FontSize="20"
@@ -136,10 +136,10 @@
                       SelectedItem="{Binding Animal.Employee}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding LastName}" Margin="5,0"/>
-                                    <TextBlock Text="{Binding FirstName}"/>
-                                </StackPanel>
+                                <TextBlock>
+                                    <Run Text="{Binding LastName}" />
+                                    <Run Text="{Binding FirstName}"/>
+                                </TextBlock>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>

@@ -1,0 +1,23 @@
+﻿<Window x:Class="AnimalShelterWPF.Windows.MedicineWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AnimalShelterWPF.Windows"
+        mc:Ignorable="d"
+        Title="Лекарство" Height="150" Width="200">
+    <Grid>
+        <StackPanel Grid.Row="1" 
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Center">
+            <TextBlock Text="Название" 
+                   Grid.Column="0" Grid.Row="1" 
+                   FontSize="25" />
+            <TextBox x:Name="tbName" Margin="0,10"
+                     FontSize="20"
+                 Grid.Column="0" Grid.Row="2" 
+                 Text="{Binding Name}"/>
+            <Button x:Name="btnAdd" Content="Добавить" Click="btnAdd_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

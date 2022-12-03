@@ -10,38 +10,31 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Core;
 using Core.Services;
 
-namespace AnimalShelterWPF.Pages
+namespace AnimalShelterWPF.Windows
 {
     /// <summary>
-    /// Interaction logic for MedicinePage.xaml
+    /// Interaction logic for MedicineWindow.xaml
     /// </summary>
-    public partial class MedicinePage : Page
+    public partial class MedicineWindow : Window
     {
-        public Medicine Medicine { get; set; }
         private MedicineService _medicineService;
-        public MedicinePage()
+        public Medicine Medicine { get; set; }
+        public MedicineWindow(Medicine medicine)
         {
             InitializeComponent();
-            Medicine = new Medicine();
-            _medicineService = new MedicineService();
-
+            _medicineService = new MedicineService()
+            Medicine = medicine;
             DataContext = Medicine;
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             _medicineService.SaveMedicine(Medicine);
-            NavigationService.GoBack();
-        }
-
-        private void btnGoBack_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
+            DialogResult = true;
         }
     }
 }
