@@ -23,7 +23,7 @@ namespace AnimalShelterWPF
     public partial class MainWindow : Window
     {
         private Dictionary<string, Type> pages;
-        public string UsersButtonVisibility { get; set; } = "Hidded";
+        public string UsersButtonVisibility { get; set; }
         public DataAccess DataAccess { get; set; }
 
         public MainWindow()
@@ -38,7 +38,7 @@ namespace AnimalShelterWPF
                 {"Вход", typeof(LoginPage)},
                 {"Аккаунт", typeof(AccountPage)},
             };
-
+            UsersButtonVisibility = "Hidded";
             InitializeComponent();
 
             DataAccess.RefreshTitleEvent += RefreshUserPageTitle;
