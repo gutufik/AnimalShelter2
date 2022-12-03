@@ -42,6 +42,7 @@ namespace AnimalShelterWPF.Pages
                 Properties.Settings.Default.Login = login;
                 Properties.Settings.Default.Password = password;
                 Properties.Settings.Default.Save();
+                (App.Current.MainWindow as MainWindow).UsersButtonVisibility = "Visible";
             }
             else
                 MessageBox.Show("Неверный логин или пароль");

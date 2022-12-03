@@ -23,6 +23,7 @@ namespace AnimalShelterWPF
     public partial class MainWindow : Window
     {
         private Dictionary<string, Type> pages;
+        public string UsersButtonVisibility { get; set; } = "Hidded";
         public DataAccess DataAccess { get; set; }
 
         public MainWindow()
@@ -49,6 +50,7 @@ namespace AnimalShelterWPF
                 App.User = DataAccess.GetUser(Properties.Settings.Default.Login, Properties.Settings.Default.Password);
                 MainFrame.NavigationService.Navigate(new IndexPage());
             }
+            DataContext = this;
         }
 
         private void TitleClick(object sender, RoutedEventArgs e)

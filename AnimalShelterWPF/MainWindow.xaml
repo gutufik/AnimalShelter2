@@ -38,7 +38,7 @@
                 FontSize="20"
                 Background="Transparent" BorderBrush="Transparent"
                 Foreground="Black" Click="TitleClick"/>
-        <Button x:Name="btnUsers" Content="Пользователи" 
+        <Button x:Name="btnUsers" Content="Пользователи" Visibility="{Binding UsersButtonVisibility}"
                 Grid.Column="1"
                 FontSize="20"
                 Background="Transparent" BorderBrush="Transparent"
