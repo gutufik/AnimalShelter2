@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AnimalShelterWPF.Windows"
         mc:Ignorable="d"
-        Title="Лекарство" Height="150" Width="200">
+        Title="Лекарство" MinHeight="200" MinWidth="250">
     <Grid>
         <StackPanel Grid.Row="1" 
                     Grid.ColumnSpan="2"

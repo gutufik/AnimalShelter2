@@ -38,6 +38,11 @@
                 FontSize="20"
                 Background="Transparent" BorderBrush="Transparent"
                 Foreground="Black" Click="TitleClick"/>
+        <Button x:Name="btnUsers" Content="Пользователи" 
+                Grid.Column="1"
+                FontSize="20"
+                Background="Transparent" BorderBrush="Transparent"
+                Foreground="Black" Click="TitleClick"/>
         <Button x:Name="btnAnimals" Content="Питомцы" 
                FontSize="20"
                Background="Transparent" BorderBrush="Transparent"

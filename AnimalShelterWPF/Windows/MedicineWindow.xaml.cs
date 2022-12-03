@@ -26,15 +26,23 @@ namespace AnimalShelterWPF.Windows
         public MedicineWindow(Medicine medicine)
         {
             InitializeComponent();
-            _medicineService = new MedicineService()
+            _medicineService = new MedicineService();
             Medicine = medicine;
             DataContext = Medicine;
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            _medicineService.SaveMedicine(Medicine);
-            DialogResult = true;
+            try
+            {
+
+                _medicineService.SaveMedicine(Medicine);
+                DialogResult = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Заполните название лекарства");
+            }
         }
     }
 }
