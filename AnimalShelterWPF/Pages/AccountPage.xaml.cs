@@ -44,7 +44,7 @@ namespace AnimalShelterWPF.Pages
         {
             App.User = null;
             Properties.Settings.Default.Reset();
-
+            (App.Current.MainWindow as MainWindow).UsersButtonVisibility = "Hidden";
             NavigationService.Navigate(new LoginPage());
         }
 
